@@ -1,0 +1,22 @@
+.CheckList {
+  width: 500px;
+  height: 46px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #cccccc;
+  border-radius: 24px;
+  cursor: pointer;
+  padding: 0 1.5rem;
+  margin-top: 2rem;
+  transition: all 0.3s linear;
+}
+
+.CheckListActive {
+  border: 2px solid #316dc3 !important;
+}
+
+.textBlue {
+  color: #002559;
+  font-weight: 600;
+}

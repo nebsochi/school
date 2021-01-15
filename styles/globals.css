@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;600&family=Rubik:wght@400;600;700&family=Satisfy&display=swap");
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Rubik", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -13,4 +15,30 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+:root {
+  --yellow: #f7c147;
+  --text-dark-blue: #00244f;
+  --text-bright-blue: #0017ae;
+  --p-color: rgba(34, 35, 53, 0.7);
+  --primary: #0c21ae;
+}
+.btn-primary {
+  background: var(--primary);
+  -webkit-box-shadow: 0px 8px 37px rgba(55, 81, 255, 0.35) !important;
+  box-shadow: 0px 8px 37px rgba(55, 81, 255, 0.35) !important;
+  color: #fff;
+  border-color: var(--primary);
+}
+p {
+  color: var(--p-color);
+}
+.title {
+  color: var(--text-dark-blue);
+  font-weight: 600;
+  font-size: 2.2rem;
+}
+.title--big {
+  font-size: 3.5rem;
 }
