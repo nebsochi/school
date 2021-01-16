@@ -1,6 +1,6 @@
 import CheckList from "../components/CheckList";
-import Link from "next/link";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { SignUpContext } from "../context/SignUpContext";
 import { motion } from "framer-motion";
 
 function School() {
@@ -10,6 +10,8 @@ function School() {
     { value: "Secondary School", checked: false, id: 2 },
   ]);
   const [disabled, setDisabled] = useState(true);
+
+  const { actions, value } = useContext(SignUpContext).contextValue;
 
   const handleClick = (item) => {
     let newValue = checkValue;
@@ -40,40 +42,48 @@ function School() {
     },
   };
 
+  const handleNextClick = () => {
+    if (!disabled) {
+      actions.setSchool(false);
+      actions.setPopulatn(true);
+    }
+  };
+
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={content}
-      style={{ maxWidth: "500px" }}
-    >
-      <h1 className="mb-4">1. Choose School</h1>
-      <p>
-        Fermentum dignissim hac nulla cursus in. Placerat commodo volutpat
-        iaculis id praesent. Dolor ac pretium eget ipsum egestas.
-      </p>
-      {checkValue.map((item) => (
-        <CheckList
-          key={item.id}
-          checkValue={item}
-          onclick={(item) => handleClick(item)}
-        />
-      ))}
-      <div className="mt-5">
-        <Link href={disabled ? "/" : "/population"}>
-          <a
-            className="btn btn-primary btn-md shadow"
+    value.schoolType && (
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={content}
+        style={{ maxWidth: "500px" }}
+      >
+        <h1 className="mb-4">1. Choose School</h1>
+        <p>
+          Fermentum dignissim hac nulla cursus in. Placerat commodo volutpat
+          iaculis id praesent. Dolor ac pretium eget ipsum egestas.
+        </p>
+        {checkValue.map((item) => (
+          <CheckList
+            key={item.id}
+            checkValue={item}
+            onclick={(item) => handleClick(item)}
+          />
+        ))}
+        <div className="mt-5">
+          <button
+            className="btn btn-primary btn-md shadow text-capitalize"
             style={{
               minWidth: "200px",
               borderRadius: "30px",
               background: "#0448AA",
             }}
+            onClick={handleNextClick}
           >
             Next
-          </a>
-        </Link>
-      </div>
-    </motion.div>
+          </button>
+        </div>
+      </motion.div>
+    )
   );
 }
 

@@ -1,10 +1,11 @@
-import React from "react";
-import ImgLayOut from "../Layouts/ImgLayOut";
+import { useContext } from "react";
 import styles from "../styles/Input.module.css";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { SignUpContext } from "../context/SignUpContext";
 
-function contactDetails() {
+function ContactDetails() {
+  const { actions, value } = useContext(SignUpContext).contextValue;
   const content = {
     hidden: {
       opacity: 0,
@@ -20,7 +21,7 @@ function contactDetails() {
   };
 
   return (
-    <ImgLayOut>
+    value.contactInfo && (
       <motion.form
         initial="hidden"
         animate="visible"
@@ -62,23 +63,21 @@ function contactDetails() {
           ></textarea>
         </div>
         <div className="mt-5">
-          <Link href="/">
-            <a
-              type="submit"
-              className="btn btn-primary btn-md shadow-sm"
-              style={{
-                minWidth: "200px",
-                borderRadius: "30px",
-                background: "#0448AA",
-              }}
-            >
-              Next
-            </a>
-          </Link>
+          <button
+            type="submit"
+            className="btn btn-primary btn-md shadow-sm"
+            style={{
+              minWidth: "200px",
+              borderRadius: "30px",
+              background: "#0448AA",
+            }}
+          >
+            Next
+          </button>
         </div>
       </motion.form>
-    </ImgLayOut>
+    )
   );
 }
 
-export default contactDetails;
+export default ContactDetails;

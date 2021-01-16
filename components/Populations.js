@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
-import RadioList from "../components/RadioList";
-import ImgLayOut from "../Layouts/ImgLayOut";
-import Link from "next/link";
+import { useState, useEffect, useContext } from "react";
+import RadioList from "./RadioList";
 import { motion } from "framer-motion";
+import { SignUpContext } from "../context/SignUpContext";
 
-function Population() {
+function Populations() {
   const [population, setPopulation] = useState("");
   const [values, setValues] = useState([
     "0-50",
@@ -13,6 +12,7 @@ function Population() {
     "250-500",
     "500+",
   ]);
+  const { actions, value } = useContext(SignUpContext).contextValue;
 
   useEffect(() => {
     const values = ["0 - 50", "51 - 100", "100 - 250", "250 - 500", "500+"];
@@ -38,8 +38,13 @@ function Population() {
     },
   };
 
+  const handleClick = () => {
+    actions.setPopulatn(false);
+    actions.setContactInformation(true);
+  };
+
   return (
-    <ImgLayOut>
+    value.schoolPopulation && (
       <motion.div
         initial="hidden"
         animate="visible"
@@ -61,23 +66,23 @@ function Population() {
             />
           ))}
         </div>
+
         <div className="mt-5">
-          <Link href="/contactDetails">
-            <a
-              className="btn btn-primary btn-md shadow-sm"
-              style={{
-                minWidth: "200px",
-                borderRadius: "30px",
-                background: "#0448AA",
-              }}
-            >
-              Next
-            </a>
-          </Link>
+          <button
+            className="btn btn-primary btn-md shadow-sm"
+            style={{
+              minWidth: "200px",
+              borderRadius: "30px",
+              background: "#0448AA",
+            }}
+            onClick={handleClick}
+          >
+            Next
+          </button>
         </div>
       </motion.div>
-    </ImgLayOut>
+    )
   );
 }
 
-export default Population;
+export default Populations;

@@ -7,12 +7,28 @@ function ImgContainer() {
       style={{ height: "100%" }}
     >
       <div className="px-5">
-        <h1 className="title title--big text-white text-center px-5">
+        <h1
+          style={{ fontWeight: "600", padding: `0 3rem ` }}
+          className="title title--big text-white text-center"
+        >
           We simplify affordable financing for schools.
         </h1>
-        <p className="lead text-white text-center mt-4">
-          Already a member ? <Link href="">Sign In</Link>
-        </p>
+        <p className="lead text-white text-center mt-4">Already a member ?</p>
+
+        <div className="text-center mt-2">
+          <Link href="">
+            <a
+              className="btn btn-white bg-white btn-md py-2 shadow"
+              style={{
+                minWidth: "200px",
+                borderRadius: "30px",
+                fontWeight: "500",
+              }}
+            >
+              Sign In
+            </a>
+          </Link>
+        </div>
       </div>
     </div>
   );
