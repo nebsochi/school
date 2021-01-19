@@ -2,12 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(233, 233, 233);
   border-radius: 24px;
   height: 35px;
   padding-left: 1rem;
   padding-right: 1rem;
   margin-right: 3rem;
   margin-top: 1.5rem;
-  min-width: 128px;
+  cursor: pointer;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }

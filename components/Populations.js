@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import RadioList from "./RadioList";
 import { motion } from "framer-motion";
 import { SignUpContext } from "../context/SignUpContext";
+import BackBtn from "../components/backBtn/BackBtn";
 
 function Populations() {
   const [population, setPopulation] = useState("");
@@ -13,15 +14,12 @@ function Populations() {
     "500+",
   ]);
   const { actions, value } = useContext(SignUpContext).contextValue;
+  const [disabled, setDisabled] = useState(true);
 
-  useEffect(() => {
-    const values = ["0 - 50", "51 - 100", "100 - 250", "250 - 500", "500+"];
-    setValues([...values]);
-  }, []);
-
-  const setPop = (e) => {
+  const setPop = (e, i) => {
     setPopulation(e.target.value);
-    console.log(population);
+    setDisabled(false);
+    actions.setData({ ...value.data, students_range: `${i + 1}` });
   };
 
   const content = {
@@ -33,14 +31,23 @@ function Populations() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 1,
+        duration: 0.3,
       },
     },
   };
 
   const handleClick = () => {
+    if (disabled) {
+      return;
+    } else {
+      actions.setPopulatn(false);
+      actions.setContactInformation(true);
+    }
+  };
+
+  const handleBackNav = () => {
     actions.setPopulatn(false);
-    actions.setContactInformation(true);
+    actions.setSchool(true);
   };
 
   return (
@@ -51,17 +58,15 @@ function Populations() {
         variants={content}
         style={{ maxWidth: "500px" }}
       >
+        <BackBtn handleBackNav={handleBackNav} />
         <h1 className="mb-4">2. Pupils Population</h1>
-        <p>
-          Fermentum dignissim hac nulla cursus in. Placerat commodo volutpat
-          iaculis id praesent. Dolor ac pretium eget ipsum egestas.
-        </p>
+        <p>Click to select an average pupils population of your school</p>
         <div className="d-flex flex-wrap">
           {values.map((value, i) => (
             <RadioList
               key={i}
               population={population}
-              setPop={(e) => setPop(e)}
+              setPop={(e) => setPop(e, i)}
               value={value}
             />
           ))}

@@ -1,10 +1,17 @@
-import { useState } from "react";
 import Styles from "../styles/RadioList.module.css";
 
 function RadioList({ population, setPop, value }) {
   return (
     <form>
-      <div className={Styles.RadioList}>
+      <label
+        htmlFor={value}
+        className={Styles.RadioList}
+        style={
+          population === value
+            ? { background: "#f3f3ff", border: "2px solid #086eff" }
+            : { background: "#fff" }
+        }
+      >
         <div className="form-check">
           <input
             className="form-check-input"
@@ -15,11 +22,9 @@ function RadioList({ population, setPop, value }) {
             checked={population === value}
             onClick={(e) => setPop(e)}
           />
-          <label className="form-check-label" htmlFor={value}>
-            {value}
-          </label>
+          <span className="form-check-label">{value}</span>
         </div>
-      </div>
+      </label>
     </form>
   );
 }

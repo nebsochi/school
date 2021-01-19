@@ -5,15 +5,16 @@ import { motion } from "framer-motion";
 
 function School() {
   const [checkValue, setCheckValue] = useState([
-    { value: "Nursery School", checked: false, id: 0 },
-    { value: "Primary School", checked: false, id: 1 },
-    { value: "Secondary School", checked: false, id: 2 },
+    { value: "Nursery School", checked: false, id: 0, name: "nusery" },
+    { value: "Primary School", checked: false, id: 1, name: "primary" },
+    { value: "Secondary School", checked: false, id: 2, name: "secondary" },
   ]);
   const [disabled, setDisabled] = useState(true);
 
   const { actions, value } = useContext(SignUpContext).contextValue;
 
   const handleClick = (item) => {
+    console.log(item.checked);
     let newValue = checkValue;
     newValue[item.id].checked = !newValue[item.id].checked;
     for (let index = 0; index < newValue.length; index++) {
@@ -25,6 +26,12 @@ function School() {
       }
     }
     setCheckValue([...newValue]);
+    actions.setData({
+      ...checkValue.data,
+      nursery: checkValue[0].checked,
+      primary: checkValue[1].checked,
+      secondary: checkValue[2].checked,
+    });
   };
 
   const content = {
@@ -37,7 +44,7 @@ function School() {
       y: 0,
       transition: {
         delay: 0.3,
-        duration: 1,
+        duration: 0.3,
       },
     },
   };
@@ -57,11 +64,8 @@ function School() {
         variants={content}
         style={{ maxWidth: "500px" }}
       >
-        <h1 className="mb-4">1. Choose School</h1>
-        <p>
-          Fermentum dignissim hac nulla cursus in. Placerat commodo volutpat
-          iaculis id praesent. Dolor ac pretium eget ipsum egestas.
-        </p>
+        <h1 className="mb-4">1. School category</h1>
+        <p>Click to select your school categorization</p>
         {checkValue.map((item) => (
           <CheckList
             key={item.id}

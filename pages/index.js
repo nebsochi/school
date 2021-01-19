@@ -1,35 +1,32 @@
-import School from "../components/School";
+import { useEffect, useContext } from "react";
 import Head from "next/head";
-import Populations from "../components/Populations";
-import ImgContainer from "../components/ImgContainer";
-import ContactDetails from "../components/ContactDetails";
+import { useRouter } from "next/router";
+import SignUpForm from "../components/SignUpForm";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Home() {
-  return (
-    <div>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+  const { signedIn, checkAuthState } = useContext(AuthContext).authValue;
+  const router = useRouter();
 
-      <main className="container-fluid">
-        <div className="row align-items-stretch">
-          <div
-            className="col-md-6 d-flex align-items-center justify-content-center p-0"
-            style={{ minHeight: "100vh" }}
-          >
-            <School />
-            <Populations />
-            <ContactDetails />
-          </div>
-          <div
-            className="col-md-6 position-relative p-0"
-            style={{ backgroundImage: `url(/bg.png)`, backgroundSize: "cover" }}
-          >
-            <ImgContainer />
-          </div>
-        </div>
-      </main>
-    </div>
+  useEffect(() => {
+    let loginStatus = checkAuthState();
+    if (loginStatus === false) {
+      router.push("/signin");
+    }
+  }, []);
+
+  return (
+    signedIn && (
+      <div>
+        <Head>
+          <title>SchoolCredit</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+
+        <main className="container-fluid">
+          <div className="row align-items-stretch">Home</div>
+        </main>
+      </div>
+    )
   );
 }
