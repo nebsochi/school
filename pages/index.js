@@ -1,7 +1,6 @@
 import { useEffect, useContext } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import SignUpForm from "../components/SignUpForm";
 import { AuthContext } from "../context/AuthContext";
 
 export default function Home() {

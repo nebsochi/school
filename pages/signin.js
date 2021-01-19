@@ -12,7 +12,7 @@ function signin() {
   useEffect(() => {
     let loginStatus = checkAuthState();
     if (loginStatus === false) {
-      router.push("/");
+      router.push("/signin");
     }
   }, []);
 

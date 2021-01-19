@@ -14,7 +14,6 @@ function School() {
   const { actions, value } = useContext(SignUpContext).contextValue;
 
   const handleClick = (item) => {
-    console.log(item.checked);
     let newValue = checkValue;
     newValue[item.id].checked = !newValue[item.id].checked;
     for (let index = 0; index < newValue.length; index++) {

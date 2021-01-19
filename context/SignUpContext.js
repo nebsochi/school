@@ -57,11 +57,8 @@ export const SignUpProvider = (props) => {
       setSignUpScrn,
       setData,
     },
-    data: {
-      data,
-    },
   };
-  console.log(data);
+
   return (
     <SignUpContext.Provider value={{ contextValue }}>
       {props.children}

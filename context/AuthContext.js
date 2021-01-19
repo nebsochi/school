@@ -31,7 +31,6 @@ export const AuthProvider = (props) => {
       if (process.browser) {
         localStorage.setItem("token", data.token);
         setSignedIn(true);
-        console.log(response);
         return status;
       }
     } else {
