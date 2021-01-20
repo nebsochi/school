@@ -26,7 +26,7 @@ function signin() {
         <main className="container-fluid">
           <div className="row align-items-stretch">
             <div
-              className="col-md-7 position-relative p-0"
+              className="col-md-6 py-5 py-md-1 col-lg-7 position-relative p-0"
               style={{
                 backgroundImage: `url(/bg.png)`,
                 backgroundSize: "cover",
@@ -35,10 +35,7 @@ function signin() {
             >
               <ImgContainer />
             </div>
-            <div
-              className="col-md-5 d-flex align-items-center justify-content-center p-0"
-              style={{ minHeight: "100vh" }}
-            >
+            <div className="form-container py-5 py-md-0 col-md-6 col-lg-5 d-flex align-items-center justify-content-center p-0">
               <SignInform />
             </div>
           </div>

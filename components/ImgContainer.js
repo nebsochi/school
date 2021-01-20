@@ -9,15 +9,12 @@ function ImgContainer() {
       className="position-relative d-flex align-items-center justify-content-center"
       style={{ height: "100%" }}
     >
-      <div className="px-5">
-        <h1
-          style={{ fontWeight: "600", padding: `0 3rem ` }}
-          className="title title--big text-white text-center"
-        >
+      <div className="px-2 px-lg-5">
+        <h1 className="title title--big text-white text-center">
           We simplify affordable financing for schools.
         </h1>
         {router.pathname === "/signin" ? (
-          <>
+          <div className="nav-content">
             <p className="lead text-white text-center mt-5">
               Not a member yet ?
             </p>
@@ -36,7 +33,7 @@ function ImgContainer() {
                 </a>
               </Link>
             </div>
-          </>
+          </div>
         ) : (
           <>
             <p className="lead text-white text-center mt-5">

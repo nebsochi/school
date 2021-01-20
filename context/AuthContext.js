@@ -38,6 +38,14 @@ export const AuthProvider = (props) => {
     }
   };
 
+  const logOut = () => {
+    if (process.browser) {
+      setSignedIn(false);
+      localStorage.clear();
+      // router.push("/signin");
+    }
+  };
+
   const checkAuthState = () => {
     if (process.browser) {
       const token = localStorage.getItem("token");
@@ -56,6 +64,7 @@ export const AuthProvider = (props) => {
     signIn,
     signedIn,
     checkAuthState,
+    logOut,
   };
 
   return (
