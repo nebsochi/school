@@ -11,8 +11,8 @@ function signin() {
 
   useEffect(() => {
     let loginStatus = checkAuthState();
-    if (loginStatus === false) {
-      router.push("/signin");
+    if (loginStatus === true) {
+      router.push("/");
     }
   }, []);
 

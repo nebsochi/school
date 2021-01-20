@@ -60,7 +60,7 @@ function NavBar() {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Profile
+                <img alt="user" src="user.svg" height="35" />
               </a>
               <div
                 className="dropdown-menu"

@@ -56,8 +56,8 @@ p {
 
 .nav-item {
   position: relative;
+  line-height: 35px;
 }
-
 /* .dropdown-menu {
   left: 0;
 } */
@@ -98,6 +98,10 @@ p {
     font-size: 3rem;
     font-weight: 600;
     padding: 0 3rem;
+  }
+  .title--large {
+    font-size: 3rem;
+    font-weight: 600;
   }
   .nav-content {
     display: block;
