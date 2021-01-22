@@ -155,14 +155,14 @@ function SignUpForm() {
         <div className="mt-5">
           <button
             type="submit"
-            className="btn py-1 btn-primary btn-md shadow-sm"
+            className="btn py-2 btn-primary btn-md shadow-sm"
             style={{
               minWidth: "200px",
               borderRadius: "30px",
               background: "#0448AA",
             }}
           >
-            Next
+            Submit
           </button>
         </div>
       </motion.form>

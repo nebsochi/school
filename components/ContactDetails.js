@@ -64,7 +64,6 @@ function ContactDetails() {
         initial="hidden"
         animate="visible"
         variants={content}
-        // className={`${styles.form} was-validated`}
         className={validated ? `${styles.form} was-validated` : styles.form}
         onSubmit={(e) => handleSubmit(e)}
         noValidate

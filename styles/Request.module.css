@@ -1,0 +1,23 @@
+.RequestImageContainer {
+  height: 70px;
+  width: 70px;
+  overflow: hidden;
+  position: relative;
+}
+
+.RequestImage {
+  width: 100%;
+  height: auto;
+}
+
+.RequestControl {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 5;
+}
+.RequestControlRight {
+  left: unset;
+  right: 0;
+}

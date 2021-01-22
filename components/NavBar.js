@@ -16,8 +16,8 @@ function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white bg-light shadow-sm py-2">
       <div className="container">
-        <a class="navbar-brand" href="#">
-          SchoolCredit
+        <a className="navbar-brand" href="#">
+          S
         </a>
         <div
           className="collapse navbar-collapse"
@@ -26,14 +26,16 @@ function NavBar() {
         >
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link" href="#">
-                Home <span className="sr-only">(current)</span>
-              </a>
+              <Link href="/">
+                <a className="nav-link">
+                  Home <span className="sr-only">(current)</span>
+                </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Request
-              </a>
+              <Link href="/request">
+                <a className="nav-link">Request</a>
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
@@ -72,7 +74,7 @@ function NavBar() {
                 <a className="dropdown-item" href="#">
                   Settings
                 </a>
-                <div class="dropdown-divider"></div>
+                <div className="dropdown-divider"></div>
                 <Link href="/signin">
                   <a
                     className="dropdown-item text-danger"
