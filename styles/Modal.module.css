@@ -1,0 +1,68 @@
+.Modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  z-index: 1000;
+  display: none;
+}
+
+.isOpen {
+  display: block;
+}
+
+.ModalContent {
+  background: #fff;
+  margin-left: auto;
+  height: 100%;
+  max-width: 700px;
+  overflow: auto;
+  padding: 2rem;
+}
+
+.ModalAvatar {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.ModalAvatarSmall {
+  height: 50px;
+  width: 50px;
+}
+
+.ModalName {
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin-right: 2rem;
+}
+
+.ModalNameFixed {
+  min-width: 80px;
+  margin-right: 0;
+}
+
+.ModalValue {
+  font-size: 1rem;
+  font-weight: 700;
+  max-width: 60%;
+}
+
+.ModalInfo {
+  width: 48%;
+  background: #fcfcfc;
+  border-radius: 8px;
+}
+
+.ModalArr {
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+}

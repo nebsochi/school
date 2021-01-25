@@ -1,5 +1,42 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;600&family=Rubik:wght@400;600;700&family=Satisfy&display=swap");
-/* @import "url(swiper/swiper.bundle.css)"; */
+
+@font-face {
+  font-family: "Muli";
+  src: url("/Fonts/muli-200.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Muli";
+  src: url("/Fonts/muli-300.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Muli";
+  src: url("/Fonts/muli-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Muli";
+  src: url("/Fonts/muli-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Muli";
+  src: url("/Fonts/muli-700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Muli";
+  src: url("/Fonts/muli-900.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
 html,
 body {
   padding: 0;
@@ -77,15 +114,23 @@ p {
   }
 }
 
-.btn,
-.nav-link {
-  font-weight: 600;
-  font-family: "Montserrat", sans-serif;
+.btn {
+  font-weight: 400;
+  font-family: "Rubik", sans-serif;
 }
 
 .nav-link {
-  font-size: 0.9rem;
-  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: "Rubik", sans-serif;
+}
+
+.nav-item.active .nav-link {
+  font-weight: 600;
+}
+
+.nav-item.active {
+  border-bottom: 2px solid rgba(76, 88, 165, 1);
 }
 
 .navbar-light .navbar-nav .active > .nav-link,
@@ -121,7 +166,7 @@ p {
   }
   .title--big {
     font-size: 3rem;
-    font-weight: 600;
+    font-weight: 900;
     padding: 0 3rem;
   }
 
@@ -194,7 +239,7 @@ p {
 
 .swiper-button-next,
 .swiper-container-rtl .swiper-button-prev {
-  right: 0px !important;
+  right: -9px !important;
   left: auto;
   z-index: 22;
 }
@@ -202,12 +247,12 @@ p {
 .swiper-button-prev:after,
 .swiper-button-next:after {
   font-size: 1rem !important;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .swiper-button-prev,
 .swiper-container-rtl .swiper-button-next {
-  left: -8px !important;
+  left: -9px !important;
   right: auto;
   z-index: 22;
 }

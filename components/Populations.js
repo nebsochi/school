@@ -77,7 +77,7 @@ function Populations() {
             className="btn btn-primary btn-md shadow-sm"
             style={{
               minWidth: "200px",
-              borderRadius: "30px",
+
               background: "#0448AA",
             }}
             onClick={handleClick}

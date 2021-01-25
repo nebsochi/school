@@ -14,7 +14,7 @@ function NavBar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white bg-light shadow-sm py-2">
+    <nav className="navbar navbar-expand-lg navbar-light bg-white bg-light shadow-sm p-0">
       <div className="container">
         <a className="navbar-brand" href="#">
           S
@@ -25,14 +25,22 @@ function NavBar() {
           style={{ justifyContent: "flex-end" }}
         >
           <ul className="navbar-nav">
-            <li className="nav-item active">
+            <li
+              className={`${
+                router.pathname === "/" ? "nav-item active" : "nav-item"
+              }`}
+            >
               <Link href="/">
                 <a className="nav-link">
                   Home <span className="sr-only">(current)</span>
                 </a>
               </Link>
             </li>
-            <li className="nav-item">
+            <li
+              className={`nav-item ${
+                router.pathname === "/request" ? "nav-item active" : "nav-item"
+              }`}
+            >
               <Link href="/request">
                 <a className="nav-link">Request</a>
               </Link>

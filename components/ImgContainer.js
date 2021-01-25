@@ -25,7 +25,7 @@ function ImgContainer() {
                   className="btn btn-white bg-white btn-md py-2 shadow"
                   style={{
                     minWidth: "200px",
-                    borderRadius: "30px",
+
                     fontWeight: "600",
                   }}
                 >
@@ -46,7 +46,7 @@ function ImgContainer() {
                   className="btn btn-white bg-white btn-md py-2 shadow"
                   style={{
                     minWidth: "200px",
-                    borderRadius: "30px",
+
                     fontWeight: "600",
                   }}
                 >

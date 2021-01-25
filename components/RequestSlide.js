@@ -7,6 +7,12 @@ import "swiper/swiper-bundle.css";
 
 SwiperCore.use([Navigation]);
 
+const numberFormat = (value) =>
+  new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "NGN",
+  }).format(value);
+
 function RequestSlide({ cswiper, childrenData }) {
   return (
     <Swiper
@@ -21,8 +27,8 @@ function RequestSlide({ cswiper, childrenData }) {
     >
       {childrenData.map((item, i) => (
         <SwiperSlide key={i}>
-          <div className="d-flex align-item-start ml-3">
-            <div className={`${Styles.RequestImageContainer} border`}>
+          <div className="d-flex align-item-center ml-3">
+            <div className={`${Styles.RequestImageContainer}`}>
               <img
                 src={item.picture}
                 alt="name"
@@ -30,22 +36,12 @@ function RequestSlide({ cswiper, childrenData }) {
               />
             </div>
             <div className="info__avatar pl-3">
-              <span
-                style={{ textTransform: "uppercase" }}
-                className="d-block profile__status"
-              >
-                Name
+              <span className=" d-block" style={{ fontSize: ".9rem" }}>
+                {item.full_name}
               </span>
-              <span className=" d-block">{item.full_name}</span>
               <div className="d-flex align-items-center mt-2 justify-content-start">
-                <span
-                  style={{ textTransform: "uppercase", minWidth: "auto" }}
-                  className="d-block profile__status"
-                >
-                  Fees:{" "}
-                </span>
                 <span className="profile__title d-block">
-                  &nbsp;&#x20A6;{item.tuition_fees}
+                  {numberFormat(item.tuition_fees)}
                 </span>
               </div>
             </div>

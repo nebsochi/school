@@ -116,7 +116,6 @@ function SignInform() {
           className="btn py-2 btn-primary btn-md shadow-sm"
           style={{
             minWidth: "200px",
-            borderRadius: "30px",
             background: "#0448AA",
           }}
         >

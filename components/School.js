@@ -77,7 +77,6 @@ function School() {
             className="btn btn-primary btn-md shadow text-capitalize"
             style={{
               minWidth: "200px",
-              borderRadius: "30px",
               background: "#0448AA",
             }}
             onClick={handleNextClick}
