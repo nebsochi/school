@@ -1,11 +1,11 @@
 function BackBtn(props) {
-  const { handleBackNav } = props;
+  const { handleBackNav, top, left } = props;
   return (
     <span
       style={{
         position: "absolute",
-        top: "50px",
-        left: "3rem",
+        top: top || "50px",
+        left: left || "3rem",
         display: "flex",
         alignItems: "center",
         cursor: "pointer",

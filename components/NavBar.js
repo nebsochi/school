@@ -45,10 +45,18 @@ function NavBar() {
                 <a className="nav-link">Request</a>
               </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Repayment
-              </a>
+            <li
+              className={`nav-item ${
+                router.pathname === "/repayment"
+                  ? "nav-item active"
+                  : "nav-item"
+              }`}
+            >
+              <Link href="/repayment">
+                <a className="nav-link" href="#">
+                  Repayment
+                </a>
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">

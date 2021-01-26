@@ -1,26 +1,36 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Styles from "../styles/Modal.module.css";
 import { useRouter } from "next/router";
+import BackBtn from "./backBtn/BackBtn";
 
 function Modal({ isOpen, setIsOpen, data }) {
   const [question, setquestion] = useState(true);
   const router = useRouter();
+  const ref = useRef(null);
 
   const handleClick = (e) => {
     e.preventDefault();
     const str = e.target.classList[0];
     if (str?.startsWith("Modal_Modal__")) {
+      ref.current.classList.remove(`${Styles.isOpen}`);
       setIsOpen(false);
       router.push("/request");
     }
   };
 
+  const handleBackNav = () => {
+    setquestion(true);
+  };
+
   return (
     <div
-      className={isOpen ? `${Styles.Modal} ${Styles.isOpen}` : Styles.Modal}
+      className={isOpen ? `${Styles.Modal} ${Styles.isOpen} ` : Styles.Modal}
       onClick={(e) => handleClick(e)}
     >
-      <div className={Styles.ModalContent}>
+      <div
+        className={`${Styles.ModalContent} ${Styles.ModalContentIsOpen}`}
+        ref={ref}
+      >
         <a
           onClick={(e) => {
             e.preventDefault();
@@ -68,7 +78,7 @@ function Modal({ isOpen, setIsOpen, data }) {
           </div>
         </a>
         {question && (
-          <div className="mt-4">
+          <div className={`mt-4 ${Styles.heightAnim}`}>
             <div className="pt-4">
               <form>
                 <h4 className="mb-4">
@@ -123,8 +133,9 @@ function Modal({ isOpen, setIsOpen, data }) {
         )}
 
         {!question && (
-          <div>
-            <div className="border-top mt-4 pt-4">
+          <div className={`position-relative ${Styles.heightAnim}`}>
+            <BackBtn top={"8px"} left={"0px"} handleBackNav={handleBackNav} />
+            <div className="border-top mt-5 pt-5">
               <div className="d-flex py-3 justify-content-between border-bottom">
                 <span className={Styles.ModalName}>Name:</span>
                 <span className={Styles.ModalValue}>
