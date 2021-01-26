@@ -98,7 +98,7 @@ function Modal({ isOpen, setIsOpen, data }) {
                 </div>
 
                 <div>
-                  <p style={{ fontSize: "2rem" }}>
+                  <p style={{ fontSize: "1.7rem" }}>
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry.?
                   </p>
