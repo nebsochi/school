@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Styles from "../styles/Modal.module.css";
 import { useRouter } from "next/router";
 import Question from "./Question/Question";
@@ -22,6 +22,14 @@ function Modal({ isOpen, setIsOpen, data }) {
       closeModal();
     }
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isOpen]);
 
   const closeModal = () => {
     ref.current.classList.remove(`${Styles.isOpen}`);
