@@ -11,11 +11,14 @@ export default function Request() {
   const [pageCount, setPageCount] = useState([1]);
   const [isOpen, setIsOpen] = useState(false);
   const [detailData, setDetailData] = useState({});
+  const [searchValue, setSearchValue] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     getRequest(1)
       .then((data) => {
         setData([...data.data]);
+        setFilteredData([...data.data]);
         // setListCount(data.total_results_count);
         const pageNumbers = [];
         for (let index = 0; index < data.total_results_count / 12; index++) {
@@ -26,10 +29,21 @@ export default function Request() {
       .catch((err) => console.log(err));
   }, []);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setSearchValue(value);
+    let newData = data;
+    let valtoLowerCase = value.toLowerCase();
+    let filteredData = newData.filter((item) =>
+      item.parent.full_name.toLowerCase().includes(valtoLowerCase)
+    );
+    setFilteredData([...filteredData]);
+  };
+
   return (
     <IndexLayout>
       <div className="container position-relative pt-4">
-        <div className="row">
+        <div className="row" style={{ marginBottom: "60px" }}>
           <div className="col-md-12">
             {/* <h6 className="content__header position-relative border-bottom pb-2">
               Request
@@ -63,15 +77,17 @@ export default function Request() {
               </div>
 
               <input
-                type="search"
+                type="text"
                 className="form-control"
                 placeholder="search list"
                 style={{ height: "45px", maxWidth: "200px" }}
+                value={searchValue}
+                onChange={(e) => handleChange(e)}
               />
             </div>
 
             <div className="row">
-              {data.map((item, i) => (
+              {filteredData.map((item, i) => (
                 <RequestCard
                   key={item.id}
                   setIsOpen={setIsOpen}

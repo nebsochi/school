@@ -16,10 +16,9 @@ function Populations() {
   const { actions, value } = useContext(SignUpContext).contextValue;
   const [disabled, setDisabled] = useState(true);
 
-  const setPop = (e, i) => {
-    setPopulation(e.target.value);
+  const setPop = (e) => {
+    setPopulation(e.target);
     setDisabled(false);
-    actions.setData({ ...value.data, students_range: `${i + 1}` });
   };
 
   const content = {
@@ -66,8 +65,9 @@ function Populations() {
             <RadioList
               key={i}
               population={population}
-              setPop={(e) => setPop(e, i)}
+              setPop={setPop(e)}
               value={value}
+              name={"population"}
             />
           ))}
         </div>

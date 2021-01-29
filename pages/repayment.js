@@ -43,7 +43,7 @@ function repayment() {
               />
             </div>
 
-            <div class="row">
+            <div className="row">
               <RepaymentCard />
             </div>
           </div>

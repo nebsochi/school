@@ -1,8 +1,8 @@
 import Styles from "../styles/RadioList.module.css";
 
-function RadioList({ population, setPop, value }) {
+function RadioList({ population, setPop, value, name }) {
   return (
-    <form>
+    <>
       <label
         htmlFor={value}
         className={Styles.RadioList}
@@ -16,16 +16,16 @@ function RadioList({ population, setPop, value }) {
           <input
             className="form-check-input"
             type="radio"
-            name="population"
+            name={name}
             id={value}
             value={value}
-            checked={population === value}
-            onClick={(e) => setPop(e)}
+            onChange={(e) => setPop(e)}
+            checked={population === value ? true : false}
           />
           <span className="form-check-label">{value}</span>
         </div>
       </label>
-    </form>
+    </>
   );
 }
 
