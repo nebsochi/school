@@ -6,6 +6,7 @@ export const ModalContext = createContext();
 export const ModalProvider = (props) => {
   const [data, setData] = useState({});
   const [isOpen, setIsOpen] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   let handleSetData = (item) => {
@@ -14,7 +15,7 @@ export const ModalProvider = (props) => {
 
   let submitQuestions = async (dataNeeded, id) => {
     try {
-      setIsLoading(true);
+      setIsSubmitting(true);
       const token = localStorage.getItem("token");
       const response = await Api.post(
         `${Api.ENDPOINTS.url}/school/${id}/questionnaire`,
@@ -22,7 +23,7 @@ export const ModalProvider = (props) => {
         token
       );
       const data = response;
-      setIsLoading(false);
+      setIsSubmitting(false);
       return data;
     } catch (err) {
       return err;
@@ -55,6 +56,7 @@ export const ModalProvider = (props) => {
     toggleModal,
     submitQuestions,
     isOpen,
+    isSubmitting,
     isLoading,
     getRequestById,
   };

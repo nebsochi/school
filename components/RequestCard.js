@@ -11,9 +11,11 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    const response = getRequestById(item.id).then((data) => console.log(data));
+    const response = getRequestById(item.id).then((data) =>
+      setDetailData({ ...detailData, ...data.data.loan_request })
+    );
     setIsOpen(true);
-    setDetailData({ ...detailData, ...item });
+
     router.push("/request", `/request/details/${item.parent.full_name}`);
   };
 

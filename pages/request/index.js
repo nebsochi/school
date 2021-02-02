@@ -1,11 +1,13 @@
 import IndexLayout from "../../Layouts";
 import RequestCard from "../../components/RequestCard";
 import { ApiContext } from "../../context/ApiContext";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useCallback } from "react";
 import Modal from "../../components/Modal";
+import debounce from "lodash/debounce";
+import { filter } from "lodash";
 
 export default function Request() {
-  const { getRequest } = useContext(ApiContext).api;
+  const { getRequest, searchRequest, isSearching } = useContext(ApiContext).api;
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState([1]);
@@ -14,12 +16,28 @@ export default function Request() {
   const [searchValue, setSearchValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
+  const updateQuery = (number = 1) => {
+    searchRequest(number, {
+      search: `${searchValue}`,
+    }).then((res) => {
+      if (res.data) {
+        setFilteredData([...res.data]);
+      }
+    });
+  };
+
+  const delayedQuery = useCallback(debounce(updateQuery, 1000), [searchValue]);
+
+  useEffect(() => {
+    delayedQuery();
+    // Cancel the debounce on useEffect cleanup.
+    return delayedQuery.cancel;
+  }, [searchValue, delayedQuery]);
+
   useEffect(() => {
     getRequest(1)
       .then((data) => {
         setData([...data.data]);
-        setFilteredData([...data.data]);
-        // setListCount(data.total_results_count);
         const pageNumbers = [];
         for (let index = 0; index < data.total_results_count / 12; index++) {
           pageNumbers.push(index + 1);
@@ -32,12 +50,6 @@ export default function Request() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSearchValue(value);
-    let newData = data;
-    let valtoLowerCase = value.toLowerCase();
-    let filteredData = newData.filter((item) =>
-      item.parent.full_name.toLowerCase().includes(valtoLowerCase)
-    );
-    setFilteredData([...filteredData]);
   };
 
   return (
@@ -80,23 +92,56 @@ export default function Request() {
                 type="text"
                 className="form-control"
                 placeholder="search list"
+                name="search"
                 style={{ height: "45px", maxWidth: "200px" }}
                 value={searchValue}
                 onChange={(e) => handleChange(e)}
               />
             </div>
-
-            <div className="row">
-              {filteredData.map((item, i) => (
-                <RequestCard
-                  key={item.id}
-                  setIsOpen={setIsOpen}
-                  item={item}
-                  detailData={detailData}
-                  setDetailData={setDetailData}
-                />
+            {searchValue.length === 0 && (
+              <div className="row position-relative">
+                {data.map((item, i) => (
+                  <RequestCard
+                    key={item.id}
+                    setIsOpen={setIsOpen}
+                    item={item}
+                    detailData={detailData}
+                    setDetailData={setDetailData}
+                  />
+                ))}
+              </div>
+            )}
+            {searchValue.length >= 1 &&
+              (isSearching ? (
+                <div className="spinner-border" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>
+              ) : (
+                <>
+                  {filteredData.length > 0 ? (
+                    <div className="row">
+                      <div className="col-12">
+                        <p>
+                          Search Results for <strong>{searchValue}</strong>
+                        </p>
+                      </div>
+                      {filteredData.map((item, i) => (
+                        <RequestCard
+                          key={item.id}
+                          setIsOpen={setIsOpen}
+                          item={item}
+                          detailData={detailData}
+                          setDetailData={setDetailData}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <p>
+                      Couldn't find anything for <strong>{searchValue}</strong>
+                    </p>
+                  )}
+                </>
               ))}
-            </div>
           </div>
         </div>
       </div>

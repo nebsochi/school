@@ -19,7 +19,9 @@ function Modal({ isOpen, setIsOpen, data }) {
   const [questionSlide, setQuestionSlide] = useState(1);
   const [toastOpen, setToastOpen] = useState(true);
   const [toastMsg, setToastMsg] = useState("");
-  const { submitQuestions, isLoading } = useContext(ModalContext).contextValue;
+  const { submitQuestions, isSubmitting, isLoading } = useContext(
+    ModalContext
+  ).contextValue;
 
   const handleClick = (e) => {
     const str = e.target?.classList[0];
@@ -175,117 +177,126 @@ function Modal({ isOpen, setIsOpen, data }) {
 
         <div className={`mt-4 ${Styles.heightAnim}`}>
           <div className="pt-4">
-            <div>
-              <div className="progress mb-4">
-                <div
-                  className="progress-bar"
-                  role="progressbar"
-                  style={{ width: `${Object.keys(answers).length * 25}%` }}
-                  aria-valuenow={Object.keys(answers).length}
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                >
-                  {Object.keys(answers).length * 25}%
+            {data.questionnaire_filled && !isLoading ? (
+              <div>
+                <div className="progress mb-4">
+                  <div
+                    className="progress-bar"
+                    role="progressbar"
+                    style={{ width: `${Object.keys(answers).length * 25}%` }}
+                    aria-valuenow={Object.keys(answers).length}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                  >
+                    {Object.keys(answers).length * 25}%
+                  </div>
                 </div>
-              </div>
 
-              {questionSlide !== 5 && (
-                <form
-                  onSubmit={(e) => handleSubmit(e)}
-                  className={`position-relative ${
-                    questionSlide > 1 ? "pt-5" : null
-                  }`}
-                >
-                  {questionSlide > 1 && (
-                    <BackBtn
-                      handleBackNav={handleBackNav}
-                      top={"0"}
-                      left={"0"}
-                    />
-                  )}
-                  {questionSlide === 1 && (
-                    <Question
-                      answers={answers}
-                      setAnswers={setAnswers}
-                      setAnswersIndex={setAnswersIndex}
-                      setDisabled={setDisabled}
-                    />
-                  )}
-                  {questionSlide === 2 && (
-                    <QuestionTwo
-                      answers={answers}
-                      setAnswers={setAnswers}
-                      setAnswersIndex={setAnswersIndex}
-                      setDisabled={setDisabled}
-                    />
-                  )}
-                  {questionSlide === 3 && (
-                    <QuestionThree
-                      answers={answers}
-                      setAnswers={setAnswers}
-                      setAnswersIndex={setAnswersIndex}
-                      setDisabled={setDisabled}
-                    />
-                  )}
-                  {questionSlide === 4 && (
-                    <QuestionFour
-                      answers={answers}
-                      setAnswers={setAnswers}
-                      setAnswersIndex={setAnswersIndex}
-                      setDisabled={setDisabled}
-                    />
-                  )}
-
-                  <br />
-                  <button
-                    className="btn  px-5 btn-outline btn-primary btn-primary--sh-none btn-lg "
-                    disabled={isLoading ? true : false}
-                    style={{
-                      color: "rgb(255, 255, 255)",
-                      background: "rgb(0, 98, 204)",
-                      marginTop: ".9rem",
-                      marginBottom: "1rem",
-                      borderColor: "rgb(0, 98, 204)",
-                    }}
-                  >
-                    {isLoading ? (
-                      <>
-                        <span
-                          class="spinner-border spinner-border-sm mb-1 mr-1"
-                          role="status"
-                          aria-hidden="true"
-                        ></span>
-                        Submitting...
-                      </>
-                    ) : (
-                      <>{questionSlide < 4 ? "Next" : "Submit"}</>
-                    )}
-                  </button>
-                </form>
-              )}
-
-              {questionSlide === 5 && (
                 <>
-                  <h3 className="mb-3">Thank you for your response</h3>
-                  <button
-                    className="btn btn-primary px-5"
-                    style={{
-                      color: "rgb(255, 255, 255)",
-                      background: "rgb(0, 98, 204)",
-                      marginTop: ".9rem",
-                      marginBottom: "1rem",
-                      borderColor: "rgb(0, 98, 204)",
-                    }}
-                    onClick={() => {
-                      setQuestionSlide(1);
-                      setDisabled(false);
-                    }}
-                  >
-                    Edit Response
-                  </button>
+                  {questionSlide !== 5 && (
+                    <form
+                      onSubmit={(e) => handleSubmit(e)}
+                      className={`position-relative ${
+                        questionSlide > 1 ? "pt-5" : null
+                      }`}
+                    >
+                      {questionSlide > 1 && (
+                        <BackBtn
+                          handleBackNav={handleBackNav}
+                          top={"0"}
+                          left={"0"}
+                        />
+                      )}
+                      {questionSlide === 1 && (
+                        <Question
+                          answers={answers}
+                          setAnswers={setAnswers}
+                          setAnswersIndex={setAnswersIndex}
+                          setDisabled={setDisabled}
+                        />
+                      )}
+                      {questionSlide === 2 && (
+                        <QuestionTwo
+                          answers={answers}
+                          setAnswers={setAnswers}
+                          setAnswersIndex={setAnswersIndex}
+                          setDisabled={setDisabled}
+                        />
+                      )}
+                      {questionSlide === 3 && (
+                        <QuestionThree
+                          answers={answers}
+                          setAnswers={setAnswers}
+                          setAnswersIndex={setAnswersIndex}
+                          setDisabled={setDisabled}
+                        />
+                      )}
+                      {questionSlide === 4 && (
+                        <QuestionFour
+                          answers={answers}
+                          setAnswers={setAnswers}
+                          setAnswersIndex={setAnswersIndex}
+                          setDisabled={setDisabled}
+                        />
+                      )}
+
+                      <br />
+                      <button
+                        className="btn  px-5 btn-outline btn-primary btn-primary--sh-none btn-lg "
+                        disabled={isLoading ? true : false}
+                        style={{
+                          color: "rgb(255, 255, 255)",
+                          background: "rgb(0, 98, 204)",
+                          marginTop: ".9rem",
+                          marginBottom: "1rem",
+                          borderColor: "rgb(0, 98, 204)",
+                        }}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <span
+                              className="spinner-border spinner-border-sm mb-1 mr-1"
+                              role="status"
+                              aria-hidden="true"
+                            ></span>
+                            Submitting...
+                          </>
+                        ) : (
+                          <>{questionSlide < 4 ? "Next" : "Submit"}</>
+                        )}
+                      </button>
+                    </form>
+                  )}
+
+                  {questionSlide === 5 && (
+                    <>
+                      <h3 className="mb-3">Thank you for your response</h3>
+                      <button
+                        className="btn btn-primary px-5"
+                        style={{
+                          color: "rgb(255, 255, 255)",
+                          background: "rgb(0, 98, 204)",
+                          marginTop: ".9rem",
+                          marginBottom: "1rem",
+                          borderColor: "rgb(0, 98, 204)",
+                        }}
+                        onClick={() => {
+                          setQuestionSlide(1);
+                          setDisabled(false);
+                        }}
+                      >
+                        Edit Response
+                      </button>
+                    </>
+                  )}
                 </>
-              )}
-            </div>
+              </div>
+            ) : (
+              <div className="text-left">
+                <h6>This request is awaiting approval!</h6>
+                <img alt="pending" width="30%" src="pend.svg" />
+              </div>
+            )}
           </div>
         </div>
       </div>
