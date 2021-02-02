@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import RadioList from "../RadioList";
 import { motion } from "framer-motion";
 
-function Question({ setDisabled, answers, setAnswers, duration, setDuration }) {
+function Question({ setDisabled, answers, setAnswers, setAnswersIndex }) {
   const [values, setValues] = useState([
     "A term",
     "More than 1-2 session",
@@ -10,9 +10,10 @@ function Question({ setDisabled, answers, setAnswers, duration, setDuration }) {
     "Dont know parent",
   ]);
 
-  const setDuratn = (e) => {
+  const setDuratn = (e, i) => {
     const { name, value } = e.target;
     setAnswers({ ...answers, [name]: value });
+    setAnswersIndex((prev) => ({ ...prev, [name]: i + 1 }));
     setDisabled(false);
   };
 
@@ -44,10 +45,10 @@ function Question({ setDisabled, answers, setAnswers, duration, setDuration }) {
           {values.map((value, i) => (
             <RadioList
               key={i}
-              population={answers?.duration}
-              setPop={(e) => setDuratn(e)}
+              population={answers?.sessions_paid}
+              setPop={(e) => setDuratn(e, i)}
               value={value}
-              name={"duration"}
+              name={"sessions_paid"}
             />
           ))}
         </div>

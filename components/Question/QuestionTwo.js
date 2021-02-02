@@ -2,7 +2,7 @@ import { useState } from "react";
 import RadioList from "../RadioList";
 import { motion } from "framer-motion";
 
-function QuestionTwo({ setDisabled, answers, setAnswers }) {
+function QuestionTwo({ setDisabled, answers, setAnswersIndex, setAnswers }) {
   const [values, setValues] = useState([
     "Pays on time",
     "Pays late",
@@ -10,9 +10,10 @@ function QuestionTwo({ setDisabled, answers, setAnswers }) {
     "Never pays",
   ]);
 
-  const setPayStatus = (e) => {
+  const setPayStatus = (e, i) => {
     const { name, value } = e.target;
     setAnswers({ ...answers, [name]: value });
+    setAnswersIndex((prev) => ({ ...prev, [name]: i + 1 }));
     setDisabled(false);
   };
 
@@ -42,10 +43,10 @@ function QuestionTwo({ setDisabled, answers, setAnswers }) {
           {values.map((value, i) => (
             <RadioList
               key={i}
-              population={answers.pay}
-              setPop={(e) => setPayStatus(e)}
+              population={answers.repayment_ability}
+              setPop={(e) => setPayStatus(e, i)}
               value={value}
-              name={"pay"}
+              name={"repayment_ability"}
             />
           ))}
         </div>

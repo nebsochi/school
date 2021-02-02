@@ -2,12 +2,16 @@ import { useState } from "react";
 import RadioList from "../RadioList";
 import { motion } from "framer-motion";
 
-function QuestionFour({ setDisabled, answers, setAnswers }) {
+function QuestionFour({ setDisabled, answers, setAnswersIndex, setAnswers }) {
   const [values, setValues] = useState(["Yes", "No"]);
 
   const setAttitudeFunc = (e) => {
     const { name, value } = e.target;
     setAnswers({ ...answers, [name]: value });
+    setAnswersIndex((prev) => ({
+      ...prev,
+      [name]: value === "Yes" ? true : false,
+    }));
     setDisabled(false);
   };
 
@@ -37,10 +41,10 @@ function QuestionFour({ setDisabled, answers, setAnswers }) {
           {values.map((value, i) => (
             <RadioList
               key={i}
-              population={answers.fees}
+              population={answers.correct_fees}
               setPop={(e) => setAttitudeFunc(e)}
               value={value}
-              name={"fees"}
+              name={"correct_fees"}
             />
           ))}
         </div>

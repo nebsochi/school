@@ -81,6 +81,10 @@ p {
   font-size: 2.2rem;
 }
 
+.title.line-h-0 {
+  line-height: 1.1;
+}
+
 .title--sm {
   font-size: 1.2rem;
 }
@@ -155,6 +159,7 @@ p {
 .title--large {
   font-size: 3rem;
   font-weight: 300;
+  color: rgba(55, 81, 255, 1) !important;
 }
 
 @media only screen and (min-width: 768px) {
@@ -201,6 +206,12 @@ p {
   color: #495057;
 }
 
+.link,
+.link:hover {
+  color: rgba(55, 81, 255, 1);
+  text-decoration: none;
+}
+
 .tab__link::after {
   content: "";
   display: block;
@@ -224,7 +235,7 @@ p {
   font-size: 0.9rem;
   font-weight: 600;
   line-height: 1.5;
-  color: #00001f;
+  color: #6b6b6b;
 }
 .profile__title--light {
   font-weight: 400;
@@ -266,4 +277,18 @@ p {
   width: 40px;
   border-radius: 50%;
   overflow: hidden;
+}
+
+a.bg-light:focus,
+a.bg-light:hover,
+button.bg-light:focus,
+button.bg-light:hover {
+  background-color: #f8f9fa !important;
+}
+
+.modal-toast {
+  position: absolute;
+  right: 1%;
+  top: 1%;
+  z-index: 888;
 }

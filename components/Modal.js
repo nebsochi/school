@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
 import Styles from "../styles/Modal.module.css";
 import { useRouter } from "next/router";
 import Question from "./Question/Question";
@@ -6,6 +6,8 @@ import BackBtn from "./backBtn/BackBtn";
 import QuestionTwo from "./Question/QuestionTwo";
 import QuestionThree from "./Question/QuestionThree";
 import QuestionFour from "./Question/QuestionFour";
+import { ModalContext } from "../context/ModalContext";
+import Toast from "./Toast";
 
 function Modal({ isOpen, setIsOpen, data }) {
   const router = useRouter();
@@ -13,8 +15,11 @@ function Modal({ isOpen, setIsOpen, data }) {
   const [animateContent, setAnimateContent] = useState(true);
   const [disabled, setDisabled] = useState(true);
   const [answers, setAnswers] = useState({});
+  const [answersIndex, setAnswersIndex] = useState({});
   const [questionSlide, setQuestionSlide] = useState(1);
-  const [duration, setDuration] = useState("");
+  const [toastOpen, setToastOpen] = useState(true);
+  const [toastMsg, setToastMsg] = useState("");
+  const { submitQuestions, isLoading } = useContext(ModalContext).contextValue;
 
   const handleClick = (e) => {
     const str = e.target?.classList[0];
@@ -42,7 +47,7 @@ function Modal({ isOpen, setIsOpen, data }) {
     setAnswers({ ...emptyObject });
     setQuestionSlide(1);
     setDisabled(true);
-    setDuration("");
+
     router.push("/request");
   };
 
@@ -50,6 +55,21 @@ function Modal({ isOpen, setIsOpen, data }) {
     ev.preventDefault();
     if (Object.keys(answers).length === 4 && questionSlide === 4) {
       setDisabled(true);
+      console.log(answersIndex);
+      submitQuestions(answersIndex, data.id).then((response) => {
+        const { message, data, code } = response;
+        if (code === 200) {
+          setToastOpen(true);
+          setToastMsg("Successfully " + message);
+          setQuestionSlide((questionSlide) => questionSlide + 1);
+        } else if (response === "Network error") {
+          setToastOpen(true);
+          setToastMsg(response);
+        } else {
+          setToastOpen(true);
+          setToastMsg(response.message);
+        }
+      });
     } else {
       if (!disabled) {
         setQuestionSlide((questionSlide) => questionSlide + 1);
@@ -77,6 +97,12 @@ function Modal({ isOpen, setIsOpen, data }) {
         } position-relative`}
         ref={ref}
       >
+        <Toast
+          toastTitle={"Request"}
+          toastMsg={toastMsg}
+          toastOpen={toastOpen}
+          setToastOpen={setToastOpen}
+        />
         <h5
           className={`${Styles.ModalHeader} d-flex position-absolute justify-content-between`}
         >
@@ -163,58 +189,102 @@ function Modal({ isOpen, setIsOpen, data }) {
                 </div>
               </div>
 
-              <form
-                onSubmit={(e) => handleSubmit(e)}
-                className={`position-relative ${
-                  questionSlide > 1 ? "pt-5" : null
-                }`}
-              >
-                {questionSlide > 1 && (
-                  <BackBtn handleBackNav={handleBackNav} top={"0"} left={"0"} />
-                )}
-                {questionSlide === 1 && (
-                  <Question
-                    answers={answers}
-                    setAnswers={setAnswers}
-                    setDisabled={setDisabled}
-                  />
-                )}
-                {questionSlide === 2 && (
-                  <QuestionTwo
-                    answers={answers}
-                    setAnswers={setAnswers}
-                    setDisabled={setDisabled}
-                  />
-                )}
-                {questionSlide === 3 && (
-                  <QuestionThree
-                    answers={answers}
-                    setAnswers={setAnswers}
-                    setDisabled={setDisabled}
-                  />
-                )}
-                {questionSlide === 4 && (
-                  <QuestionFour
-                    answers={answers}
-                    setAnswers={setAnswers}
-                    setDisabled={setDisabled}
-                  />
-                )}
-                <br />
-
-                <button
-                  className="btn  px-5 btn-outline btn-primary btn-primary--sh-none btn-lg "
-                  style={{
-                    color: "rgb(255, 255, 255)",
-                    background: "rgb(0, 98, 204)",
-                    marginTop: ".9rem",
-                    marginBottom: "1rem",
-                    borderColor: "rgb(0, 98, 204)",
-                  }}
+              {questionSlide !== 5 && (
+                <form
+                  onSubmit={(e) => handleSubmit(e)}
+                  className={`position-relative ${
+                    questionSlide > 1 ? "pt-5" : null
+                  }`}
                 >
-                  {questionSlide < 4 ? "Next" : "Submit"}
-                </button>
-              </form>
+                  {questionSlide > 1 && (
+                    <BackBtn
+                      handleBackNav={handleBackNav}
+                      top={"0"}
+                      left={"0"}
+                    />
+                  )}
+                  {questionSlide === 1 && (
+                    <Question
+                      answers={answers}
+                      setAnswers={setAnswers}
+                      setAnswersIndex={setAnswersIndex}
+                      setDisabled={setDisabled}
+                    />
+                  )}
+                  {questionSlide === 2 && (
+                    <QuestionTwo
+                      answers={answers}
+                      setAnswers={setAnswers}
+                      setAnswersIndex={setAnswersIndex}
+                      setDisabled={setDisabled}
+                    />
+                  )}
+                  {questionSlide === 3 && (
+                    <QuestionThree
+                      answers={answers}
+                      setAnswers={setAnswers}
+                      setAnswersIndex={setAnswersIndex}
+                      setDisabled={setDisabled}
+                    />
+                  )}
+                  {questionSlide === 4 && (
+                    <QuestionFour
+                      answers={answers}
+                      setAnswers={setAnswers}
+                      setAnswersIndex={setAnswersIndex}
+                      setDisabled={setDisabled}
+                    />
+                  )}
+
+                  <br />
+                  <button
+                    className="btn  px-5 btn-outline btn-primary btn-primary--sh-none btn-lg "
+                    disabled={isLoading ? true : false}
+                    style={{
+                      color: "rgb(255, 255, 255)",
+                      background: "rgb(0, 98, 204)",
+                      marginTop: ".9rem",
+                      marginBottom: "1rem",
+                      borderColor: "rgb(0, 98, 204)",
+                    }}
+                  >
+                    {isLoading ? (
+                      <>
+                        <span
+                          class="spinner-border spinner-border-sm mb-1 mr-1"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                        Submitting...
+                      </>
+                    ) : (
+                      <>{questionSlide < 4 ? "Next" : "Submit"}</>
+                    )}
+                  </button>
+                </form>
+              )}
+
+              {questionSlide === 5 && (
+                <>
+                  <h3 className="mb-3">Thank you for your response</h3>
+                  <button
+                    className="btn btn-primary px-5"
+                    style={{
+                      color: "rgb(255, 255, 255)",
+                      background: "rgb(0, 98, 204)",
+                      marginTop: ".9rem",
+                      marginBottom: "1rem",
+                      borderColor: "rgb(0, 98, 204)",
+                    }}
+                    onClick={() => {
+                      setQuestionSlide(1);
+                      setDisabled(false);
+                    }}
+                  >
+                    Edit Response
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>

@@ -2,13 +2,16 @@ import { useState, useContext, useEffect } from "react";
 import RequestSlide from "../components/RequestSlide";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { ModalContext } from "../context/ModalContext";
 
-function RequestCard({ item, setIsOpen, isOpen, detailData, setDetailData }) {
+function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
   const [swiper, setswiper] = useState(false);
   const router = useRouter();
+  const { getRequestById } = useContext(ModalContext).contextValue;
 
   const handleClick = (e) => {
     e.preventDefault();
+    const response = getRequestById(item.id).then((data) => console.log(data));
     setIsOpen(true);
     setDetailData({ ...detailData, ...item });
     router.push("/request", `/request/details/${item.parent.full_name}`);
