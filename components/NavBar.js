@@ -87,9 +87,10 @@ function NavBar() {
                 <a className="dropdown-item" href="#">
                   Notifications
                 </a>
-                <a className="dropdown-item" href="#">
-                  Settings
-                </a>
+                <Link href="/settings">
+                  <a className="dropdown-item">Settings</a>
+                </Link>
+
                 <div className="dropdown-divider"></div>
                 <Link href="/signin">
                   <a

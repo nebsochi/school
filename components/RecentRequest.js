@@ -24,7 +24,7 @@ function RecentRequest() {
               <h6 className="mb-0">Recent request</h6>
             </div>
             <div className="card-body">
-              <div className="table-responsive-md">
+              <div className="table-responsive-lg">
                 <table className="table">
                   <thead>
                     <tr>

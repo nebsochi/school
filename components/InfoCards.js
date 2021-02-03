@@ -5,7 +5,7 @@ function InfoCards() {
     <div className="container pt-3">
       <div className="row">
         <div className="col-12">
-          <h4>Overview</h4>
+          <h5>Overview</h5>
         </div>
         <div className="col-md-4 mb-3">
           <div
