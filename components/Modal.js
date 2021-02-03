@@ -156,7 +156,7 @@ function Modal({ isOpen, setIsOpen, data }) {
 
         <div className={`mt-4 ${Styles.heightAnim}`}>
           <div className="pt-4">
-            {data.questionnaire_filled && !isLoading ? (
+            {!data.questionnaire_filled && !isLoading ? (
               <div>
                 <div className="progress mb-4">
                   <div
@@ -271,10 +271,12 @@ function Modal({ isOpen, setIsOpen, data }) {
                 </>
               </div>
             ) : (
-              <div className="text-left">
-                <h6>This request is awaiting approval!</h6>
-                <img alt="pending" width="30%" src="pend.svg" />
-              </div>
+              !isLoading && (
+                <div className="text-left">
+                  <h6>This request is awaiting approval!</h6>
+                  <img alt="pending" width="30%" src="pend.svg" />
+                </div>
+              )
             )}
           </div>
         </div>
