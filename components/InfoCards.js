@@ -5,7 +5,7 @@ function InfoCards() {
     <div className="container pt-3">
       <div className="row">
         <div className="col-12">
-          <h5>Overview</h5>
+          <h4>Overview</h4>
         </div>
         <div className="col-md-4 mb-3">
           <div
@@ -14,7 +14,7 @@ function InfoCards() {
           >
             <div className="d-flex align-items-center p-3 px-4">
               <div className="mr-4">
-                <img src="registered.svg" width="40" alt="icon" />
+                <img src="user-c.svg" width="40" alt="icon" />
               </div>
               <div>
                 <span className="text-muted">Total Registrations</span>
@@ -41,10 +41,10 @@ function InfoCards() {
           >
             <div className="d-flex align-items-center p-3">
               <div className="mr-4">
-                <img src="registered.svg" width="40" alt="icon" />
+                <img src="wall-clock.svg" width="40" alt="icon" />
               </div>
               <div>
-                <span className="text-muted">Total Registrations</span>
+                <span className="text-muted">Pending Request</span>
                 <div className="d-flex justify-content-between align-items-end">
                   <span className="title line-h-0">433</span>
                 </div>
@@ -65,7 +65,7 @@ function InfoCards() {
                 <img src="registered.svg" width="40" alt="icon" />
               </div>
               <div>
-                <span className="text-muted">Total Registrations</span>
+                <span className="text-muted">Approved Request</span>
                 <div className="d-flex justify-content-between align-items-end">
                   <span className="title line-h-0">433</span>
                 </div>

@@ -8,6 +8,7 @@ import QuestionThree from "./Question/QuestionThree";
 import QuestionFour from "./Question/QuestionFour";
 import { ModalContext } from "../context/ModalContext";
 import Toast from "./Toast";
+import StudentList from "./StudentList";
 
 function Modal({ isOpen, setIsOpen, data }) {
   const router = useRouter();
@@ -148,30 +149,8 @@ function Modal({ isOpen, setIsOpen, data }) {
               </div>
             </div>
           </div>
-          <div className="m-3 pt-2 d-flex flex-wrap">
-            {data?.children?.map((item) => (
-              <div
-                key={item.id}
-                className="d-flex bg-white shado-sm border px-3 py-1 align-items-center mr-3"
-                style={{ borderRadius: "7px" }}
-              >
-                <div
-                  className={`${Styles.ModalAvatar} ${Styles.ModalAvatarSmall}`}
-                >
-                  <img
-                    src={item.picture || "user.svg"}
-                    width="100%"
-                    alt="student"
-                  />
-                </div>
-                <div className="pl-3">
-                  <span className=" d-block" style={{ fontSize: "0.9rem" }}>
-                    {item.full_name}
-                  </span>
-                  <h6 className="m-0">{item.tuition_fees}</h6>
-                </div>
-              </div>
-            ))}
+          <div className="my-2 mx-1 pt-2 ">
+            <StudentList StudentData={data?.children} />
           </div>
         </div>
 

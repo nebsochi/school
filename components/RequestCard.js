@@ -12,7 +12,7 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
   const handleClick = (e) => {
     e.preventDefault();
     const response = getRequestById(item.id).then((data) =>
-      setDetailData({ ...detailData, ...data.data.loan_request })
+      setDetailData({ ...detailData, ...data?.data?.loan_request })
     );
     setIsOpen(true);
 

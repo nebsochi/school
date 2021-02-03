@@ -17,7 +17,7 @@ function NavBar() {
     <nav className="navbar navbar-expand-lg navbar-light bg-white bg-light shadow-sm p-0">
       <div className="container">
         <a className="navbar-brand" href="#">
-          S
+          <strong>SchoolCredit</strong>
         </a>
         <div
           className="collapse navbar-collapse"
