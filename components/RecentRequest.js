@@ -19,7 +19,7 @@ function RecentRequest() {
     <div className="container py-4">
       <div className="row">
         <div className="col-md-6">
-          <div className="card shadow-sm rounded">
+          <div className="card shadow-sm" style={{ borderRadius: "7px" }}>
             <div className="card-header">
               <h6 className="mb-0">Recent request</h6>
             </div>

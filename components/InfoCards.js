@@ -10,7 +10,7 @@ function InfoCards() {
         <div className="col-md-4 mb-3">
           <div
             className="shadow-sm bg-white border position-relative"
-            style={{ overflow: "hidden", borderRadius: "6px" }}
+            style={{ overflow: "hidden", borderRadius: "7px" }}
           >
             <div className="d-flex align-items-center p-3 px-4">
               <div className="mr-4">

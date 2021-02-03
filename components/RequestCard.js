@@ -1,6 +1,5 @@
 import { useState, useContext, useEffect } from "react";
 import RequestSlide from "../components/RequestSlide";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { ModalContext } from "../context/ModalContext";
 
@@ -20,7 +19,7 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
   };
 
   return (
-    <div className="col-lg-3 col-md-6  mb-4">
+    <div className="col-lg-4 col-xl-3 col-md-6  mb-4">
       <div
         className="p-3 border bg-white position-relative"
         style={{ borderRadius: "16px" }}
@@ -58,7 +57,7 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
         </div>
 
         <div>
-          <div className="pt-3 border-top mt-4 mb-3 border-bottom pb-4 d-flex align-item-start position-relative">
+          <div className="pt-3 border-top mt-4 mb-3 border-bottom pb-4 position-relative">
             <RequestSlide
               cswiper={(cswiper) => {
                 setswiper({ swiper: cswiper });

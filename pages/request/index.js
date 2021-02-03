@@ -80,18 +80,16 @@ export default function Request() {
                   id="exampleFormControlSelect1"
                   style={{ height: "45px" }}
                 >
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option>All</option>
+                  <option>Approved</option>
+                  <option>Pending</option>
                 </select>
               </div>
 
               <input
                 type="text"
                 className="form-control"
-                placeholder="search list"
+                placeholder="search application"
                 name="search"
                 style={{ height: "45px", maxWidth: "200px" }}
                 value={searchValue}
