@@ -14,7 +14,7 @@ function NavBar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white bg-light shadow-sm p-0">
+    <nav className="navbar navbar-expand-lg fixed-top navbar-light bg-white bg-light shadow-sm px-5 py-0">
       <div className="container">
         <a className="navbar-brand" href="#">
           <strong>SchoolCredit</strong>
@@ -38,10 +38,12 @@ function NavBar() {
             </li>
             <li
               className={`nav-item ${
-                router.pathname === "/request" ? "nav-item active" : "nav-item"
+                router.pathname.startsWith("/request")
+                  ? "nav-item active"
+                  : "nav-item"
               }`}
             >
-              <Link href="/request">
+              <Link href={`/request/`}>
                 <a className="nav-link">Request</a>
               </Link>
             </li>

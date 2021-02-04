@@ -1,14 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { ApiContext } from "../context/ApiContext";
-
-function RecentRequest() {
-  const [data, setData] = useState([]);
-
-  const { getRequest } = useContext(ApiContext).api;
-  useEffect(() => {
-    getRequest(1).then((res) => setData([...res.data]));
-  }, []);
-
+function RecentRequest({ data }) {
   const numberFormat = (value) =>
     new Intl.NumberFormat("en-IN", {
       style: "currency",

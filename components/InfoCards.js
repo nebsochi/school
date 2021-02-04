@@ -1,6 +1,6 @@
 import React from "react";
 
-function InfoCards() {
+function InfoCards({ applications }) {
   return (
     <div className="container pt-3">
       <div className="row">
@@ -17,9 +17,9 @@ function InfoCards() {
                 <img src="user-c.svg" width="40" alt="icon" />
               </div>
               <div>
-                <span className="text-muted">Total Registrations</span>
+                <span className="text-muted">Total Applications</span>
                 <div className="d-flex justify-content-between align-items-end">
-                  <span className="title line-h-0">433</span>
+                  <span className="title line-h-0">{applications}</span>
                 </div>
               </div>
             </div>

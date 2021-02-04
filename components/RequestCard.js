@@ -15,7 +15,7 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
     );
     setIsOpen(true);
 
-    router.push("/request", `/request/details/${item.parent.full_name}`);
+    // router.push("/request", `/request/details/${item.parent.full_name}`);
   };
 
   return (
@@ -57,7 +57,10 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
         </div>
 
         <div>
-          <div className="pt-3 border-top mt-4 mb-3 border-bottom pb-4 position-relative">
+          <div
+            className="pt-3 border-top mt-4 mb-3 border-bottom pb-3 position-relative"
+            style={{ minHeight: "90px" }}
+          >
             <RequestSlide
               cswiper={(cswiper) => {
                 setswiper({ swiper: cswiper });

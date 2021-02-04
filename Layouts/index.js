@@ -23,7 +23,7 @@ export default function IndexLayout({ children }) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <main className="container-fluid">
+        <main className="container-fluid pt-5">
           <div className="row">
             <div
               className="col-12 p-0"
