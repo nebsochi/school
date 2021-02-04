@@ -17,7 +17,11 @@ function Populations() {
   const [disabled, setDisabled] = useState(true);
 
   const setPop = (e) => {
-    setPopulation(e.target);
+    setPopulation(e.target.value);
+    actions.setData((prev) => ({
+      ...prev,
+      education_level: 1 + values.findIndex((item) => item === e.target.value),
+    }));
     setDisabled(false);
   };
 
@@ -55,7 +59,7 @@ function Populations() {
         initial="hidden"
         animate="visible"
         variants={content}
-        style={{ maxWidth: "500px" }}
+        style={{ maxWidth: "80%" }}
       >
         <BackBtn handleBackNav={handleBackNav} />
         <h1 className="mb-4">2. Pupils Population</h1>
@@ -65,7 +69,7 @@ function Populations() {
             <RadioList
               key={i}
               population={population}
-              setPop={setPop(e)}
+              setPop={(e) => setPop(e)}
               value={value}
               name={"population"}
             />

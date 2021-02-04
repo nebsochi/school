@@ -61,7 +61,7 @@ function School() {
         initial="hidden"
         animate="visible"
         variants={content}
-        style={{ maxWidth: "500px" }}
+        className="position-relative check-container"
       >
         <h1 className="mb-4">1. School category</h1>
         <p>Click to select your school categorization</p>
