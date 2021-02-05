@@ -69,7 +69,7 @@ export default function Request() {
         })
         .catch((err) => console.log(err));
     }
-  }, [router]);
+  }, [router.query]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -102,7 +102,6 @@ export default function Request() {
     router.push(`/request`, `/request/page/${item}`);
     getRequest(item).then((res) => {
       setData([...res.data]);
-
       setCurrentPage(item);
     });
   };
@@ -125,7 +124,7 @@ export default function Request() {
         }
       });
     } else {
-      router.push("/request");
+      router.push(`/request/page/${currentPage}`);
     }
   };
   {
