@@ -6,6 +6,7 @@ import { useState, useContext, useEffect, useCallback } from "react";
 import Modal from "../../components/Modal";
 import debounce from "lodash/debounce";
 import Pagination from "../../components/Pagination";
+import { functions } from "lodash";
 
 export default function Request() {
   const { getRequest, searchRequest, isSearching, isFetching } = useContext(
@@ -14,7 +15,9 @@ export default function Request() {
   const router = useRouter();
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [page, setPage] = useState({});
   const [pageCount, setPageCount] = useState([1]);
+  const [request, setRequesst] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [detailData, setDetailData] = useState({});
   const [searchValue, setSearchValue] = useState("");
@@ -39,37 +42,37 @@ export default function Request() {
     return delayedQuery.cancel;
   }, [searchValue, delayedQuery]);
 
+  function setPg(params) {
+    const pageNumbers = [];
+    for (let index = 0; index < params.total_results_count / 16; index++) {
+      pageNumbers.push(index + 1);
+      setPageCount([...pageNumbers]);
+    }
+    setPage({ ...page, next: params.next, prev: params.prev });
+    setCurrentPage(params?.next ? params.next - 1 : params.prev + 1);
+  }
+
   useEffect(() => {
     if (
       router.pathname === "/request" ||
       router.pathname === "/request/page/1"
     ) {
       getRequest(1)
-        .then((data) => {
-          setData([...data.data]);
-          const pageNumbers = [];
-          setCurrentPage(1);
-          for (let index = 0; index < data.total_results_count / 16; index++) {
-            pageNumbers.push(index + 1);
-            setPageCount([...pageNumbers]);
-          }
+        .then((res) => {
+          setData([...res.data]);
+          setCurrentPage(res);
+          setPg(res);
         })
         .catch((err) => console.log(err));
     } else {
       getRequest(router?.query?.pageNumber)
-        .then((data) => {
-          setData([...data.data]);
-          const pageNumbers = [];
-
-          setCurrentPage(data?.next ? data.next - 1 : data.prev + 1);
-          for (let index = 0; index < data.total_results_count / 16; index++) {
-            pageNumbers.push(index + 1);
-            setPageCount([...pageNumbers]);
-          }
+        .then((res) => {
+          setData([...res.data]);
+          setPg(res);
         })
         .catch((err) => console.log(err));
     }
-  }, [router.query]);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -78,10 +81,11 @@ export default function Request() {
 
   const handleNextClick = (ev) => {
     ev.preventDefault();
-    router.push(`/request`, `/request/page/${currentPage + 1}`);
-    getRequest(currentPage + 1).then((res) => {
+    console.log(router);
+    router.push(`/request`, `/request/page/${page.next}`);
+    getRequest(page.next).then((res) => {
       setData([...res.data]);
-      setCurrentPage(currentPage + 1);
+      setPg(res);
     });
   };
 
@@ -99,6 +103,7 @@ export default function Request() {
 
   const handlepageClick = (ev, item) => {
     ev.preventDefault();
+
     router.push(`/request`, `/request/page/${item}`);
     getRequest(item).then((res) => {
       setData([...res.data]);
@@ -124,16 +129,17 @@ export default function Request() {
         }
       });
     } else {
-      router.push(`/request/page/${currentPage}`);
+      router.push(`/request`);
+      getRequest(1)
+        .then((res) => {
+          setData([...res.data]);
+          setCurrentPage(res);
+          setPg(res);
+        })
+        .catch((err) => console.log(err));
     }
   };
-  {
-    /* <div className="loading-container">
-          <div className="spinner-border" role="status">
-            <span className="sr-only">Loading...</span>
-          </div>
-        </div> */
-  }
+
   return (
     <IndexLayout>
       <div className="container position-relative pt-4">

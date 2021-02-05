@@ -2,10 +2,13 @@ import React from "react";
 
 function InfoCards({ applications }) {
   return (
-    <div className="container pt-3">
+    <div
+      className="container border-bottom pb-3 mb-3"
+      style={{ paddingTop: "2rem" }}
+    >
       <div className="row">
         <div className="col-12">
-          <h5>Overview</h5>
+          <h4>Overview</h4>
         </div>
         <div className="col-md-4 mb-3">
           <div
@@ -18,14 +21,11 @@ function InfoCards({ applications }) {
               </div>
               <div>
                 <span className="text-muted">Total Applications</span>
-                <div className="d-flex justify-content-between align-items-end">
+                <div className="d-flex justify-content-between pt-1 align-items-end">
                   <span className="title line-h-0">{applications}</span>
                 </div>
               </div>
             </div>
-            <a href="#" className="bg-light py-2 px-4 d-block link">
-              <span className="text-primary">View all</span>
-            </a>
             <img
               src="arr-up.svg"
               alt="arrow"
@@ -44,15 +44,12 @@ function InfoCards({ applications }) {
                 <img src="wall-clock.svg" width="40" alt="icon" />
               </div>
               <div>
-                <span className="text-muted">Pending Request</span>
-                <div className="d-flex justify-content-between align-items-end">
+                <span className="text-muted ">Pending Request</span>
+                <div className="d-flex justify-content-between pt-1 align-items-end">
                   <span className="title line-h-0">433</span>
                 </div>
               </div>
             </div>
-            <a href="#" className="bg-light py-2 px-3 d-block link">
-              <span className="text-primary">View all</span>
-            </a>
           </div>
         </div>
         <div className="col-md-4 mb-3">
@@ -66,14 +63,11 @@ function InfoCards({ applications }) {
               </div>
               <div>
                 <span className="text-muted">Approved Request</span>
-                <div className="d-flex justify-content-between align-items-end">
+                <div className="d-flex justify-content-between pt-1 align-items-end">
                   <span className="title line-h-0">433</span>
                 </div>
               </div>
             </div>
-            <a href="#" className="bg-light py-2 px-3 d-block link">
-              <span className="text-primary">View all</span>
-            </a>
           </div>
         </div>
       </div>
