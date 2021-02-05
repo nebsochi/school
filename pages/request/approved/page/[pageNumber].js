@@ -1,4 +1,4 @@
-import Request from "..";
+import Request from "../../index";
 
 function RequestPage() {
   return <Request />;

@@ -19,6 +19,7 @@ export default function Request() {
   const [detailData, setDetailData] = useState({});
   const [searchValue, setSearchValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+  const [selected, setIsSelected] = useState("pending");
 
   const updateQuery = (number = 1) => {
     searchRequest(number, {
@@ -39,12 +40,15 @@ export default function Request() {
   }, [searchValue, delayedQuery]);
 
   useEffect(() => {
-    if (router.pathname === "/request" || router.query.pageNumber === 1) {
+    if (
+      router.pathname === "/request" ||
+      router.pathname === "/request/page/1"
+    ) {
       getRequest(1)
         .then((data) => {
           setData([...data.data]);
           const pageNumbers = [];
-          setCurrentPage(data?.prev + 1);
+          setCurrentPage(1);
           for (let index = 0; index < data.total_results_count / 16; index++) {
             pageNumbers.push(index + 1);
             setPageCount([...pageNumbers]);
@@ -74,87 +78,115 @@ export default function Request() {
 
   const handleNextClick = (ev) => {
     ev.preventDefault();
-    router.push(
-      `/request/page/${currentPage + 1}`,
-      `/request/page/${currentPage + 1}`
-    );
+    router.push(`/request`, `/request/page/${currentPage + 1}`);
     getRequest(currentPage + 1).then((res) => {
       setData([...res.data]);
-      setCurrentPage(res.prev + 1);
+      setCurrentPage(currentPage + 1);
     });
   };
 
   const handlePrevClick = (ev) => {
     ev.preventDefault();
 
-    router.push(
-      `/request/page/${currentPage - 1}`,
-      `/request/page/${currentPage - 1}`
-    );
-    getRequest(currentPage + 1).then((res) => {
+    router.push(`/request`, `/request/page/${currentPage - 1}`);
+    setCurrentPage(currentPage - 1);
+    getRequest(currentPage - 1).then((res) => {
       setData([...res.data]);
-      setCurrentPage(res.prev + 1);
+      console.log(router.asPath);
+      setCurrentPage(currentPage - 1);
     });
   };
 
   const handlepageClick = (ev, item) => {
     ev.preventDefault();
+    router.push(`/request`, `/request/page/${item}`);
+    getRequest(item).then((res) => {
+      setData([...res.data]);
 
-    router.push(`/request/page/${item}`, `/request/page/${item}`);
+      setCurrentPage(item);
+    });
   };
 
+  const handleSelect = (ev) => {
+    setIsSelected(ev.target.value);
+    if (ev.target.value !== "pending") {
+      getRequest(1, ev.target.value).then((data) => {
+        setData([...data.data]);
+        const pageNumbers = [];
+        setCurrentPage(1);
+        if (data.total_results_count > 1) {
+          for (let index = 0; index < data.total_results_count / 16; index++) {
+            pageNumbers.push(index + 1);
+            setPageCount([...pageNumbers]);
+          }
+        } else {
+          const pageNumbers = [1];
+          setPageCount([...pageNumbers]);
+        }
+      });
+    } else {
+      router.push("/request");
+    }
+  };
+  {
+    /* <div className="loading-container">
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div> */
+  }
   return (
     <IndexLayout>
-      {isFetching ? (
-        <div className="loading-container">
-          <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-        </div>
-      ) : (
-        <>
-          <div className="container position-relative pt-4">
-            <div className="row" style={{ marginBottom: "60px" }}>
-              <div className="col-md-12">
-                {/* <h6 className="content__header position-relative border-bottom pb-2">
+      <div className="container position-relative pt-4">
+        <div className="row" style={{ marginBottom: "60px" }}>
+          <div className="col-md-12">
+            {/* <h6 className="content__header position-relative border-bottom pb-2">
               Request
             </h6> */}
-                <div className="pt-2 mb-4 border-bottom d-flex align-items-bottom justify-content-between">
-                  {/* <h6 className="m-0 title title--sm">Request</h6> */}
+            <div className="pt-2 mb-4 border-bottom d-flex align-items-bottom justify-content-between">
+              {/* <h6 className="m-0 title title--sm">Request</h6> */}
 
-                  <div className="form-group d-flex align-items-center">
-                    <label
-                      htmlFor="exampleFormControlSelect1"
-                      className="pt-1"
-                      style={{
-                        whiteSpace: "nowrap",
-                        fontSize: ".9rem",
-                        fontWeight: "600",
-                      }}
-                    >
-                      Filter By:&nbsp;&nbsp;&nbsp;&nbsp;
-                    </label>
-                    <select
-                      className="form-control"
-                      id="exampleFormControlSelect1"
-                      style={{ height: "45px" }}
-                    >
-                      <option>All</option>
-                      <option>Approved</option>
-                      <option>Pending</option>
-                    </select>
-                  </div>
+              <div className="form-group d-flex align-items-center">
+                <label
+                  htmlFor="exampleFormControlSelect1"
+                  className="pt-1"
+                  style={{
+                    whiteSpace: "nowrap",
+                    fontSize: ".9rem",
+                    fontWeight: "600",
+                  }}
+                >
+                  Filter By:&nbsp;&nbsp;&nbsp;&nbsp;
+                </label>
+                <select
+                  className="form-control"
+                  style={{ height: "45px" }}
+                  onChange={(e) => handleSelect(e)}
+                >
+                  <option value="pending">Pending</option>
+                  <option value="approved">Approved</option>
+                  <option value="declined">Declined</option>
+                </select>
+              </div>
 
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="search application"
-                    name="search"
-                    style={{ height: "45px", maxWidth: "200px" }}
-                    value={searchValue}
-                    onChange={(e) => handleChange(e)}
-                  />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="search application"
+                name="search"
+                style={{ height: "45px", maxWidth: "200px" }}
+                value={searchValue}
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            {isFetching ? (
+              <div className="loading-container">
+                <div className="spinner-border" role="status">
+                  <span className="sr-only">Loading...</span>
                 </div>
+              </div>
+            ) : (
+              <>
                 {searchValue.length === 0 && (
                   <div className="row position-relative">
                     {data.map((item, i) => (
@@ -171,8 +203,8 @@ export default function Request() {
                 {searchValue.length >= 1 &&
                   (isSearching ? (
                     <div className="loading-container">
-                      <div class="spinner-border" role="status">
-                        <span class="sr-only">Loading...</span>
+                      <div className="spinner-border" role="status">
+                        <span className="sr-only">Loading...</span>
                       </div>
                     </div>
                   ) : (
@@ -202,28 +234,29 @@ export default function Request() {
                       )}
                     </>
                   ))}
-              </div>
-            </div>
+              </>
+            )}
           </div>
-          <div
-            className="container-fluid position-absolute mx-auto"
-            style={{ bottom: "0" }}
-          >
-            <div className="container ">
-              <div className="py-2">
-                <Pagination
-                  pageCount={pageCount}
-                  currentPage={currentPage}
-                  handleNextClick={handleNextClick}
-                  handlePrevClick={handlePrevClick}
-                  handlepageClick={handlepageClick}
-                />
-              </div>
-            </div>
+        </div>
+      </div>
+
+      <div
+        className="container-fluid position-absolute mx-auto"
+        style={{ bottom: "0" }}
+      >
+        <div className="container ">
+          <div className="py-2">
+            <Pagination
+              pageCount={pageCount}
+              currentPage={currentPage}
+              handleNextClick={handleNextClick}
+              handlePrevClick={handlePrevClick}
+              handlepageClick={handlepageClick}
+            />
           </div>
-          <Modal isOpen={isOpen} setIsOpen={setIsOpen} data={detailData} />
-        </>
-      )}
+        </div>
+      </div>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} data={detailData} />
     </IndexLayout>
   );
 }

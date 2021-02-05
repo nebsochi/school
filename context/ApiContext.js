@@ -7,17 +7,27 @@ export const ApiProvider = (props) => {
   const [isSearching, setIsSearching] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
 
-  const getRequest = async (number) => {
+  const getRequest = async (number, selection) => {
     try {
       setIsFetching(true);
       const token = localStorage.getItem("token");
-      const response = await Api.get(
-        `${Api.ENDPOINTS.url}/school/applications?page=${number}`,
-        token
-      );
-      setIsFetching(false);
-      const data = response;
-      return data;
+      if (selection?.length > 0) {
+        const response = await Api.get(
+          `${Api.ENDPOINTS.url}/school/applications?page=${number}&${selection}=1`,
+          token
+        );
+        setIsFetching(false);
+        const data = response;
+        return data;
+      } else {
+        const response = await Api.get(
+          `${Api.ENDPOINTS.url}/school/applications?page=${number}`,
+          token
+        );
+        setIsFetching(false);
+        const data = response;
+        return data;
+      }
     } catch (err) {
       throw err;
     }

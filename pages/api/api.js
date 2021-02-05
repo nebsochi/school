@@ -65,6 +65,23 @@ class Api {
       return err.response.data;
     }
   }
+  static async patch(url, data, token) {
+    try {
+      const res = await axios({
+        method: "patch",
+        url,
+        data,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return res.data;
+    } catch (err) {
+      if (!err.response) return "Network Error";
+      return err.response.data;
+    }
+  }
 
   static async get(url, token) {
     try {
