@@ -14,11 +14,23 @@ function NavBar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg fixed-top navbar-light bg-white bg-light shadow-sm px-5 py-0">
+    <nav className="navbar navbar-expand-lg fixed-top navbar-light bg-white bg-light shadow-sm py-0">
       <div className="container">
         <a className="navbar-brand" href="#">
           <strong>SchoolCredit</strong>
         </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon" />
+        </button>
+
         <div
           className="collapse navbar-collapse"
           id="navbarNavDropdown"

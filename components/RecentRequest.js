@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function RecentRequest({ data }) {
   const numberFormat = (value) =>
     new Intl.NumberFormat("en-IN", {
@@ -5,46 +7,63 @@ function RecentRequest({ data }) {
       currency: "NGN",
     }).format(value);
 
+  console.log(data);
+
   return (
-    <div className="container py-4">
-      <div className="row">
-        <div className="col-md-12">
-          <div className="card shadow-sm" style={{ borderRadius: "7px" }}>
-            {/* <div className="card-header">
-              <h6 className="mb-0">Recent request</h6>
-            </div> */}
-            <div className="card-body">
-              <div className="table-responsive-lg">
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th className="tth" scope="col">
-                        #
-                      </th>
-                      <th className="tth" scope="col">
-                        Name
-                      </th>
-                      <th className="tth" scope="col">
-                        Students
-                      </th>
-                      <th className="tth" scope="col">
-                        Amount
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.slice(0, 7).map((item, i) => (
-                      <tr key={item.id}>
-                        <th scope="row">{i + 1}</th>
-                        <td>{item.parent.full_name}</td>
-                        <td>{item.children.length}</td>
-                        <td>{numberFormat(item.loan_amount)}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+    <div className="col-md-6">
+      <div className="card" style={{ borderRadius: "7px" }}>
+        <div className="card-header">
+          <strong>Recent Request</strong>
+        </div>
+        <div className="card-body">
+          <div className="table-responsive-lg">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th className="tth" scope="col">
+                    Status
+                  </th>
+                  <th className="tth" scope="col">
+                    Name
+                  </th>
+                  <th className="tth" scope="col">
+                    Students
+                  </th>
+                  <th className="tth" scope="col">
+                    Amount
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.slice(0, 4).map((item, i) => (
+                  <tr key={item.id}>
+                    <td className="text-center" scope="row">
+                      {item.approved === 1 ? (
+                        <span class="d-inline-block  p-1 rounded-circle bg-success"></span>
+                      ) : (
+                        <span class="d-inline-block mx-auto p-1 rounded-circle bg-warning"></span>
+                      )}
+                    </td>
+                    <td>{item.parent.full_name}</td>
+                    <td className="text-center">{item.children.length}</td>
+                    <td>{numberFormat(item.loan_amount)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="border-top pt-3 text-center">
+            <Link href="/request">
+              <a
+                className="btn btn-outline-primary"
+                style={{
+                  minWidth: "200px",
+                  boxShadow: "none",
+                }}
+              >
+                View more
+              </a>
+            </Link>
           </div>
         </div>
       </div>

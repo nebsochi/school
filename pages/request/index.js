@@ -176,7 +176,7 @@ export default function Request() {
 
               <input
                 type="text"
-                className="form-control"
+                className="form-control position-relative custom-input"
                 placeholder="search application"
                 name="search"
                 style={{ height: "45px", maxWidth: "200px" }}

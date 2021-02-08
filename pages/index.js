@@ -3,6 +3,7 @@ import IndexLayout from "../Layouts";
 import InfoCards from "../components/InfoCards";
 import RecentRequest from "../components/RecentRequest";
 import { ApiContext } from "../context/ApiContext";
+import ShareComponent from "../components/ShareComponent";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -19,7 +20,13 @@ export default function Home() {
   return (
     <IndexLayout>
       <InfoCards applications={applications} />
-      <RecentRequest data={data} />
+
+      <div className="container py-3">
+        <div className="row">
+          <RecentRequest data={data} />
+          <ShareComponent />
+        </div>
+      </div>
     </IndexLayout>
   );
 }

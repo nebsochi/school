@@ -134,7 +134,6 @@ function SchInfo() {
             className="btn btn-primary btn-md shadow-sm"
             style={{
               minWidth: "200px",
-
               background: "#0448AA",
             }}
             type="submit"

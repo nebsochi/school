@@ -86,8 +86,12 @@ p {
   color: #0017ae;
 }
 
-.tth {
-  color: #01093f;
+th {
+  color: var(--text-dark-blue);
+}
+
+td {
+  font-size: 0.9rem;
 }
 
 .title--sm {
@@ -329,4 +333,27 @@ button.bg-light:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.custom-input::before {
+  content: "ssssss";
+  height: 35px;
+  width: 35px;
+  background: red;
+}
+
+.navbar-light .navbar-toggler {
+  border-color: transparent;
+}
+
+th.custom {
+  text-align: center;
+}
+.btn-outline-primary {
+  border-color: #0448aa;
+  color: #0448aa;
+}
+
+.btn-outline-primary:hover {
+  background: rgb(4, 72, 170);
 }
