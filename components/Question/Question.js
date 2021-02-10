@@ -36,7 +36,7 @@ function Question({ setDisabled, answers, setAnswers, setAnswersIndex }) {
 
   return (
     <motion.div initial="hidden" animate="visible" variants={content}>
-      <h6 style={{ fontSize: "1.5rem" }}>
+      <h6 className="d-inline-block question" style={{ fontSize: "1.5rem" }}>
         How long has this parent and child been registered?
       </h6>
 

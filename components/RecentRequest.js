@@ -10,7 +10,7 @@ function RecentRequest({ data }) {
   console.log(data);
 
   return (
-    <div className="col-md-6">
+    <div className="col-md-6 mb-4 mb-md-0">
       <div className="card" style={{ borderRadius: "7px" }}>
         <div className="card-header">
           <strong>Recent Request</strong>
@@ -55,7 +55,7 @@ function RecentRequest({ data }) {
           <div className="border-top pt-3 text-center">
             <Link href="/request">
               <a
-                className="btn btn-outline-primary"
+                className="btn btn-outline-primary btn-block"
                 style={{
                   minWidth: "200px",
                   boxShadow: "none",

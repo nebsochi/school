@@ -335,15 +335,22 @@ button.bg-light:hover {
   align-items: center;
 }
 
+.custom-input {
+  margin-bottom: 1.2rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .custom-input {
+    max-width: 220px;
+    margin-bottom: 0;
+  }
+}
+
 .custom-input::before {
   content: "ssssss";
   height: 35px;
   width: 35px;
   background: red;
-}
-
-.navbar-light .navbar-toggler {
-  border-color: transparent;
 }
 
 th.custom {
@@ -356,4 +363,16 @@ th.custom {
 
 .btn-outline-primary:hover {
   background: rgb(4, 72, 170);
+}
+
+td {
+  white-space: nowrap;
+}
+
+.question::after {
+  content: "";
+  height: 4px;
+  width: 40px;
+  display: block;
+  background: rgba(55, 81, 255, 1);
 }

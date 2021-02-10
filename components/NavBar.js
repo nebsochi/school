@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import Link from "next/link";
 import { AuthContext } from "../context/AuthContext";
+import { ModalContext } from "../context/ModalContext";
 import { useRouter } from "next/router";
 
 function NavBar() {
   const { logOut } = useContext(AuthContext).authValue;
+  const { setShow } = useContext(ModalContext).contextValue;
   const router = useRouter();
 
   const handleClick = (e) => {
@@ -13,8 +15,13 @@ function NavBar() {
     router.push("/signin");
   };
 
+  const handleNavigation = (e) => {
+    setShow(true);
+    document.body.style.overflow = "hidden";
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg fixed-top navbar-light bg-white bg-light shadow-sm py-0">
+    <nav className="navbar navbar-expand-lg fixed-top navbar-light bg-white bg-light shadow-sm py-md-0">
       <div className="container">
         <a className="navbar-brand" href="#">
           <strong>SchoolCredit</strong>
@@ -27,6 +34,7 @@ function NavBar() {
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          onClick={(e) => handleNavigation(e)}
         >
           <span className="navbar-toggler-icon" />
         </button>

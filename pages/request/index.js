@@ -6,7 +6,6 @@ import { useState, useContext, useEffect, useCallback } from "react";
 import Modal from "../../components/Modal";
 import debounce from "lodash/debounce";
 import Pagination from "../../components/Pagination";
-import { functions } from "lodash";
 
 export default function Request() {
   const { getRequest, searchRequest, isSearching, isFetching } = useContext(
@@ -148,7 +147,7 @@ export default function Request() {
             {/* <h6 className="content__header position-relative border-bottom pb-2">
               Request
             </h6> */}
-            <div className="pt-2 mb-4 border-bottom d-flex align-items-bottom justify-content-between">
+            <div className="pt-2 mb-4 border-bottom d-md-flex align-items-bottom justify-content-between">
               {/* <h6 className="m-0 title title--sm">Request</h6> */}
 
               <div className="form-group d-flex align-items-center">
@@ -176,10 +175,10 @@ export default function Request() {
 
               <input
                 type="text"
-                className="form-control position-relative custom-input"
+                className="form-control position-relative custom-input d-md-block"
                 placeholder="search application"
                 name="search"
-                style={{ height: "45px", maxWidth: "200px" }}
+                style={{ height: "45px" }}
                 value={searchValue}
                 onChange={(e) => handleChange(e)}
               />

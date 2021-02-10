@@ -1,0 +1,87 @@
+.Menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  z-index: 2000;
+  display: none;
+}
+
+.show {
+  display: block !important;
+}
+
+.MenuContent {
+  background: #fff;
+  margin-right: auto;
+  height: 100%;
+  max-width: 280px;
+  overflow: auto;
+
+  transition: all 0.5s linear;
+  position: relative;
+}
+
+.MenuContentShow {
+  animation: slideLeft 0.5s;
+}
+
+.MenuContentRemove {
+  animation: slideOff 0.5s;
+  max-width: 0px;
+}
+
+@keyframes slideLeft {
+  0% {
+    max-width: 0px;
+  }
+  100% {
+    max-width: 280px;
+  }
+}
+@keyframes slideOff {
+  0% {
+    max-width: 280px;
+  }
+  100% {
+    max-width: 0px;
+  }
+}
+
+.MenuLink {
+  padding: 0.9rem 1.1rem;
+  color: rgba(0, 0, 0, 0.8);
+  display: block;
+  border-left: 3px solid #fff;
+  margin: 1.1rem 0;
+}
+
+.MenuLink:hover {
+  text-decoration: none !important;
+}
+
+.MenuLinkActive {
+  background: rgb(247 248 255 / 48%);
+  border-left: 3px solid #0062cc;
+  color: #0062cc;
+  text-decoration: none;
+}
+
+.MenuIcon path {
+  fill: #6b6b6b;
+}
+
+.MenuLinkActive Svg path {
+  fill: #0062cc !important;
+}
+
+.MenuIcon {
+  width: 20px;
+  height: 24px;
+  margin-right: 1rem;
+}

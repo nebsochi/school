@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { AuthContext } from "../context/AuthContext";
 import NavBar from "../components/NavBar";
+import Menu from "../components/Menu";
 
 export default function IndexLayout({ children }) {
   const { signedIn, checkAuthState } = useContext(AuthContext).authValue;
@@ -23,8 +24,9 @@ export default function IndexLayout({ children }) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <main className="container-fluid pt-5">
-          <div className="row">
+        <main className="container-fluid pt-4 pt-sm-5">
+          <Menu />
+          <div className="row pt-3 pt-md-0">
             <div
               className="col-12 p-0"
               style={{ background: "rgb(246 246 246)", minHeight: "100vh" }}

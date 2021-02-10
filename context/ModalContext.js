@@ -6,8 +6,10 @@ export const ModalContext = createContext();
 export const ModalProvider = (props) => {
   const [data, setData] = useState({});
   const [isOpen, setIsOpen] = useState(true);
+  const [show, setShow] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [passedPreQuestion, setPassedPreQuestion] = useState(false);
 
   let handleSetData = (item) => {
     setData({ ...data, ...item });
@@ -59,6 +61,10 @@ export const ModalProvider = (props) => {
     isSubmitting,
     isLoading,
     getRequestById,
+    show,
+    setShow,
+    passedPreQuestion,
+    setPassedPreQuestion,
   };
 
   return (
