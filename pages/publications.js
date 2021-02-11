@@ -1,7 +1,7 @@
 import IndexLayout from "../Layouts/index";
 import { useState, useContext, useEffect, useCallback } from "react";
 import { PublishContext } from "../context/PublishContext";
-
+import Styles from "../styles/Publish.module.css";
 import Empty from "../components/Empty";
 import PublishModal from "../components/PublishModal";
 

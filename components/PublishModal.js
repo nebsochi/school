@@ -1,6 +1,8 @@
 import Styles from "../styles/Modal.module.css";
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef, useState, useEffect } from "react";
 import { PublishContext } from "../context/PublishContext";
+import Image from "next/image";
+import PublishList from "./PublishList";
 
 function PublishModal() {
   const { isOpen, setIsOpen, data } = useContext(PublishContext).contextValue;
@@ -12,6 +14,13 @@ function PublishModal() {
       closeModal();
     }
   };
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   const closeModal = () => {
     ref.current.classList.remove(`${Styles.isOpen}`);
@@ -33,7 +42,34 @@ function PublishModal() {
           animateContent && Styles.ModalContentIsOpen
         } position-relative`}
         ref={ref}
-      ></div>
+      >
+        <div className="border-bottom pb-4">
+          <h5
+            className={`${Styles.ModalHeader} d-flex position-absolute justify-content-between`}
+          >
+            <h5 style={{ fontSize: "600" }}>Add Books</h5>
+            <img src="x.svg" alt="close" onClick={closeModal} />
+          </h5>
+          <form className="d-flex">
+            <input
+              type="text"
+              placeholder="Find Publisher"
+              className="form-control shadow-sm"
+            />
+            <button
+              className="btn ml-2 btn-primary btn-primary--sh-none"
+              style={{
+                background: "rgb(0, 98, 204)",
+                borderColor: "rgb(0, 98, 204)",
+              }}
+            >
+              Search
+            </button>
+          </form>
+        </div>
+
+        <PublishList />
+      </div>
     </div>
   );
 }
