@@ -1,10 +1,18 @@
 import IndexLayout from "../Layouts/index";
 import { useState, useContext, useEffect, useCallback } from "react";
+import { PublishContext } from "../context/PublishContext";
 
 import Empty from "../components/Empty";
+import PublishModal from "../components/PublishModal";
 
 function publications() {
+  const { isOpen, setIsOpen, data } = useContext(PublishContext).contextValue;
   const [searchValue, setSearchValue] = useState("");
+
+  const handleClick = (e) => {
+    setIsOpen(true);
+  };
+
   return (
     <IndexLayout>
       <div className="container position-relative pt-4">
@@ -46,9 +54,10 @@ function publications() {
             </div>
           </div>
 
-          <Empty />
+          <Empty handleClick={handleClick} />
         </div>
       </div>
+      <PublishModal />
     </IndexLayout>
   );
 }

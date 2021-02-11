@@ -58,6 +58,7 @@ export const ModalProvider = (props) => {
     toggleModal,
     submitQuestions,
     isOpen,
+    setIsOpen,
     isSubmitting,
     isLoading,
     getRequestById,

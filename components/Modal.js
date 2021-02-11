@@ -59,8 +59,6 @@ function Modal({ isOpen, setIsOpen, data }) {
     setAnswers({ ...emptyObject });
     setQuestionSlide(1);
     setDisabled(true);
-
-    // router.push("/request");
   };
 
   const handleSubmit = (ev) => {

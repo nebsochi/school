@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-function Empty(props) {
+function Empty({ handleClick }) {
   return (
     <div className="col-12">
       <div
@@ -18,11 +18,12 @@ function Empty(props) {
           Click the button below to add books from publishers
         </span>
         <button
-          className="btn px-5 mt-4 btn-outline btn-primary btn-primary--sh-none btn-md"
+          className="btn px-5 mt-4 btn-outline btn-primary btn-md"
           style={{
             background: "rgb(0, 98, 204)",
             borderColor: "rgb(0, 98, 204)",
           }}
+          onClick={(e) => handleClick(e)}
         >
           Add Books
         </button>
