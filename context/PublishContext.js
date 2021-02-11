@@ -3,6 +3,7 @@ import { createContext } from "react";
 export const PublishContext = createContext();
 
 export const PublishProvider = (props) => {
+  contextValue = {};
   return (
     <PublishContext.Provider value={{ contextValue }}>
       {props.children}
