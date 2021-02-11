@@ -80,10 +80,16 @@ function NavBar() {
                 </a>
               </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Status
-              </a>
+            <li
+              className={`nav-item ${
+                router.pathname === "/publications"
+                  ? "nav-item active"
+                  : "nav-item"
+              }`}
+            >
+              <Link href="/publications">
+                <a className="nav-link">Publications</a>
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">

@@ -144,12 +144,7 @@ export default function Request() {
       <div className="container position-relative pt-4">
         <div className="row" style={{ marginBottom: "60px" }}>
           <div className="col-md-12">
-            {/* <h6 className="content__header position-relative border-bottom pb-2">
-              Request
-            </h6> */}
             <div className="pt-2 mb-4 border-bottom d-md-flex align-items-bottom justify-content-between">
-              {/* <h6 className="m-0 title title--sm">Request</h6> */}
-
               <div className="form-group d-flex align-items-center">
                 <label
                   htmlFor="exampleFormControlSelect1"

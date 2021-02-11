@@ -51,14 +51,14 @@ a {
 }
 
 * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 :root {
   --yellow: #f7c147;
   --text-dark-blue: #244063;
   --text-bright-blue: #0017ae;
-  --p-color: rgba(34, 35, 53, 0.7);
+  --p-color: rgba(34, 35, 53, 0.5);
   --primary: #0c21ae;
 }
 .btn-primary {
@@ -72,7 +72,8 @@ a {
 .btn-primary--sh-none {
   box-shadow: none !important;
 }
-p {
+p,
+span {
   color: var(--p-color);
 }
 .title {
