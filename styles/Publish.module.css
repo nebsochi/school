@@ -1,2 +1,28 @@
-.PublishList {
+.PublishImgContainer {
+  height: 180px;
+  overflow: hidden;
+}
+
+.PublishItemImg {
+  transform: scale(1);
+  transition: transform 0.3s linear;
+}
+
+.PublishItem:hover {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+.PublishItem:hover .PublishItemImg {
+  transform: scale(1.08);
+}
+
+@media (min-width: 500px) {
+  .PublishImgContainer {
+    /* height: 210px; */
+  }
+}
+@media (min-width: 900px) {
+  .PublishImgContainer {
+    /* height: 220px; */
+  }
 }

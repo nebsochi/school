@@ -56,9 +56,9 @@ a {
 
 :root {
   --yellow: #f7c147;
-  --text-dark-blue: #244063;
+  --text-dark-blue: #607a9b;
   --text-bright-blue: #0017ae;
-  --p-color: rgba(34, 35, 53, 0.5);
+  --p-color: rgba(34, 35, 53, 0.7);
   --primary: #0c21ae;
 }
 .btn-primary {

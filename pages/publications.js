@@ -1,16 +1,36 @@
 import IndexLayout from "../Layouts/index";
 import { useState, useContext, useEffect, useCallback } from "react";
 import { PublishContext } from "../context/PublishContext";
-import Styles from "../styles/Publish.module.css";
+// import Styles from "../styles/Publish.module.css";
 import Empty from "../components/Empty";
-import PublishModal from "../components/PublishModal";
+import PublishModal from "../components/Publish/PublishModal";
+import BookList from "../components/Publish/BookList";
+import isEmpty from "lodash/isEmpty";
+import PublishModalTwo from "../components/Publish/PublishModalTwo";
 
 function publications() {
-  const { isOpen, setIsOpen, data } = useContext(PublishContext).contextValue;
+  const { isOpen, setIsOpen } = useContext(PublishContext).contextValue;
+  const { show, setShow, data, isLoading, error } = useContext(
+    PublishContext
+  ).contextValue;
+  const [modalData, setModalData] = useState({});
   const [searchValue, setSearchValue] = useState("");
-
+  const modelledData = [
+    // {
+    //   // name: "Master Pratical physics for senior secondary school",
+    //   // publishers_price: 3500,
+    //   // school_price: 4500,
+    //   // id: 1,
+    // },
+  ];
   const handleClick = (e) => {
     setIsOpen(true);
+  };
+
+  const editModal = (e, i) => {
+    e.preventDefault();
+    setModalData({ ...modalData, ...data[i] });
+    setShow(true);
   };
 
   return (
@@ -52,12 +72,16 @@ function publications() {
                 onChange={(e) => handleChange(e)}
               />
             </div>
+            {isEmpty(modelledData) ? (
+              <Empty handleClick={handleClick} />
+            ) : (
+              <BookList data={modelledData} editModal={editModal} />
+            )}
           </div>
-
-          <Empty handleClick={handleClick} />
         </div>
       </div>
       <PublishModal />
+      <PublishModalTwo data={modalData} />
     </IndexLayout>
   );
 }

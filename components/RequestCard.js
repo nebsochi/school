@@ -21,7 +21,7 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
   return (
     <div className="col-lg-4 col-xl-3 col-md-6  mb-4">
       <div
-        className="p-3 border bg-white shadow-sm position-relative"
+        className="p-3 border bg-white position-relative"
         style={{ borderRadius: "16px" }}
       >
         <div
@@ -71,7 +71,7 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
         </div>
 
         <a
-          className="btn btn-outline btn-primary btn-primary--sh-none  btn-block btn-md "
+          className="btn btn-outline btn-primary   btn-block btn-md "
           style={{
             minWidth: "100%",
 
@@ -93,3 +93,4 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
 }
 
 export default RequestCard;
+// btn-primary--sh-none
