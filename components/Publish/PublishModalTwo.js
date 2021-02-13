@@ -70,7 +70,7 @@ function PublishModalTwo({ data }) {
               </h5>
             </div>
 
-            <h5
+            <h6
               style={{ fontWeight: "600", fontSize: "1.1rem" }}
               className="pt-2 border-bottom pb-3"
             >
@@ -78,7 +78,7 @@ function PublishModalTwo({ data }) {
               {data?.publishers_price
                 ?.toFixed(2)
                 ?.replace(/\d(?=(\d{3})+\.)/g, "$&,")}
-            </h5>
+            </h6>
 
             <div>
               <div className="pt-2 d-none">

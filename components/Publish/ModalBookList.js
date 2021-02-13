@@ -12,9 +12,9 @@ function ModalBookList({ closeModal, books, handleBookClick }) {
         >
           <div className="d-flex align-items-center">
             <Image src="/arr-left.svg" height={16} width={16} alt="Back" />
-            <h5 style={{ fontSize: "600" }} className="m-0 ml-1">
+            <h6 style={{ fontWeight: "600" }} className="m-0 ml-1">
               Publisher name
-            </h5>
+            </h6>
           </div>
 
           <img src="x.svg" alt="close" onClick={closeModal} />
@@ -47,9 +47,9 @@ function ModalBookList({ closeModal, books, handleBookClick }) {
           padding: "0 2rem",
         }}
       >
-        {books.map((book) => (
+        {books.map((book, i) => (
           <div
-            key={book.id}
+            key={i}
             className={` mb-3 col-6 col-md-4 ${StylesSheet.PublishItem}`}
           >
             <BookItem item={book} handleBookClick={handleBookClick} />

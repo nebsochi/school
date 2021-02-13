@@ -1,17 +1,21 @@
 import Styles from "../../styles/Modal.module.css";
-
 import { useContext, useRef, useState, useEffect } from "react";
 import { PublishContext } from "../../context/PublishContext";
 import PublishScreen from "./PublishScreen";
-
 import ModalBookList from "./ModalBookList";
+import BookDetail from "./BookDetail";
+import Toast from "../Toast";
 
 function PublishModal() {
   const { isOpen, setIsOpen, data } = useContext(PublishContext).contextValue;
   const [animateContent, setAnimateContent] = useState(true);
+  const [bookDetailData, setBookDetailData] = useState({});
   const [scrn, setScrn] = useState("PublishListScrn");
   const [books, setBooks] = useState([]);
+  const [currPublisherId, setCurrPublisherId] = useState("");
   const screens = ["PublishListScrn", "BookListScrn", "BookDetailScrn"];
+  const [toastOpen, setToastOpen] = useState(true);
+  const [toastMsg, setToastMsg] = useState("");
 
   const ref = useRef(null);
   const handleClick = (e) => {
@@ -25,10 +29,11 @@ function PublishModal() {
     setScrn("PublishListScrn");
   }, []);
 
-  const handleItemClick = (e, i) => {
+  const handleItemClick = (e, i, pId) => {
     e.preventDefault();
     setScrn(screens[1]);
     setBooks([...data[i].books]);
+    setCurrPublisherId(pId);
   };
 
   const closeModal = () => {
@@ -44,6 +49,7 @@ function PublishModal() {
   const handleBookClick = (e, item) => {
     e.preventDefault();
     setScrn(screens[2]);
+    setBookDetailData({ ...bookDetailData, ...item });
   };
 
   return (
@@ -51,6 +57,14 @@ function PublishModal() {
       className={isOpen ? `${Styles.Modal} ${Styles.isOpen} ` : Styles.Modal}
       onClick={(e) => handleClick(e)}
     >
+      {toastMsg.length > 1 && (
+        <Toast
+          toastMsg={toastMsg}
+          setToastOpen={setToastOpen}
+          toastOpen={toastOpen}
+          toastTitle={"Status Message"}
+        />
+      )}
       <div
         ref={ref}
         className={`${Styles.ModalContent} ${
@@ -73,7 +87,16 @@ function PublishModal() {
           />
         )}
 
-        {scrn === "BookDetailScrn" && <div>dssdfsdfsdfsdf</div>}
+        {scrn === "BookDetailScrn" && (
+          <BookDetail
+            setScrn={setScrn}
+            pId={currPublisherId}
+            closeModal={closeModal}
+            item={bookDetailData}
+            setToastMsg={setToastMsg}
+            setToastOpen={setToastOpen}
+          />
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { PublishContext } from "../../context/PublishContext";
 
 function PublishList({ handleItemClick }) {
@@ -16,9 +16,9 @@ function PublishList({ handleItemClick }) {
           href="#"
           key={item.id}
           style={{ textDecoration: "none" }}
-          onClick={(e) => handleItemClick(e, i)}
+          onClick={(e) => handleItemClick(e, i, item?.id)}
         >
-          <div className="PublishItem d-flex align-items-center justify-content-between py-3 mb-2 pl-3 border shadow-sm rounded">
+          <div className="PublishItem d-flex align-items-center justify-content-between py-3  border-bottom rounded">
             <div className="d-flex align-items-center">
               {!item.picture ? (
                 <Image src="/user.svg" alt="logo" height={50} width={50} />
@@ -28,7 +28,7 @@ function PublishList({ handleItemClick }) {
                   alt="logo"
                   height={50}
                   width={50}
-                  className="rounded-circle"
+                  className=""
                 />
               )}
 

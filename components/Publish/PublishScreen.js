@@ -9,7 +9,7 @@ function PublishScreen({ handleItemClick, closeModal }) {
         <div
           className={`${Styles.ModalHeader} d-flex position-absolute justify-content-between`}
         >
-          <h5 style={{ fontSize: "600" }}>Select Publisher</h5>
+          <h6 style={{ fontWeight: "600" }}>Select Publisher</h6>
           <img src="x.svg" alt="close" onClick={closeModal} />
         </div>
         <form className="d-flex">

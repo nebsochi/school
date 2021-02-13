@@ -9,21 +9,14 @@ import isEmpty from "lodash/isEmpty";
 import PublishModalTwo from "../components/Publish/PublishModalTwo";
 
 function publications() {
-  const { isOpen, setIsOpen } = useContext(PublishContext).contextValue;
+  const { isOpen, setIsOpen, books } = useContext(PublishContext).contextValue;
   const { show, setShow, data, isLoading, error } = useContext(
     PublishContext
   ).contextValue;
   const [modalData, setModalData] = useState({});
   const [searchValue, setSearchValue] = useState("");
-  const modelledData = [
-    // {
-    //   // name: "Master Pratical physics for senior secondary school",
-    //   // publishers_price: 3500,
-    //   // school_price: 4500,
-    //   // id: 1,
-    // },
-  ];
   const handleClick = (e) => {
+    e.preventDefault();
     setIsOpen(true);
   };
 
@@ -72,10 +65,10 @@ function publications() {
                 onChange={(e) => handleChange(e)}
               />
             </div>
-            {isEmpty(modelledData) ? (
+            {isEmpty(books) ? (
               <Empty handleClick={handleClick} />
             ) : (
-              <BookList data={modelledData} editModal={editModal} />
+              <BookList editModal={editModal} />
             )}
           </div>
         </div>
