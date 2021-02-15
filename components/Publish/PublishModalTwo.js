@@ -50,16 +50,16 @@ function PublishModalTwo({ data }) {
             <div className="d-flex align-items-center">
               <div
                 style={{ height: "250px", overflow: "hidden" }}
-                className=" rounded"
+                className="border rounded mr-3"
               >
                 <img
-                  src="/Okeke.jpg"
+                  src={data?.picture}
                   alt="okeke"
                   height={"100%"}
                   width={"auto"}
                 />
               </div>
-              <div className="pl-4">
+              <div className="pl-2">
                 <h6 className="pb-3 border-bottom">{data.name}</h6>
 
                 <div className="d-flex align-items-center pt-2 pb-3">
