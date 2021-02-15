@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import { AuthContext } from "../context/AuthContext";
 import NavBar from "../components/NavBar";
 import Menu from "../components/Menu";
+import Sidebar from "../components/Sidebar";
+import Styles from "../styles/SideBar.module.css";
 
 export default function IndexLayout({ children }) {
   const { signedIn, checkAuthState } = useContext(AuthContext).authValue;
@@ -24,18 +26,21 @@ export default function IndexLayout({ children }) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <main className="container-fluid pt-4 pt-sm-5">
-          <Menu />
-          <div className="row pt-3 pt-md-0">
-            <div
-              className="col-12 p-0"
-              style={{ background: "rgb(246 246 246)", minHeight: "100vh" }}
-            >
-              <NavBar />
+        <main className="container-fluid p-0">
+          <div
+            className="d-flex"
+            style={{
+              overflow: "hidden",
+              height: "100vh",
+              background: "#F0F5F9",
+            }}
+          >
+            <Sidebar />
+            <div className={`${Styles.SidebarRight} position-relative`}>
+              {/* <NavBar /> */}
               {children}
             </div>
           </div>
-          {/* <div className="row align-items-stretch">Home</div> */}
         </main>
       </div>
     )

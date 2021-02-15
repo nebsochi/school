@@ -22,7 +22,7 @@ function BookItem({ item, handleBookClick, bg }) {
           />
         </a>
       </div>
-      <div className="">
+      <div>
         <a
           href="#"
           className="pt-2 d-block"

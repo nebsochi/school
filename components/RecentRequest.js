@@ -39,9 +39,9 @@ function RecentRequest({ data }) {
                   <tr key={item.id}>
                     <td className="text-center" scope="row">
                       {item.approved === 1 ? (
-                        <span class="d-inline-block  p-1 rounded-circle bg-success"></span>
+                        <span className="d-inline-block  p-1 rounded-circle bg-success"></span>
                       ) : (
-                        <span class="d-inline-block mx-auto p-1 rounded-circle bg-warning"></span>
+                        <span className="d-inline-block mx-auto p-1 rounded-circle bg-warning"></span>
                       )}
                     </td>
                     <td>{item.parent.full_name}</td>

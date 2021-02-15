@@ -1,0 +1,54 @@
+.Sidebar {
+  width: 280px;
+  background-color: #f7f8fc;
+}
+
+.SideBrand {
+  height: 80px;
+}
+
+.SidebarRight {
+  width: calc(100% - 280px);
+  overflow: auto;
+}
+
+.SideLinkContainer {
+  margin-top: 80px;
+}
+
+.SideLink {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  border-radius: 6px;
+  text-decoration: none !important;
+  cursor: pointer;
+  color: rgb(0, 98, 204);
+}
+
+.SideLink:hover {
+  background: rgba(91, 91, 255, 0.1);
+}
+
+.SideLinkActive {
+  color: #fff;
+  background: rgb(0, 98, 204);
+}
+
+.SideLinkActive:hover {
+  background: rgb(0, 98, 204);
+  color: #fff;
+}
+
+.SideIcon {
+  width: 20px;
+  margin: 0 12px 0 0px;
+}
+
+.SideIcon path {
+  fill: rgb(0, 98, 204);
+}
+
+.SideLinkActive .SideIcon path {
+  fill: #fff;
+}

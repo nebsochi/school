@@ -8,6 +8,7 @@ export const PublishProvider = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [data, setData] = useState([]);
   const [books, setBooks] = useState([]);
   const [error, setError] = useState({});
@@ -25,10 +26,10 @@ export const PublishProvider = (props) => {
   };
 
   const addBook = async (data) => {
-    setIsLoading(true);
+    setIsSaving(true);
     const token = localStorage.getItem("token");
     const res = await Api.post(`${Api.ENDPOINTS.url}/school/book`, data, token);
-    setIsLoading(false);
+    setIsSaving(false);
     return res.message;
   };
 

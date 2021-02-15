@@ -21,10 +21,10 @@ function NavBar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg fixed-top navbar-light bg-white bg-light shadow-sm py-md-0">
+    <nav className="navbar navbar-expand-lg bg-white">
       <div className="container">
         <a className="navbar-brand" href="#">
-          <strong>SchoolCredit</strong>
+          <strong>Dashboard</strong>
         </a>
         <button
           className="navbar-toggler"
@@ -45,58 +45,6 @@ function NavBar() {
           style={{ justifyContent: "flex-end" }}
         >
           <ul className="navbar-nav">
-            <li
-              className={`${
-                router.pathname === "/" ? "nav-item active" : "nav-item"
-              }`}
-            >
-              <Link href="/">
-                <a className="nav-link">
-                  Home <span className="sr-only">(current)</span>
-                </a>
-              </Link>
-            </li>
-            <li
-              className={`nav-item ${
-                router.pathname.startsWith("/request")
-                  ? "nav-item active"
-                  : "nav-item"
-              }`}
-            >
-              <Link href={`/request/`}>
-                <a className="nav-link">Request</a>
-              </Link>
-            </li>
-            <li
-              className={`nav-item ${
-                router.pathname === "/repayment"
-                  ? "nav-item active"
-                  : "nav-item"
-              }`}
-            >
-              <Link href="/repayment">
-                <a className="nav-link" href="#">
-                  Repayment
-                </a>
-              </Link>
-            </li>
-            <li
-              className={`nav-item ${
-                router.pathname === "/publications"
-                  ? "nav-item active"
-                  : "nav-item"
-              }`}
-            >
-              <Link href="/publications">
-                <a className="nav-link">Publications</a>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Invoices
-              </a>
-            </li>
-
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"

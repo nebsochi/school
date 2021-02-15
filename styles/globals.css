@@ -158,10 +158,6 @@ td {
   min-height: auto;
 }
 
-.btn-primary {
-  width: 100%;
-}
-
 .nav-content {
   display: none;
 }
@@ -176,9 +172,9 @@ td {
   .form-container {
     min-height: 100vh;
   }
-  .btn {
+  /* .btn {
     width: auto;
-  }
+  } */
   .title--big {
     font-size: 3rem;
     font-weight: 900;

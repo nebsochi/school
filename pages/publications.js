@@ -7,6 +7,7 @@ import PublishModal from "../components/Publish/PublishModal";
 import BookList from "../components/Publish/BookList";
 import isEmpty from "lodash/isEmpty";
 import PublishModalTwo from "../components/Publish/PublishModalTwo";
+import SideView from "../components/SideView";
 
 function publications() {
   const { isOpen, setIsOpen, books } = useContext(PublishContext).contextValue;
@@ -20,9 +21,10 @@ function publications() {
     setIsOpen(true);
   };
 
-  const editModal = (e, i) => {
+  const handleBookClick = (e, item) => {
     e.preventDefault();
-    setModalData({ ...modalData, ...data[i] });
+    setModalData({ ...modalData, ...item });
+    console.log(item);
     setShow(true);
   };
 
@@ -58,18 +60,28 @@ function publications() {
               <input
                 type="text"
                 className="form-control position-relative custom-input d-md-block"
-                placeholder="search application"
+                placeholder="search books"
                 name="search"
                 style={{ height: "45px" }}
                 value={searchValue}
                 onChange={(e) => handleChange(e)}
               />
             </div>
-            {isEmpty(books) ? (
-              <Empty handleClick={handleClick} />
-            ) : (
-              <BookList editModal={editModal} />
-            )}
+            <div className="d-flex">
+              {isLoading ? (
+                <span style={{ width: " calc(100% - 280px)" }}>loading...</span>
+              ) : (
+                <>
+                  {isEmpty(books) ? (
+                    <Empty handleClick={handleClick} />
+                  ) : (
+                    <BookList handleBookClick={handleBookClick} />
+                  )}
+                </>
+              )}
+
+              <SideView handleClick={handleClick} />
+            </div>
           </div>
         </div>
       </div>

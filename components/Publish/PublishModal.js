@@ -84,6 +84,7 @@ function PublishModal() {
             closeModal={closeModal}
             books={books}
             handleBookClick={handleBookClick}
+            setScrn={setScrn}
           />
         )}
 

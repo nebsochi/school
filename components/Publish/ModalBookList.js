@@ -3,14 +3,23 @@ import Styles from "../../styles/Modal.module.css";
 import BookItem from "./BookItem";
 import Image from "next/image";
 
-function ModalBookList({ closeModal, books, handleBookClick }) {
+function ModalBookList({
+  closeModal,
+  books,
+  handleBookClick,
+  setScrn = { setScrn },
+}) {
   return (
     <>
       <div className="border-bottom">
         <div
           className={`${Styles.ModalHeader} d-flex position-absolute justify-content-between`}
         >
-          <div className="d-flex align-items-center">
+          <div
+            className="d-flex align-items-center"
+            onClick={() => setScrn("PublishListScrn")}
+            style={{ cursor: "pointer" }}
+          >
             <Image src="/arr-left.svg" height={16} width={16} alt="Back" />
             <h6 style={{ fontWeight: "600" }} className="m-0 ml-1">
               Publisher name

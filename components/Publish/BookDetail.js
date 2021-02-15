@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import Styles from "../../styles/Modal.module.css";
 import { PublishContext } from "../../context/PublishContext";
 import Image from "next/image";
-import Toast from "../Toast";
 
 function BookDetail({
   item,
@@ -14,7 +13,7 @@ function BookDetail({
 }) {
   const [priceValue, setPriceValue] = useState({ price: "" });
 
-  const { addBook, error, isLoading } = useContext(PublishContext).contextValue;
+  const { addBook, error, isSaving } = useContext(PublishContext).contextValue;
   const handleChange = (e) => {
     const { value, name } = e.target;
     setPriceValue({ ...priceValue, [name]: value });
@@ -45,7 +44,10 @@ function BookDetail({
         <div
           className={`${Styles.ModalHeader} d-flex position-absolute justify-content-between`}
         >
-          <div className="d-flex align-items-center">
+          <div
+            className="d-flex align-items-center"
+            onClick={() => setScrn("BookListScrn")}
+          >
             <Image src="/arr-left.svg" height={16} width={16} alt="Back" />
             <h6 style={{ fontSize: "600" }} className="m-0 ml-1">
               Book Detail
@@ -126,7 +128,7 @@ function BookDetail({
           height: "40px",
         }}
       >
-        {isLoading ? (
+        {isSaving ? (
           <>
             <span
               className="spinner-border spinner-border-sm text-white mr-2"

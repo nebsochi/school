@@ -3,26 +3,20 @@ import { PublishContext } from "../../context/PublishContext";
 import BookItem from "./BookItem";
 import Styles from "../../styles/Publish.module.css";
 
-function BookList({ editModal }) {
+function BookList({ handleBookClick }) {
   const { books } = useContext(PublishContext).contextValue;
 
-  const handleBookClick = (e) => {
-    e.preventDefault();
-    console.log("was clicked");
-  };
-
   return (
-    <div className="row">
+    <div className="row align-items-stretch">
       {books.map((item) => (
-        <div
-          className={`col-6 mb-3 col-md-4 col-lg-3 ${Styles.PublishItem}`}
-          key={item.id}
-        >
-          <BookItem
-            bg={"bg-white"}
-            item={item}
-            handleBookClick={handleBookClick}
-          />
+        <div className={`col-6 mb-3 col-md-4 `} key={item.id}>
+          <div className={Styles.PublishItem}>
+            <BookItem
+              bg={"bg-white"}
+              item={item}
+              handleBookClick={handleBookClick}
+            />
+          </div>
         </div>
       ))}
     </div>

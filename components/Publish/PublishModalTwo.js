@@ -1,7 +1,6 @@
 import Styles from "../../styles//Modal.module.css";
 import { useContext, useRef, useState, useEffect } from "react";
 import { PublishContext } from "../../context/PublishContext";
-import StylesSheet from "../../styles/Publish.module.css";
 
 function PublishModalTwo({ data }) {
   const { show, setShow } = useContext(PublishContext).contextValue;
@@ -39,72 +38,80 @@ function PublishModalTwo({ data }) {
           <div
             className={`${Styles.ModalHeader} d-flex position-absolute justify-content-between`}
           >
-            <h5 style={{ fontSize: "600" }}>Book Details</h5>
+            <h6 style={{ fontSize: "600" }} className="m-0">
+              Book Details
+            </h6>
             <img src="x.svg" alt="close" onClick={closeModal} />
           </div>
         </div>
-        <div className="d-flex mt-4 align-items-center">
-          <div
-            style={{ height: "250px", overflow: "hidden" }}
-            className=" rounded"
-          >
-            <img src="/Okeke.jpg" alt="okeke" height={"100%"} width={"auto"} />
-          </div>
-          <div className="pl-4">
-            <h6 className="pb-3 border-bottom">{data.name}</h6>
-
-            <div className="d-flex align-items-center pt-2 pb-3">
-              <span>Publisher's price:</span>
-              <h5
-                style={{
-                  fontWeight: "300",
-                  fontSize: ".9rem",
-                  textDecoration: "line-through",
-                }}
-                className="m-0 ml-2 text-danger"
+        <div className="card mt-3">
+          <div className="card-header">Book Details</div>
+          <div className="card-body">
+            <div className="d-flex align-items-center">
+              <div
+                style={{ height: "250px", overflow: "hidden" }}
+                className=" rounded"
               >
-                &#x20A6;&nbsp;
-                {data?.publishers_price
-                  ?.toFixed(2)
-                  .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
-              </h5>
-            </div>
-
-            <h6
-              style={{ fontWeight: "600", fontSize: "1.1rem" }}
-              className="pt-2 border-bottom pb-3"
-            >
-              &#x20A6;&nbsp;
-              {data?.publishers_price
-                ?.toFixed(2)
-                ?.replace(/\d(?=(\d{3})+\.)/g, "$&,")}
-            </h6>
-
-            <div>
-              <div className="pt-2 d-none">
-                <input
-                  type="text"
-                  style={{ height: "40px" }}
-                  className="form-control"
-                  onFocus={(e) => {
-                    e.target.type = "number";
-                    e.target.value = "";
-                  }}
-                  onBlur={(e) => {
-                    e.target.type = "text";
-                  }}
-                  placeholder="Enter desired amount"
+                <img
+                  src="/Okeke.jpg"
+                  alt="okeke"
+                  height={"100%"}
+                  width={"auto"}
                 />
               </div>
-              <button
-                className="btn btn-primary btn-primary--sh-none btn-sm my-4"
-                style={{ background: "#0062cc", borderColor: "#0062cc" }}
-              >
-                Update Price
-              </button>
-              <button className="btn btn-danger btn-sm my-4 ml-3">
-                Remove Book
-              </button>
+              <div className="pl-4">
+                <h6 className="pb-3 border-bottom">{data.name}</h6>
+
+                <div className="d-flex align-items-center pt-2 pb-3">
+                  <span>Publisher's price:</span>
+                  <h5
+                    style={{
+                      fontWeight: "300",
+                      fontSize: ".9rem",
+                      textDecoration: "line-through",
+                    }}
+                    className="m-0 ml-2 text-danger"
+                  >
+                    &#x20A6;&nbsp;
+                    {data?.publisher_price}
+                  </h5>
+                </div>
+
+                <h6
+                  style={{ fontWeight: "600", fontSize: "1.1rem" }}
+                  className="pt-2 border-bottom pb-3"
+                >
+                  &#x20A6;&nbsp;
+                  {data?.price}
+                </h6>
+
+                <div>
+                  <div className="pt-2">
+                    <input
+                      type="text"
+                      style={{ height: "40px" }}
+                      className="form-control"
+                      onFocus={(e) => {
+                        e.target.type = "number";
+                        e.target.value = "";
+                      }}
+                      onBlur={(e) => {
+                        e.target.type = "text";
+                      }}
+                      placeholder="Enter desired amount"
+                    />
+                  </div>
+                  <button
+                    className="btn btn-primary btn-primary--sh-none btn-sm mt-4"
+                    style={{ background: "#0062cc", borderColor: "#0062cc" }}
+                  >
+                    Update Price
+                  </button>
+                  <button className="btn btn-danger btn-sm mt-4 ml-3">
+                    Remove Book
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

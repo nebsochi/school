@@ -239,12 +239,9 @@ export default function Request() {
         </div>
       </div>
 
-      <div
-        className="container-fluid position-absolute mx-auto"
-        style={{ bottom: "0" }}
-      >
+      <div className="container-fluid mx-auto" style={{ bottom: "0" }}>
         <div className="container ">
-          <div className="py-2">
+          <div className="pb-2">
             <Pagination
               pageCount={pageCount}
               currentPage={currentPage}
