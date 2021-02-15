@@ -1,5 +1,6 @@
 import React from "react";
 import Styles from "../../styles/Publish.module.css";
+// import formater
 
 function BookItem({ item, handleBookClick, bg }) {
   return (
@@ -36,7 +37,7 @@ function BookItem({ item, handleBookClick, bg }) {
           style={{ fontWeight: "600" }}
         >
           &#x20A6;&nbsp;
-          {item?.price}
+          {item?.price.toLocaleString()}
         </h6>
       </div>
     </div>

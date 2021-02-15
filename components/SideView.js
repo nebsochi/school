@@ -2,7 +2,7 @@ function SideView({ handleClick }) {
   return (
     <div style={{ minWidth: "280px" }} className="position-relative ml-4">
       <div className="position-relative bg-white rounded pb-3">
-        <div className="d-flex p-4 pb-0 align-items-center">
+        <div className="d-flex pt-4 px-4 pb-2 align-items-center">
           <div className="mr-3">
             <svg
               version="1.1"

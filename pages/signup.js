@@ -38,7 +38,7 @@ export default function Home() {
               <SignUpForm />
             </div>
             <div
-              className="col-md-6 order-0 order-md-2 position-relative p-0"
+              className="col-md-6 order-0 order-md-2 position-relative py-5 p-0"
               style={{
                 backgroundImage: `url(/bg.png)`,
                 backgroundSize: "cover",
