@@ -13,6 +13,7 @@ function PublishModal() {
   const [scrn, setScrn] = useState("PublishListScrn");
   const [books, setBooks] = useState([]);
   const [currPublisherId, setCurrPublisherId] = useState("");
+  const [currPublisherName, setCurrPublisherName] = useState("");
   const screens = ["PublishListScrn", "BookListScrn", "BookDetailScrn"];
   const [toastOpen, setToastOpen] = useState(true);
   const [toastMsg, setToastMsg] = useState("");
@@ -29,11 +30,12 @@ function PublishModal() {
     setScrn("PublishListScrn");
   }, []);
 
-  const handleItemClick = (e, i, pId) => {
+  const handleItemClick = (e, i, pId, pubName) => {
     e.preventDefault();
     setScrn(screens[1]);
     setBooks([...data[i].books]);
     setCurrPublisherId(pId);
+    setCurrPublisherName(pubName);
   };
 
   const closeModal = () => {
@@ -85,6 +87,7 @@ function PublishModal() {
             books={books}
             handleBookClick={handleBookClick}
             setScrn={setScrn}
+            pName={currPublisherName}
           />
         )}
 

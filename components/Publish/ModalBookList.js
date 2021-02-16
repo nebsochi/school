@@ -3,12 +3,7 @@ import Styles from "../../styles/Modal.module.css";
 import BookItem from "./BookItem";
 import Image from "next/image";
 
-function ModalBookList({
-  closeModal,
-  books,
-  handleBookClick,
-  setScrn = { setScrn },
-}) {
+function ModalBookList({ closeModal, books, handleBookClick, setScrn, pName }) {
   return (
     <>
       <div className="border-bottom">
@@ -22,7 +17,7 @@ function ModalBookList({
           >
             <Image src="/arr-left.svg" height={16} width={16} alt="Back" />
             <h6 style={{ fontWeight: "600" }} className="m-0 ml-1">
-              Publisher name
+              {pName}
             </h6>
           </div>
 

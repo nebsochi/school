@@ -3,7 +3,6 @@ import { useState, useContext } from "react";
 import { PublishContext } from "../../context/PublishContext";
 
 function PublishList({ handleItemClick }) {
-  const [pusblishData, setPusblishData] = useState({});
   const { data, error, isLoading } = useContext(PublishContext).contextValue;
 
   return error.message ? (
@@ -16,20 +15,14 @@ function PublishList({ handleItemClick }) {
           href="#"
           key={item.id}
           style={{ textDecoration: "none" }}
-          onClick={(e) => handleItemClick(e, i, item?.id)}
+          onClick={(e) => handleItemClick(e, i, item?.id, item.name)}
         >
           <div className="PublishItem d-flex align-items-center justify-content-between py-3  border-bottom rounded">
             <div className="d-flex align-items-center">
               {!item.picture ? (
                 <Image src="/user.svg" alt="logo" height={50} width={50} />
               ) : (
-                <img
-                  src={item.picture}
-                  alt="logo"
-                  height={50}
-                  width={50}
-                  className=""
-                />
+                <img src={item.picture} alt="logo" height={50} width={50} />
               )}
 
               <div className="pl-3">

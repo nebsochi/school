@@ -49,7 +49,7 @@ function BookDetail({
             onClick={() => setScrn("BookListScrn")}
           >
             <Image src="/arr-left.svg" height={16} width={16} alt="Back" />
-            <h6 style={{ fontSize: "600" }} className="m-0 ml-1">
+            <h6 style={{ fontWeight: "600" }} className="m-0 ml-1">
               Book Detail
             </h6>
           </div>

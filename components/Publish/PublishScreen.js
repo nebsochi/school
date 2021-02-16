@@ -7,7 +7,7 @@ function PublishScreen({ handleItemClick, closeModal }) {
     <>
       <div className="border-bottom pb-4">
         <div
-          className={`${Styles.ModalHeader} d-flex position-absolute justify-content-between`}
+          className={`${Styles.ModalHeader} d-flex  align-items-center position-absolute justify-content-between`}
         >
           <h6 style={{ fontWeight: "600" }}>Select Publisher</h6>
           <img src="x.svg" alt="close" onClick={closeModal} />

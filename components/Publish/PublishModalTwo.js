@@ -108,7 +108,7 @@ function PublishModalTwo({ data }) {
       >
         <div className="border-bottom">
           <div
-            className={`${Styles.ModalHeader} d-flex position-absolute justify-content-between`}
+            className={`${Styles.ModalHeader} d-flex align-items-center position-absolute justify-content-between`}
           >
             <h6 style={{ fontSize: "600", fontWeight: "600" }} className="m-0">
               Book Details
