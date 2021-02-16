@@ -99,6 +99,23 @@ class Api {
       return err.response.data;
     }
   }
+
+  static async delete(url, token) {
+    try {
+      const res = await axios({
+        method: "delete",
+        url,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return res.data;
+    } catch (err) {
+      if (!err.response) return "Network Error";
+      return err.response.data;
+    }
+  }
 }
 
 export default Api;

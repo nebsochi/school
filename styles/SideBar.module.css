@@ -19,11 +19,11 @@
 .SideLink {
   display: flex;
   align-items: center;
-  height: 50px;
-  border-radius: 6px;
+  height: 60px;
+  border-radius: 12px;
   text-decoration: none !important;
   cursor: pointer;
-  color: rgb(0, 98, 204);
+  color: #0c21ae;
 }
 
 .SideLink:hover {
@@ -32,21 +32,21 @@
 
 .SideLinkActive {
   color: #fff;
-  background: rgb(0, 98, 204);
+  background: #0c21ae;
 }
 
 .SideLinkActive:hover {
-  background: rgb(0, 98, 204);
+  background: #0c21ae;
   color: #fff;
 }
 
 .SideIcon {
   width: 20px;
-  margin: 0 12px 0 0px;
+  margin: 0 16px 0 8px;
 }
 
 .SideIcon path {
-  fill: rgb(0, 98, 204);
+  fill: #0c21ae;
 }
 
 .SideLinkActive .SideIcon path {

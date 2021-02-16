@@ -25,7 +25,7 @@ function Sidebar() {
           className="rounded-circle"
         />
         <div className="ml-3">
-          <h6 className="mb-0">John Snow</h6>
+          <h6 className="mb-0 text-blue">John Snow</h6>
           <small className="text-muted">1st term</small>
         </div>
       </a>

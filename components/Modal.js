@@ -227,7 +227,6 @@ function Modal({ isOpen, setIsOpen, data }) {
                           className="btn btn-primary px-5"
                           style={{
                             color: "rgb(255, 255, 255)",
-                            background: "rgb(0, 98, 204)",
                             marginTop: ".9rem",
                             marginBottom: "1rem",
                             borderColor: "rgb(0, 98, 204)",

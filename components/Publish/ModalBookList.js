@@ -34,13 +34,7 @@ function ModalBookList({
             placeholder="Search Books"
             className="form-control shadow-sm"
           />
-          <button
-            className="btn ml-2 btn-primary btn-primary--sh-none"
-            style={{
-              background: "rgb(0, 98, 204)",
-              borderColor: "rgb(0, 98, 204)",
-            }}
-          >
+          <button className="btn ml-2 btn-primary btn-primary--sh-none">
             Search
           </button>
         </form>

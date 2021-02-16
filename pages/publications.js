@@ -15,18 +15,24 @@ function publications() {
     PublishContext
   ).contextValue;
   const [modalData, setModalData] = useState({});
+  const [num, setNum] = useState(0);
   const [searchValue, setSearchValue] = useState("");
   const handleClick = (e) => {
     e.preventDefault();
     setIsOpen(true);
   };
 
-  const handleBookClick = (e, item) => {
+  const handleBookClick = (e, item, number) => {
     e.preventDefault();
-    setModalData({ ...modalData, ...item });
-    console.log(item);
+    setModalData({ ...modalData, ...books[number] });
+    setNum(number);
+    console.log(number);
     setShow(true);
   };
+
+  useEffect(() => {
+    setModalData({ ...modalData, ...books[num] });
+  }, [books]);
 
   return (
     <IndexLayout>
@@ -67,7 +73,7 @@ function publications() {
                 onChange={(e) => handleChange(e)}
               />
             </div>
-            <div className="d-flex">
+            <div className="d-flex justify-content-between">
               {isLoading ? (
                 <span style={{ width: " calc(100% - 280px)" }}>loading...</span>
               ) : (

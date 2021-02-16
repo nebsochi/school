@@ -1,8 +1,8 @@
 import React from "react";
 import Styles from "../../styles/Publish.module.css";
-// import formater
+import { formatNumber } from "../../utils/Formatter";
 
-function BookItem({ item, handleBookClick, bg }) {
+function BookItem({ item, handleBookClick, bg, number }) {
   return (
     <div className={`pb-3`}>
       <div
@@ -12,7 +12,7 @@ function BookItem({ item, handleBookClick, bg }) {
           href=""
           className={` ${bg} d-flex align-items-center bg-light justify-content-center text-center`}
           style={{ width: "100%", height: "100%" }}
-          onClick={(e) => handleBookClick(e, item)}
+          onClick={(e) => handleBookClick(e, item, number)}
         >
           <img
             src={item?.primary_picture || item?.picture}
@@ -28,7 +28,7 @@ function BookItem({ item, handleBookClick, bg }) {
           href="#"
           className="pt-2 d-block"
           style={{ fontSize: ".86rem", textDecoration: "none" }}
-          onClick={(e) => handleBookClick(e, item)}
+          onClick={(e) => handleBookClick(e, item, number)}
         >
           {item.name}
         </a>
@@ -37,7 +37,7 @@ function BookItem({ item, handleBookClick, bg }) {
           style={{ fontWeight: "600" }}
         >
           &#x20A6;&nbsp;
-          {item?.price.toLocaleString()}
+          {formatNumber(item?.price) + ".00"}
         </h6>
       </div>
     </div>

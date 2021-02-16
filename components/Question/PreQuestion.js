@@ -20,7 +20,10 @@ function PreQuestion({ data }) {
   };
 
   useEffect(() => {
-    const newArr = [data?.guardian_choices?.full_name];
+    const newArr = [];
+    data?.guardian_choices?.forEach((item) => {
+      newArr.push(item.full_name);
+    });
     const shuffledArr = shuffle(newArr);
     setNameOptions([...shuffledArr]);
     return () => {

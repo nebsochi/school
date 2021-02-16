@@ -61,6 +61,10 @@ a {
   --p-color: rgba(34, 35, 53, 0.7);
   --primary: #0c21ae;
 }
+
+.text-blue {
+  color: var(--primary);
+}
 .btn-primary {
   background: var(--primary);
   -webkit-box-shadow: 0px 8px 37px rgba(55, 81, 255, 0.35) !important;

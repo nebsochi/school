@@ -19,10 +19,6 @@ function Empty({ handleClick }) {
         </span>
         <button
           className="btn px-5 mt-4 btn-outline btn-primary btn-md"
-          style={{
-            background: "rgb(0, 98, 204)",
-            borderColor: "rgb(0, 98, 204)",
-          }}
           onClick={(e) => handleClick(e)}
         >
           Add Books

@@ -10,9 +10,8 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    const response = getRequestById(item.id).then((data) =>
-      setDetailData({ ...detailData, ...data?.data?.loan_request })
-    );
+    setDetailData({ ...detailData, ...item });
+
     setIsOpen(true);
 
     // router.push("/request", `/request/details/${item.parent.full_name}`);
@@ -71,13 +70,11 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
         </div>
 
         <a
-          className="btn btn-outline btn-primary   btn-block btn-md "
+          className="btn btn-outline btn-primary btn-primary--sh-none btn-block btn-md "
           style={{
             minWidth: "100%",
-
             fontSize: ".8rem",
             color: "#ffffff",
-            background: "#0062cc",
             marginTop: "1.7rem",
             marginBottom: "1rem",
           }}

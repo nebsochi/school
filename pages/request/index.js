@@ -139,6 +139,8 @@ export default function Request() {
     }
   };
 
+  console.log(data);
+
   return (
     <IndexLayout>
       <div className="container position-relative pt-4">

@@ -123,8 +123,6 @@ function BookDetail({
         type="submit"
         className="btn mt-4 btn-primary btn-primary--sh-none btn-sm"
         style={{
-          background: "#0062cc",
-          borderColor: "#0062cc",
           height: "40px",
         }}
       >
