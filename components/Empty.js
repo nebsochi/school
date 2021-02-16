@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function Empty({ handleClick }) {
   return (
-    <div className="col-12">
+    <div style={{ width: " calc(100% - 280px)" }}>
       <div
         className="d-flex text-center justify-content-center align-items-center flex-column"
         style={{ minHeight: "60vh" }}
