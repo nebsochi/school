@@ -1,38 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;600&family=Rubik:wght@400;600;700&family=Satisfy&display=swap");
 
 @font-face {
-  font-family: "Muli";
-  src: url("/Fonts/muli-200.ttf") format("truetype");
-  font-weight: 200;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Muli";
-  src: url("/Fonts/muli-300.ttf") format("truetype");
+  font-family: "Gilroy";
+  src: url("/Fonts/Giroy-Light/Giroy-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
+
 @font-face {
-  font-family: "Muli";
-  src: url("/Fonts/muli-400.ttf") format("truetype");
+  font-family: "Gilroy";
+  src: url("/Fonts/Giroy-Regular/Giroy-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
-  font-family: "Muli";
-  src: url("/Fonts/muli-600.ttf") format("truetype");
-  font-weight: 600;
+  font-family: "Gilroy";
+  src: url("/Fonts/Giroy-Medium/Giroy-Medium.ttf") format("truetype");
+  font-weight: 500;
   font-style: normal;
 }
 @font-face {
-  font-family: "Muli";
-  src: url("/Fonts/muli-700.ttf") format("truetype");
+  font-family: "Gilroy";
+  src: url("/Fonts/Giroy-Bold/Giroy-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
-  font-family: "Muli";
-  src: url("/Fonts/muli-900.ttf") format("truetype");
+  font-family: "Gilroy";
+  src: url("/Fonts/Giroy-SemiBold/Giroy-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("/Fonts/Giroy-ExtraBold/Giroy-ExtraBold.ttf") format("truetype");
   font-weight: 900;
   font-style: normal;
 }
@@ -41,7 +42,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Rubik", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+  font-family: "Gilroy", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
@@ -58,7 +59,7 @@ a {
   --yellow: #f7c147;
   --text-dark-blue: #607a9b;
   --text-bright-blue: #0017ae;
-  --p-color: rgba(34, 35, 53, 0.7);
+  --p-color: #222222;
   --primary: #0c21ae;
 }
 
@@ -134,13 +135,13 @@ td {
 
 .btn {
   font-weight: 400;
-  font-family: "Rubik", sans-serif;
+  font-family: "Gilroy", sans-serif;
 }
 
 .nav-link {
   font-size: 1rem;
   font-weight: 400;
-  font-family: "Rubik", sans-serif;
+  font-family: "Gilroy", sans-serif;
 }
 
 .nav-item.active .nav-link {

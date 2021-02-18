@@ -15,7 +15,7 @@ function Sidebar() {
         </h5>
       </div>
       <a
-        className={`d-flex p-2 px-3 shadow-sm m-3 mt-4 bg-white align-items-center`}
+        className={`d-flex p-2 px-3 border m-3 mt-4 bg-white align-items-center`}
         style={{ borderRadius: "12px", textDecoration: "none" }}
       >
         <Image

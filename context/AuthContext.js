@@ -5,20 +5,22 @@ export const AuthContext = createContext();
 
 export const AuthProvider = (props) => {
   const [signedIn, setSignedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const signIn = async (cdata) => {
+    setIsLoading(true);
     const response = await Api.post(`${Api.ENDPOINTS.url}/school/login`, cdata);
+    setIsLoading(false);
 
-    const { status, data } = response;
-    if (status) {
+    const { data } = response;
+    if (response.message === "Login Successful!") {
       if (process.browser) {
         localStorage.setItem("token", data.token);
         setSignedIn(true);
-        return status;
       }
-    } else {
-      return response.messages;
     }
+
+    return response.message;
   };
 
   const signUpUser = async (cdata) => {

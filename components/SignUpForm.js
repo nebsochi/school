@@ -1,4 +1,4 @@
-import { useContext, useState, useRef } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { SignUpContext } from "../context/SignUpContext";
 import styles from "../styles/Input.module.css";
 import BackBtn from "./backBtn/BackBtn";
@@ -41,6 +41,7 @@ function SignUpForm() {
       });
 
       if (res === "User Created!") {
+        setInputValues((prev) => ({ ...prev, password: "" }));
         router.push("/");
       } else {
         setErrorResponse(res);
@@ -78,6 +79,13 @@ function SignUpForm() {
       },
     },
   };
+
+  useEffect(() => {
+    setErrorResponse("");
+    return () => {
+      setErrorResponse("");
+    };
+  }, []);
 
   return (
     value.signUp && (

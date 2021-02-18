@@ -11,6 +11,7 @@ function SignInform() {
     error: {},
   });
   const [validated, setValidated] = useState(false);
+  const [errorResponse, setErrorResponse] = useState(false);
   const { signIn } = useContext(AuthContext).authValue;
   const router = useRouter();
 
@@ -19,18 +20,22 @@ function SignInform() {
     setInputValues({ ...inputValue, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setValidated(true);
-    const data = {
-      username: inputValue.username,
-      password: inputValue.password,
-    };
-    signIn(data).then((i) => {
-      if (i) {
+    if (inputValue.username.trim() !== "" && inputValue.password !== "") {
+      const data = {
+        username: inputValue.username,
+        password: inputValue.password,
+      };
+      const res = await signIn(data);
+      if (res === "Login Successful!") {
+        setInputValues((prev) => ({ ...prev, password: "" }));
         router.push("/");
+      } else {
+        setErrorResponse(res);
       }
-    });
+    }
   };
 
   const content = {
@@ -64,7 +69,11 @@ function SignInform() {
           application
         </p>
       </div>
-
+      {errorResponse.length > 1 && (
+        <div className="alert alert-danger" role="alert">
+          {errorResponse}
+        </div>
+      )}
       <div className="form-group">
         <label htmlFor="username">Username</label>
         <input
@@ -78,7 +87,7 @@ function SignInform() {
           required
         />
 
-        <div className="invalid-feedback">Username is invalid</div>
+        <div className="invalid-feedback">Username is requred</div>
 
         {/* <small id="emailHelp" className="form-text text-muted">
           We'll never share your email with anyone else.
