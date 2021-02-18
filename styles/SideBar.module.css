@@ -19,8 +19,8 @@
 .SideLink {
   display: flex;
   align-items: center;
-  height: 60px;
-  border-radius: 12px;
+  height: 50px;
+  border-radius: 6px;
   text-decoration: none !important;
   cursor: pointer;
   color: #0c21ae;
@@ -33,6 +33,7 @@
 .SideLinkActive {
   color: #fff;
   background: #0c21ae;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
 
 .SideLinkActive:hover {

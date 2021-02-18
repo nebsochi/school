@@ -26,16 +26,7 @@ export const AuthProvider = (props) => {
       `${Api.ENDPOINTS.url}/school/register`,
       cdata
     );
-    const { status, data } = response;
-    if (status) {
-      if (process.browser) {
-        localStorage.setItem("token", data.token);
-        setSignedIn(true);
-        return status;
-      }
-    } else {
-      return response?.message;
-    }
+    return response.message;
   };
 
   const logOut = () => {

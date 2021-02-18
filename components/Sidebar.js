@@ -8,15 +8,15 @@ function Sidebar() {
   return (
     <div className={Styles.Sidebar}>
       <div
-        className={`${Styles.SideBrand} d-flex align-items-center justify-content-center`}
+        className={`${Styles.SideBrand} d-flex align-items-center justify-content-center border-bottom`}
       >
-        <h5>
+        <h5 className="m-0">
           <strong>SchoolCredit</strong>
         </h5>
       </div>
       <a
-        className={`d-flex p-2 px-3 shadow-sm m-3 bg-white align-items-center`}
-        style={{ borderRadius: "6px", textDecoration: "none" }}
+        className={`d-flex p-2 px-3 shadow-sm m-3 mt-4 bg-white align-items-center`}
+        style={{ borderRadius: "12px", textDecoration: "none" }}
       >
         <Image
           src="/user.svg"
@@ -25,8 +25,10 @@ function Sidebar() {
           className="rounded-circle"
         />
         <div className="ml-3">
-          <h6 className="mb-0 text-blue">John Snow</h6>
-          <small className="text-muted">1st term</small>
+          <h6 className="mb-0 text-blue" style={{ fontWeight: "600" }}>
+            John Snow
+          </h6>
+          <span className="badge badge-pill badge-primary">1st term</span>
         </div>
       </a>
 
@@ -69,7 +71,7 @@ function Sidebar() {
                 />
               </g>
             </svg>
-            Dashbord
+            Dashboard
           </a>
         </Link>
         <Link href="/request">

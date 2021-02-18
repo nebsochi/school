@@ -11,14 +11,11 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
   const handleClick = (e) => {
     e.preventDefault();
     setDetailData({ ...detailData, ...item });
-
     setIsOpen(true);
-
-    // router.push("/request", `/request/details/${item.parent.full_name}`);
   };
 
   return (
-    <div className="col-lg-4 col-xl-3 col-md-6  mb-4">
+    <div className="col-xl-4 col-lg-4 col-md-6  mb-4">
       <div
         className="p-3 border bg-white position-relative"
         style={{ borderRadius: "16px" }}
@@ -90,4 +87,3 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
 }
 
 export default RequestCard;
-// btn-primary--sh-none

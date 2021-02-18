@@ -20,7 +20,7 @@ function Populations() {
     setPopulation(e.target.value);
     actions.setData((prev) => ({
       ...prev,
-      education_level: 1 + values.findIndex((item) => item === e.target.value),
+      students_range: 1 + values.findIndex((item) => item === e.target.value),
     }));
     setDisabled(false);
   };

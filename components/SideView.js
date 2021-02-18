@@ -1,8 +1,13 @@
+import Image from "next/image";
+import { useContext } from "react";
+import { PublishContext } from "../context/PublishContext";
+
 function SideView({ handleClick }) {
+  const { bookCount } = useContext(PublishContext).contextValue;
   return (
-    <div style={{ minWidth: "280px" }} className="position-relative ml-4">
-      <div className="position-relative bg-white rounded pb-3">
-        <div className="d-flex pt-4 px-4 pb-2 align-items-center">
+    <div style={{ minWidth: "280px" }} className="position-relative ml-4 ">
+      <div className="position-relative bg-white rounded-lg border pb-3">
+        <div className="d-flex pt-3 px-4 pb-2 align-items-center">
           <div className="mr-3">
             <svg
               version="1.1"
@@ -92,9 +97,9 @@ function SideView({ handleClick }) {
             </svg>
           </div>
           <div>
-            <h3 className="m-0">
-              <strong>16</strong>
-            </h3>
+            <h4 className="m-0">
+              <strong>{bookCount}</strong>
+            </h4>
             <h6>Total Books</h6>
           </div>
         </div>
@@ -106,6 +111,15 @@ function SideView({ handleClick }) {
             Add a Book
           </button>
         </div>
+      </div>
+
+      <div className="bg-white rounded-lg p-3 mt-4 border">
+        <div className="text-center">
+          <Image src="/profile.svg" height={50} width={50} alt="publisher" />
+        </div>
+        <button className="btn-full btn btn-block btn-outline-primary btn-primary--sh-none mt-2">
+          Invite a Publisher
+        </button>
       </div>
     </div>
   );

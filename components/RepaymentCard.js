@@ -1,6 +1,6 @@
 function RepaymentCard() {
   return (
-    <div className="col-lg-3 col-md-6  mb-4">
+    <div className="col-lg-4 col-md-6  mb-4">
       <div
         className="p-3 border bg-white position-relative"
         style={{ borderRadius: "16px" }}

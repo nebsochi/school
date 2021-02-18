@@ -10,7 +10,9 @@ export const PublishProvider = (props) => {
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [bookCount, setBookCount] = useState(0);
   const [data, setData] = useState([]);
   const [books, setBooks] = useState([]);
   const [error, setError] = useState({});
@@ -39,6 +41,18 @@ export const PublishProvider = (props) => {
     return res.message;
   };
 
+  const searchPublishers = async (data) => {
+    setIsSearching(true);
+    const token = localStorage.getItem("token");
+    const res = await MApi.post(
+      `${MApi.ENDPOINTS.url}/publishers`,
+      data,
+      token
+    );
+    setIsSearching(false);
+    return res;
+  };
+
   const addBook = async (data) => {
     setIsSaving(true);
     const token = localStorage.getItem("token");
@@ -60,6 +74,7 @@ export const PublishProvider = (props) => {
     setIsLoading(false);
     if (res.data) {
       setBooks([...res.data]);
+      setBookCount(res.count);
     } else {
       setError({ ...error, msg: res });
     }
@@ -99,6 +114,8 @@ export const PublishProvider = (props) => {
     show,
     setShow,
     isLoading,
+    searchPublishers,
+    isSearching,
     error,
     addBook,
     books,
@@ -107,6 +124,7 @@ export const PublishProvider = (props) => {
     isUpdating,
     isDeleting,
     deleteBook,
+    bookCount,
   };
 
   return (

@@ -5,12 +5,15 @@ import BackBtn from "./backBtn/BackBtn";
 import { motion } from "framer-motion";
 import { validateSignup } from "../utils/Validation";
 import { AuthContext } from "../context/AuthContext";
+import { useRouter } from "next/router";
 
 function SignUpForm() {
   const { actions, value } = useContext(SignUpContext).contextValue;
   const { signUpUser } = useContext(AuthContext).authValue;
   const [validated, setValidated] = useState(false);
   const [invalid, setInvalid] = useState(false);
+  const [errorResponse, setErrorResponse] = useState("");
+  const router = useRouter();
   const InputRef = useRef(null);
   const formRef = useRef(null);
   const [inputValue, setInputValues] = useState({
@@ -25,18 +28,23 @@ function SignUpForm() {
     actions.setSchInformation(true);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const errors = validateSignup(inputValue);
     setInputValues({ ...inputValue, errors: { ...errors } });
     setValidated(true);
     if (Object.keys(errors).length === 0) {
-      actions.setData({
+      const res = await signUpUser({
         ...value.data,
         username: inputValue.username,
         password: inputValue.password,
       });
-      signUpUser(value.data);
+
+      if (res === "User Created!") {
+        router.push("/");
+      } else {
+        setErrorResponse(res);
+      }
     }
   };
 
@@ -89,6 +97,11 @@ function SignUpForm() {
             application
           </p>
         </div>
+        {errorResponse.length > 1 && (
+          <div className="alert alert-danger" role="alert">
+            {errorResponse}
+          </div>
+        )}
 
         <div className="form-group">
           <label htmlFor="username">Username</label>
