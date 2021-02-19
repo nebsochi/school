@@ -80,7 +80,7 @@ function InfoCards({ applications }) {
           >
             <div className="d-flex align-items-center p-3">
               <div className="mr-3">
-                <img src="friend.svg" width="50" alt="icon" />
+                <img src="rejected.svg" width="50" alt="icon" />
               </div>
               <div className="text-truncate">
                 <div className="d-flex justify-content-between pt-1 align-items-end">
@@ -88,7 +88,7 @@ function InfoCards({ applications }) {
                     0
                   </h3>
                 </div>
-                <small className="text-muted">Total Applications</small>
+                <small className="text-muted">Declined Applications</small>
               </div>
             </div>
           </div>

@@ -16,10 +16,7 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
 
   return (
     <div className="col-xl-3 col-lg-4 col-md-6  mb-4">
-      <div
-        className="p-3 border bg-white position-relative"
-        style={{ borderRadius: "16px" }}
-      >
+      <div className="p-3 shadow-sm bg-white position-relative rounded-lg">
         <div
           className="position-absolute"
           style={{ top: ".0rem", right: ".3rem" }}
@@ -39,8 +36,8 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
               alt="user"
             />
           </div>
-          <div className="info__avatar pl-2">
-            <span className="profile__title d-block">
+          <div className="info__avatar pl-2" style={{ width: "80%" }}>
+            <span className="profile__title d-block text-truncate">
               {item.parent.full_name}
             </span>
             <span

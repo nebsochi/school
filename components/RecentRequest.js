@@ -10,7 +10,7 @@ function RecentRequest({ data }) {
   console.log(data);
 
   return (
-    <div className="col-lg-6 col-12 mb-4 mb-md-0">
+    <div className="col-lg-6 col-12 mb-3">
       <div style={{ borderRadius: "7px" }}>
         <div className="bg-white border rounded-lg">
           <h6 className="mb-3 justify-content-between p-2 px-3 d-flex align-items-center border-bottom">

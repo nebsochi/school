@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function ShareComponent() {
   return (
-    <div className="col-md-6 position-relative">
+    <div className="col-md-6 position-relative mb-3">
       <div className="card" style={{ borderRadius: "7px", height: "100%" }}>
         <div className="card-body text-center d-flex align-items-center justify-content-center">
           <div className="text-center">
