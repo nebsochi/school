@@ -60,11 +60,15 @@ a {
   --text-dark-blue: #607a9b;
   --text-bright-blue: #0017ae;
   --p-color: #222222;
-  --primary: #0c21ae;
+  --primary: #3930d8;
 }
 
 .text-blue {
   color: var(--primary);
+}
+
+* {
+  color: #222;
 }
 .btn-primary {
   background: var(--primary);
@@ -92,11 +96,11 @@ span {
   color: #0017ae;
 }
 
-th {
-  color: var(--text-dark-blue);
+td {
+  font-size: 0.875rem;
 }
 
-td {
+th {
   font-size: 0.9rem;
 }
 

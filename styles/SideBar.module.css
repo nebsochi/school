@@ -1,14 +1,15 @@
 .Sidebar {
-  width: 280px;
-  background-color: #f7f8fc;
+  width: 260px;
+  background-color: #fff;
+  position: relative;
 }
 
 .SideBrand {
-  height: 80px;
+  height: 65px;
 }
 
 .SidebarRight {
-  width: calc(100% - 280px);
+  width: calc(100% - 260px);
   overflow: auto;
 }
 
@@ -19,26 +20,27 @@
 .SideLink {
   display: flex;
   align-items: center;
-  height: 50px;
-  border-radius: 6px;
+  height: 60px;
   text-decoration: none !important;
   cursor: pointer;
-  color: #0c21ae;
+  color: #222;
+  border-left: 3px solid transparent;
+  font-size: 0.9rem;
 }
 
 .SideLink:hover {
-  background: rgba(91, 91, 255, 0.1);
+  border-left: 3px solid #3930d8;
 }
 
 .SideLinkActive {
-  color: #fff;
-  background: #0c21ae;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  color: #3930d8;
+  border-left: 3px solid #3930d8;
+  font-size: 600;
+  background: #f6f6fd;
 }
 
 .SideLinkActive:hover {
-  background: #0c21ae;
-  color: #fff;
+  border-left: 3px solid #3930d8;
 }
 
 .SideIcon {
@@ -47,9 +49,19 @@
 }
 
 .SideIcon path {
-  fill: #0c21ae;
+  fill: #222222b0;
 }
 
 .SideLinkActive .SideIcon path {
-  fill: #fff;
+  fill: #3930d8;
+}
+.SideLink:hover .SideIcon path {
+  fill: #3930d8;
+}
+
+.BtnContainer {
+  bottom: 0rem;
+  left: 0;
+  position: absolute;
+  width: 100%;
 }

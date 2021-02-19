@@ -9,10 +9,10 @@ function BookList({ handleBookClick }) {
   return (
     <div
       className="row align-items-stretch"
-      style={{ width: " calc(100% - 280px)" }}
+      style={{ width: " calc(100% - 260px)" }}
     >
       {books.map((item, i) => (
-        <div className={`col-6 mb-3 col-md-4 `} key={item.id}>
+        <div className={`col-6 mb-3 col-lg-6 col-xl-4`} key={item.id}>
           <div className={Styles.PublishItem}>
             <BookItem
               bg={"bg-white"}

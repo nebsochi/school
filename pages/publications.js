@@ -36,7 +36,7 @@ function publications() {
 
   return (
     <IndexLayout>
-      <div className="container position-relative pt-4">
+      <div className="container-fluid position-relative pt-4">
         <div className="row" style={{ marginBottom: "60px" }}>
           <div className="col-md-12">
             <div className="pt-2 mb-4 border-bottom d-md-flex align-items-bottom justify-content-between">
@@ -75,7 +75,7 @@ function publications() {
             </div>
             <div className="d-flex justify-content-between">
               {isLoading ? (
-                <span style={{ width: " calc(100% - 280px)" }}>loading...</span>
+                <span style={{ width: " calc(100% - 260px)" }}>loading...</span>
               ) : (
                 <>
                   {isEmpty(books) ? (

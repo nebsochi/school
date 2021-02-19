@@ -141,7 +141,7 @@ export default function Request() {
 
   return (
     <IndexLayout>
-      <div className="container position-relative pt-4">
+      <div className="container-fluid position-relative pt-4 px-md-5">
         <div className="row" style={{ marginBottom: "60px" }}>
           <div className="col-md-12">
             <div className="pt-2 mb-4 border-bottom d-md-flex align-items-bottom justify-content-between">

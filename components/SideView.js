@@ -5,7 +5,7 @@ import { PublishContext } from "../context/PublishContext";
 function SideView({ handleClick }) {
   const { bookCount } = useContext(PublishContext).contextValue;
   return (
-    <div style={{ minWidth: "280px" }} className="position-relative ml-4 ">
+    <div style={{ minWidth: "260px" }} className="position-relative ml-4 ">
       <div className="position-relative bg-white rounded-lg border pb-3">
         <div className="d-flex pt-3 px-4 pb-2 align-items-center">
           <div className="mr-3">
@@ -113,11 +113,11 @@ function SideView({ handleClick }) {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg p-3 mt-4 border">
+      <div className="bg-white rounded-lg text-center p-3 mt-4 border">
         <div className="text-center">
           <Image src="/profile.svg" height={50} width={50} alt="publisher" />
         </div>
-        <button className="btn-full btn btn-block btn-outline-primary btn-primary--sh-none mt-2">
+        <button className="btn-full btn btn-outline-primary btn-sm btn-primary--sh-none mt-2">
           Invite a Publisher
         </button>
       </div>
