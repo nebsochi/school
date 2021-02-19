@@ -11,13 +11,10 @@ function InfoCards({ applications }) {
         </div>
         <div className="col-md-6 col-lg-3 mb-2">
           <div
-            className="bg-white border position-relative"
+            className="bg-white shadow-sm position-relative"
             style={{ overflow: "hidden", borderRadius: "7px" }}
           >
             <div className="d-flex align-items-center p-3 px-4">
-              <div className="mr-3">
-                <img src="friend.svg" width="50" alt="icon" />
-              </div>
               <div className="text-truncate">
                 <div className="d-flex justify-content-between pt-1 align-items-end">
                   <h3 className="m-0 line-h-0" style={{ fontWeight: "400" }}>
@@ -33,13 +30,10 @@ function InfoCards({ applications }) {
         </div>
         <div className="col-md-6 col-lg-3 mb-2">
           <div
-            className="bg-white border position-relative"
+            className="bg-white shadow-sm position-relative"
             style={{ overflow: "hidden", borderRadius: "7px" }}
           >
-            <div className="d-flex align-items-center p-3">
-              <div className="mr-3">
-                <img src="pending.svg" width="50" alt="icon" />
-              </div>
+            <div className="d-flex align-items-center p-3 px-4">
               <div className="text-truncate">
                 <div className="d-flex justify-content-between pt-1 align-items-end">
                   <h3 className="m-0 line-h-0" style={{ fontWeight: "400" }}>
@@ -55,13 +49,10 @@ function InfoCards({ applications }) {
         </div>
         <div className="col-md-6 col-lg-3 mb-2">
           <div
-            className="bg-white border position-relative"
+            className="bg-white shadow-sm position-relative"
             style={{ overflow: "hidden", borderRadius: "7px" }}
           >
-            <div className="d-flex align-items-center p-3">
-              <div className="mr-3">
-                <img src="letter.svg" width="50" alt="icon" />
-              </div>
+            <div className="d-flex align-items-center p-3 px-4">
               <div className="text-truncate">
                 <div className="d-flex justify-content-between pt-1 align-items-end">
                   <h3 className="m-0 line-h-0" style={{ fontWeight: "400" }}>
@@ -75,13 +66,10 @@ function InfoCards({ applications }) {
         </div>
         <div className="col-md-6 col-lg-3 mb-2">
           <div
-            className="bg-white border position-relative"
+            className="bg-white shadow-sm position-relative"
             style={{ overflow: "hidden", borderRadius: "7px" }}
           >
-            <div className="d-flex align-items-center p-3">
-              <div className="mr-3">
-                <img src="rejected.svg" width="50" alt="icon" />
-              </div>
+            <div className="d-flex align-items-center p-3 px-4">
               <div className="text-truncate">
                 <div className="d-flex justify-content-between pt-1 align-items-end">
                   <h3 className="m-0 line-h-0" style={{ fontWeight: "400" }}>

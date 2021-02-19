@@ -5,6 +5,7 @@ import RecentRequest from "../components/RecentRequest";
 import { ApiContext } from "../context/ApiContext";
 import ShareComponent from "../components/ShareComponent";
 import SettingsPrompt from "../components/SettingsPrompt";
+import UploadDoc from "../components/UploadDoc";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -25,10 +26,11 @@ export default function Home() {
       <div className="container-fluid py-3 px-md-5">
         <div className="row align-items-stretch">
           <RecentRequest data={data} />
-          <ShareComponent />
+          <UploadDoc />
         </div>
-        <div className="row align-items-stretch">
+        <div className="row align-items-stretch py-2">
           <SettingsPrompt />
+          <ShareComponent />
         </div>
       </div>
     </IndexLayout>

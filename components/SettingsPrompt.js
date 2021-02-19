@@ -3,7 +3,7 @@ import Link from "next/link";
 function SettingsPrompt() {
   return (
     <div className="col-md-6">
-      <div className="card rounded-lg">
+      <div className="card border-0 shadow-sm rounded-lg">
         <div className="card-body">
           <h6>Complete your information</h6>
           <span className="text-muted">
@@ -25,7 +25,7 @@ function SettingsPrompt() {
 
           <div>
             <Link href="/settings">
-              <a className="btn btn-primary">Update now</a>
+              <a className="btn btn-primary btn-primary--sh-none">Update now</a>
             </Link>
           </div>
         </div>

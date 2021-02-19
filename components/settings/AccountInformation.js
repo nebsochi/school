@@ -40,20 +40,17 @@ function AccountInformation() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="address">Address</label>
-                  <textarea
+                  <label htmlFor="bankname">Account Name</label>
+                  <input
+                    text="text"
                     className="form-control"
-                    id="address"
-                    rows={3}
-                    placeholder="Enter school address"
-                    required
-                    name="address"
-                    defaultValue={""}
+                    id="bankname"
+                    placeholder="Enter Name"
                   />
                 </div>
 
                 <button type="submit" className="btn btn-primary">
-                  Submit
+                  Save
                 </button>
               </form>
             </div>

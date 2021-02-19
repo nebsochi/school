@@ -24,7 +24,7 @@ function Sidebar() {
         </h5>
       </div>
       <a
-        className={`border-bottom border-top d-flex p-3 my-4   align-items-center`}
+        className={`border-bottom border-top d-flex p-3 my-4 align-items-center`}
         style={{
           borderRadius: "4px",
           textDecoration: "none",
@@ -162,7 +162,11 @@ function Sidebar() {
           Invoices
         </a>
         <Link href="/settings">
-          <a className={`${Styles.SideLink} mt-3 p-3`}>
+          <a
+            className={`${Styles.SideLink} ${
+              router.pathname === "/settings" ? Styles.SideLinkActive : null
+            } mt-2 p-3`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className={Styles.SideIcon}

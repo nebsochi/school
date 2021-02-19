@@ -12,11 +12,13 @@ function RecentRequest({ data }) {
   return (
     <div className="col-lg-6 col-12 mb-3">
       <div style={{ borderRadius: "7px" }}>
-        <div className="bg-white border rounded-lg">
+        <div className="bg-white border-0 shadow-sm rounded-lg">
           <h6 className="mb-3 justify-content-between p-2 px-3 d-flex align-items-center border-bottom">
             <strong>Recent Request</strong>
             <Link href="/request">
-              <a className="btn btn-sm text-primary">View All</a>
+              <a className="btn btn-sm btn-primary btn-primary--sh-none">
+                View all
+              </a>
             </Link>
           </h6>
           <div className="px-3 pb-2 table-responsive-xl">
@@ -40,20 +42,20 @@ function RecentRequest({ data }) {
               <tbody>
                 {data.slice(0, 4).map((item, i) => (
                   <tr key={item.id}>
-                    <td className="text-center text-capitalize py-3 pr-4">
+                    <td className="text-center text-muted text-capitalize py-3 pr-4">
                       {item.approved === 1 ? (
                         <span className="d-inline-block  p-1 rounded-circle bg-success"></span>
                       ) : (
                         <span className="d-inline-block mx-auto p-1 rounded-circle bg-warning"></span>
                       )}
                     </td>
-                    <td className="py-3 text-capitalize">
+                    <td className="py-3 text-muted text-capitalize">
                       {item.parent.full_name}
                     </td>
-                    <td className="text-center text-capitalize pr-4 py-3">
+                    <td className="text-center text-muted text-capitalize pr-4 py-3">
                       {item.children.length}
                     </td>
-                    <td className="py-3 text-capitalize">
+                    <td className="py-3 text-muted text-capitalize">
                       {numberFormat(item.loan_amount)}
                     </td>
                   </tr>
