@@ -71,7 +71,7 @@ export default function Request() {
         })
         .catch((err) => console.log(err));
     }
-  }, []);
+  }, [router.query.pageNumber]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
