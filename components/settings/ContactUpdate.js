@@ -1,9 +1,11 @@
 import { useState, useContext, useEffect } from "react";
 import { ApiContext } from "../../context/ApiContext";
+import { AuthContext } from "../../context/AuthContext";
 
 function ContactUpdate() {
   const [inputValue, setInputValue] = useState({});
-  const { updatingContact, updateContactInfo } = useContext(ApiContext).api;
+  const { updateContactInfo } = useContext(ApiContext).api;
+  const { usrInfo } = useContext(AuthContext).authValue;
   const [btnText, setBtnText] = useState("Save");
   const [err, setErr] = useState("");
 
@@ -12,8 +14,18 @@ function ContactUpdate() {
     setInputValue({ ...inputValue, [name]: value });
   };
 
+  useEffect(() => {
+    setInputValue({
+      ...inputValue,
+      phone: usrInfo?.phone,
+      email: usrInfo?.email,
+      address: usrInfo?.address,
+    });
+  }, [usrInfo]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(inputValue);
     const res = await updateContactInfo(inputValue);
     setBtnText("Saving...");
     if (res === "contact information updated!") {
@@ -76,8 +88,8 @@ function ContactUpdate() {
                         className="form-control"
                         name="email"
                         id="email"
-                        placeholder="Enter email"
-                        defaultValue=""
+                        placeholder={usrInfo.email}
+                        defaultValue={usrInfo.email}
                         pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                         required
                         onChange={(e) => handleChange(e)}
@@ -93,9 +105,9 @@ function ContactUpdate() {
                         required
                         id="phone"
                         pattern="^[0]\d{10}$"
-                        placeholder="Enter phone"
+                        placeholder={usrInfo.phone}
+                        defaultValue={usrInfo.phone}
                         name="phone"
-                        defaultValue=""
                         onChange={(e) => handleChange(e)}
                       />
                     </div>
@@ -108,9 +120,9 @@ function ContactUpdate() {
                     className="form-control"
                     id="address"
                     rows={3}
-                    placeholder="Enter school address"
                     name="address"
-                    defaultValue=""
+                    defaultValue={usrInfo.address}
+                    placeholder={usrInfo.address}
                     required
                     onChange={(e) => handleChange(e)}
                   />
@@ -129,9 +141,3 @@ function ContactUpdate() {
 }
 
 export default ContactUpdate;
-
-// {
-//   "email":"peoples@bellina.com",
-//   "phone":"08136934981",
-//   "address":"Nbsbfusf"
-// }

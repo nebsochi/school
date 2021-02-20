@@ -6,7 +6,7 @@ function BookItem({ item, handleBookClick, bg, number }) {
   return (
     <div className={`pb-3`}>
       <div
-        className={`d-flex border justify-content-center bg-white rounded align-items-center position-relative ${Styles.PublishImgContainer}`}
+        className={`d-flex shadow-sm justify-content-center bg-white rounded align-items-center position-relative ${Styles.PublishImgContainer}`}
       >
         <a
           href=""

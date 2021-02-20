@@ -18,10 +18,7 @@ function Sidebar() {
 
   useEffect(() => {
     setUserInfo({ ...userInfo, ...usrInfo });
-    console.log(userInfo);
   }, [usrInfo]);
-
-  useState;
 
   return (
     <div className={Styles.Sidebar}>
@@ -63,8 +60,12 @@ function Sidebar() {
           <h6 className="mb-0  text-truncate" style={{ fontWeight: "600" }}>
             {userInfo?.name}
           </h6>
+
           <span className="badge badge-warning">
-            1<sup>st</sup> term
+            {userInfo.term}
+            {userInfo.term === "1" && <sup>st</sup>}
+            {userInfo.term === "2" && <sup>nd</sup>}
+            {userInfo.term === "3" && <sup>rd</sup>} term
           </span>
         </div>
       </a>

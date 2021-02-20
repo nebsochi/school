@@ -1,5 +1,6 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useContext } from "react";
 import Api from "../pages/api/api";
+import { AuthContext } from "../context/AuthContext";
 
 export const ApiContext = createContext();
 
@@ -7,6 +8,7 @@ export const ApiProvider = (props) => {
   const [isSearching, setIsSearching] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
   const [updatingContact, setUpdatingContact] = useState(false);
+  const { setUsrInfo, usrInfo } = useContext(AuthContext).authValue;
 
   const getRequest = async (number, selection) => {
     try {
@@ -61,6 +63,23 @@ export const ApiProvider = (props) => {
     );
     setUpdatingContact(false);
     const { data } = response;
+    if (data) {
+      setUsrInfo({ ...usrInfo, ...data });
+    }
+    return response.message;
+  };
+
+  const updateProfile = async (cdata) => {
+    const token = localStorage.getItem("token");
+    const response = await Api.put(
+      `${Api.ENDPOINTS.url}/school/info`,
+      cdata,
+      token
+    );
+    const { data } = response;
+    if (data) {
+      setUsrInfo({ ...usrInfo, ...data });
+    }
     return response.message;
   };
 
@@ -71,6 +90,7 @@ export const ApiProvider = (props) => {
     isFetching,
     updateContactInfo,
     updatingContact,
+    updateProfile,
   };
 
   return (

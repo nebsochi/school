@@ -85,6 +85,7 @@ export const AuthProvider = (props) => {
     logOut,
     getUserInfo,
     usrInfo,
+    setUsrInfo,
   };
 
   return (
