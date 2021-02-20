@@ -91,10 +91,6 @@ function ContactDetails() {
           {inputValue.errors.phone && (
             <div className="invalid-feedback">{inputValue.errors.phone}</div>
           )}
-          {/* <div className="invalid-feedback">{}</div> */}
-          {/* <small id="emailHelp" className="form-text text-muted">
-            We'll never share your email with anyone else.
-          </small> */}
         </div>
         <div className="form-group">
           <label htmlFor="email">Email</label>

@@ -6,6 +6,7 @@ export const ApiContext = createContext();
 export const ApiProvider = (props) => {
   const [isSearching, setIsSearching] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
+  const [updatingContact, setUpdatingContact] = useState(false);
 
   const getRequest = async (number, selection) => {
     try {
@@ -50,11 +51,26 @@ export const ApiProvider = (props) => {
     }
   };
 
+  const updateContactInfo = async (cdata) => {
+    setUpdatingContact(true);
+    const token = localStorage.getItem("token");
+    const response = await Api.put(
+      `${Api.ENDPOINTS.url}/school/contact`,
+      cdata,
+      token
+    );
+    setUpdatingContact(false);
+    const { data } = response;
+    return response.message;
+  };
+
   const api = {
     getRequest,
     searchRequest,
     isSearching,
     isFetching,
+    updateContactInfo,
+    updatingContact,
   };
 
   return (

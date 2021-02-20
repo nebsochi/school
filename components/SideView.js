@@ -6,7 +6,7 @@ function SideView({ handleClick }) {
   const { bookCount } = useContext(PublishContext).contextValue;
   return (
     <div style={{ minWidth: "260px" }} className="position-relative ml-4 ">
-      <div className="position-relative bg-white rounded-lg border pb-3">
+      <div className="position-relative bg-white rounded-lg shadow-sm pb-3">
         <div className="d-flex pt-3 px-4 pb-2 align-items-center">
           <div className="mr-3">
             <svg
@@ -105,7 +105,7 @@ function SideView({ handleClick }) {
         </div>
         <div className="postion-relative mx-4">
           <button
-            className="btn-full btn btn-block btn-primary btn-primary--sh-none"
+            className="btn btn-block btn-sm btn-primary btn-primary--sh-none"
             onClick={handleClick}
           >
             Add a Book

@@ -6,16 +6,17 @@ export const AuthContext = createContext();
 export const AuthProvider = (props) => {
   const [signedIn, setSignedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [usrInfo, setUsrInfo] = useState({});
 
   const signIn = async (cdata) => {
     setIsLoading(true);
     const response = await Api.post(`${Api.ENDPOINTS.url}/school/login`, cdata);
     setIsLoading(false);
-
-    const { data } = response;
     if (response.message === "Login Successful!") {
       if (process.browser) {
+        const { data } = response;
         localStorage.setItem("token", data.token);
+        localStorage.setItem("user_info", JSON.stringify(data.school));
         setSignedIn(true);
       }
     }
@@ -24,10 +25,20 @@ export const AuthProvider = (props) => {
   };
 
   const signUpUser = async (cdata) => {
+    setIsLoading(true);
     const response = await Api.post(
       `${Api.ENDPOINTS.url}/school/register`,
       cdata
     );
+    if (response.message === "Login Successful!") {
+      const { data } = response;
+      if (process.browser) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user_info", data.school);
+        setSignedIn(true);
+      }
+    }
+    setIsLoading(false);
     return response.message;
   };
 
@@ -35,7 +46,6 @@ export const AuthProvider = (props) => {
     if (process.browser) {
       setSignedIn(false);
       localStorage.clear();
-      // router.push("/signin");
     }
   };
 
@@ -51,12 +61,30 @@ export const AuthProvider = (props) => {
     }
   };
 
+  const getUserInfo = async () => {
+    const token = localStorage.getItem("token");
+    const response = await Api.get(`${Api.ENDPOINTS.url}/school/data`, token);
+    const { data, message } = response;
+
+    if (message === "school exists") {
+      setUsrInfo({ ...usrInfo, ...data });
+    } else {
+      return response.message;
+    }
+  };
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
   const authValue = {
     signUpUser,
     signIn,
     signedIn,
     checkAuthState,
     logOut,
+    getUserInfo,
+    usrInfo,
   };
 
   return (

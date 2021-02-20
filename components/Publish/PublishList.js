@@ -22,7 +22,7 @@ function PublishList({ handleItemClick, searchData, searchValue }) {
           className="text-primary d-flex align-items-center justify-content-center"
         >
           <div className="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
+            <span className="sr-only">Loading...</span>
           </div>
         </div>
       ) : (

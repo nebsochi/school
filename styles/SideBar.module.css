@@ -23,20 +23,21 @@
   height: 60px;
   text-decoration: none !important;
   cursor: pointer;
-  color: #222;
+  color: rgba(34, 34, 34, 0.616);
   border-left: 3px solid transparent;
   font-size: 0.9rem;
 }
 
 .SideLink:hover {
   border-left: 3px solid #3930d8;
+  background: #f0f5f9;
 }
 
 .SideLinkActive {
   color: #3930d8;
   border-left: 3px solid #3930d8;
-  font-size: 600;
-  background: #f6f6fd;
+  font-weight: 700;
+  background: #f0f5f9;
 }
 
 .SideLinkActive:hover {
@@ -49,7 +50,7 @@
 }
 
 .SideIcon path {
-  fill: #222222b0;
+  fill: rgba(34, 34, 34, 0.616);
 }
 
 .SideLinkActive .SideIcon path {

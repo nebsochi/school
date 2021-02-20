@@ -1,6 +1,26 @@
-import Image from "next/image";
+import { useState, useRef } from "react";
 
-function ShareComponent() {
+function ShareComponent({ link }) {
+  const [userInfo, setUserInfo] = useState({});
+  const copyRef = useRef(null);
+  const [btnText, setBtnText] = useState("Copy");
+
+  const toggleButtonText = () => {
+    setBtnText("Copied!");
+    setTimeout(() => {
+      setBtnText("Copy");
+    }, 2000);
+  };
+
+  const handleClick = async (e) => {
+    try {
+      await navigator.clipboard.writeText(copyRef.current.value);
+      toggleButtonText();
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+    }
+  };
+
   return (
     <div className="col-md-6 position-relative">
       <div
@@ -21,15 +41,21 @@ function ShareComponent() {
                 </div>
                 <input
                   type="text"
+                  ref={copyRef}
+                  readOnly
                   className="form-control"
                   id="basic-url"
                   aria-describedby="basic-addon3"
+                  value={link}
                 />
               </div>
             </div>
 
-            <button className="btn btn-md btn-primary btn-primary--sh-none">
-              Copy
+            <button
+              onClick={(e) => handleClick(e)}
+              className="btn btn-md btn-primary btn-primary--sh-none"
+            >
+              {btnText}
             </button>
           </div>
         </div>

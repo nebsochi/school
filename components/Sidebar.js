@@ -2,17 +2,26 @@ import Styles from "../styles/SideBar.module.css";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 function Sidebar() {
-  const { logOut } = useContext(AuthContext).authValue;
+  const { logOut, usrInfo } = useContext(AuthContext).authValue;
+  const [userInfo, setUserInfo] = useState({});
   const router = useRouter();
+
   const handleClick = (e) => {
     e.preventDefault();
     logOut();
     router.push("/signin");
   };
+
+  useEffect(() => {
+    setUserInfo({ ...userInfo, ...usrInfo });
+    console.log(userInfo);
+  }, [usrInfo]);
+
+  useState;
 
   return (
     <div className={Styles.Sidebar}>
@@ -24,26 +33,39 @@ function Sidebar() {
         </h5>
       </div>
       <a
-        className={`border-bottom border-top d-flex p-3 my-4 align-items-center`}
+        className={`d-flex px-3 mx-3 my-4 align-items-center rounded-pill`}
         style={{
           borderRadius: "4px",
           textDecoration: "none",
+          background: "#F5f5f5",
+          paddingTop: "12px",
+          paddingBottom: "12px",
         }}
       >
-        <Image
-          src="/user.svg"
-          width={42}
-          height={42}
-          className="rounded-circle"
-        />
-        <div className="ml-3">
-          <h6
-            className="m-0 mt-2"
-            style={{ fontWeight: "600", lineHeight: ".5" }}
+        {userInfo?.picture ? (
+          <div
+            className="rounded-circle d-flex justify-content-center"
+            style={{ height: "45px", width: "45px", overflow: "hidden" }}
           >
-            John Snow
+            <img src={userInfo?.picture} alt="user" />
+          </div>
+        ) : (
+          <Image
+            src="/user.svg"
+            width={42}
+            height={42}
+            className="rounded-circle"
+            alt="user"
+          />
+        )}
+
+        <div className="ml-3">
+          <h6 className="mb-0  text-truncate" style={{ fontWeight: "600" }}>
+            {userInfo?.name}
           </h6>
-          <small className="text-primary">1st term</small>
+          <span className="badge badge-warning">
+            1<sup>st</sup> term
+          </span>
         </div>
       </a>
 

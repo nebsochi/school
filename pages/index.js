@@ -6,15 +6,17 @@ import { ApiContext } from "../context/ApiContext";
 import ShareComponent from "../components/ShareComponent";
 import SettingsPrompt from "../components/SettingsPrompt";
 import UploadDoc from "../components/UploadDoc";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Home() {
   const [data, setData] = useState([]);
   const [applications, setApplications] = useState("0");
+  const { userInfo } = useContext(AuthContext).authValue;
   const { getRequest } = useContext(ApiContext).api;
 
   useEffect(() => {
     getRequest(1).then((res) => {
-      setData([...res.data]);
+      setData([...res?.data]);
       setApplications(res.total_results_count);
     });
   }, []);
@@ -30,7 +32,7 @@ export default function Home() {
         </div>
         <div className="row align-items-stretch py-2">
           <SettingsPrompt />
-          <ShareComponent />
+          <ShareComponent link={userInfo?.payment_link} />
         </div>
       </div>
     </IndexLayout>

@@ -1,4 +1,46 @@
+import { useState, useContext, useEffect } from "react";
+import { ApiContext } from "../../context/ApiContext";
+
 function ContactUpdate() {
+  const [inputValue, setInputValue] = useState({});
+  const { updatingContact, updateContactInfo } = useContext(ApiContext).api;
+  const [btnText, setBtnText] = useState("Save");
+  const [err, setErr] = useState("");
+
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setInputValue({ ...inputValue, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await updateContactInfo(inputValue);
+    setBtnText("Saving...");
+    if (res === "contact information updated!") {
+      toggleBtn();
+    } else {
+      setBtnText("Save");
+      setErr(res);
+    }
+  };
+
+  useEffect(() => {
+    let timeOut = setTimeout(() => {
+      setErr("");
+    }, 4000);
+    return () => {
+      clearTimeout(timeOut);
+    };
+  }, [err]);
+
+  const toggleBtn = () => {
+    setBtnText("Saved");
+    setTimeout(() => {
+      setBtnText("Save");
+    }, 3500);
+    return;
+  };
+
   return (
     <div className="container">
       <div className="row pt-4 border-bottom mb-3 pb-4">
@@ -11,7 +53,20 @@ function ContactUpdate() {
         <div className="col-sm-8">
           <div className="card shadow-sm">
             <div className="card-body">
-              <form>
+              {err.length > 1 && (
+                <div className="alert alert-warning fade show" role="alert">
+                  <strong>Oops!</strong> {err}.
+                  <button
+                    type="button"
+                    className="close"
+                    onClick={() => setErr("")}
+                  >
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+              )}
+
+              <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="row">
                   <div className="col-sm-6">
                     <div className="form-group">
@@ -19,8 +74,13 @@ function ContactUpdate() {
                       <input
                         type="email"
                         className="form-control"
+                        name="email"
                         id="email"
                         placeholder="Enter email"
+                        defaultValue=""
+                        pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                        required
+                        onChange={(e) => handleChange(e)}
                       />
                     </div>
                   </div>
@@ -30,8 +90,13 @@ function ContactUpdate() {
                       <input
                         type="phone"
                         className="form-control"
+                        required
                         id="phone"
+                        pattern="^[0]\d{10}$"
                         placeholder="Enter phone"
+                        name="phone"
+                        defaultValue=""
+                        onChange={(e) => handleChange(e)}
                       />
                     </div>
                   </div>
@@ -44,14 +109,15 @@ function ContactUpdate() {
                     id="address"
                     rows={3}
                     placeholder="Enter school address"
-                    required
                     name="address"
-                    defaultValue={""}
+                    defaultValue=""
+                    required
+                    onChange={(e) => handleChange(e)}
                   />
                 </div>
 
                 <button type="submit" className="btn btn-primary">
-                  Submit
+                  {btnText}
                 </button>
               </form>
             </div>
@@ -63,3 +129,9 @@ function ContactUpdate() {
 }
 
 export default ContactUpdate;
+
+// {
+//   "email":"peoples@bellina.com",
+//   "phone":"08136934981",
+//   "address":"Nbsbfusf"
+// }

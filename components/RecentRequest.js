@@ -7,8 +7,6 @@ function RecentRequest({ data }) {
       currency: "NGN",
     }).format(value);
 
-  console.log(data);
-
   return (
     <div className="col-lg-6 col-12 mb-3">
       <div style={{ borderRadius: "7px" }}>
