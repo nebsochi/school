@@ -4,10 +4,11 @@ import { AuthContext } from "../../context/AuthContext";
 
 function Profile() {
   const [inputValue, setInputValue] = useState({});
-  const { updateProfile } = useContext(ApiContext).api;
+  const { updateProfile, updatePicture } = useContext(ApiContext).api;
   const { usrInfo } = useContext(AuthContext).authValue;
   const [btnText, setBtnText] = useState("Save");
   const [err, setErr] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -37,6 +38,15 @@ function Profile() {
     };
   }, [err]);
 
+  useEffect(() => {
+    let timeOut = setTimeout(() => {
+      setSuccessMsg("");
+    }, 4000);
+    return () => {
+      clearTimeout(timeOut);
+    };
+  }, [successMsg]);
+
   const toggleBtn = () => {
     setBtnText("Saved");
     setTimeout(() => {
@@ -57,25 +67,44 @@ function Profile() {
     }
   };
 
+  const handlefileUpload = async (e) => {
+    const picture = new FormData();
+    picture.append("picture", e.target.files[0]);
+    const res = await updatePicture(picture);
+    if (res === "picture added!") {
+      setSuccessMsg(res);
+    } else {
+      setErr(res);
+    }
+  };
+
   return (
     <div className="container">
       <div className="row pt-5 pb-4 mb-2 border-bottom">
-        <div className="col-sm-4">
+        <div className="col-md-4">
           <h5>School Information</h5>
           <p className="text-muted">
             This information will be displayed publicly
           </p>
         </div>
-        <div className="col-sm-8">
+        <div className="col-md-8">
           <div className="card shadow-sm border-0">
             <div className="card-body">
-              {err.length > 1 && (
-                <div className="alert alert-warning fade show" role="alert">
-                  <strong>Oops!</strong> {err}.
+              {err?.length > 1 && (
+                <div className="alert alert-danger fade show" role="alert">
+                  {err}.
+                  <button type="button" className="close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+              )}
+              {successMsg?.length > 1 && (
+                <div className="alert alert-success fade show" role="alert">
+                  {successMsg}.
                   <button
                     type="button"
+                    onClick={(e) => setSuccessMsg("")}
                     className="close"
-                    onClick={() => setErr("")}
                   >
                     <span aria-hidden="true">×</span>
                   </button>
@@ -85,22 +114,46 @@ function Profile() {
                 <div className="form-group">
                   <label htmlFor="email">Photo</label>
                   <div className="d-flex align-items-center">
-                    <img
-                      src="user.svg"
-                      width="50"
-                      alt="photo"
-                      className="rounded-circle d-block"
-                    />
+                    {usrInfo?.picture ? (
+                      <div
+                        className="rounded-circle d-flex align-items-center justify-content-center position-relative"
+                        style={{
+                          height: "50px",
+                          width: "50px",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <img
+                          src={usrInfo?.picture}
+                          height="100%"
+                          alt="photo"
+                          className="rounded-circle d-block"
+                        />
+                      </div>
+                    ) : (
+                      <img
+                        src="user.svg"
+                        width="50"
+                        alt="photo"
+                        className="rounded-circle d-block"
+                      />
+                    )}
+
                     <div className="position-relative">
                       <input
                         type="file"
+                        onChange={(e) => handlefileUpload(e)}
+                        onClick={(e) => (e.target.value = null)}
                         className="position-relative"
                         style={{ zIndex: "3", opacity: 0 }}
+                        name="picture"
+                        accept="image/*"
                       />
                       <button
                         type="button"
                         className="btn btn-sm btn-primary position-absolute"
                         style={{ left: "1.6rem", zIndex: 0 }}
+                        onClick={(e) => handleClick(e)}
                       >
                         Change
                       </button>

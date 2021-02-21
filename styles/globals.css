@@ -382,3 +382,9 @@ td {
   border-color: rgba(55, 81, 255, 1);
   box-shadow: none;
 }
+.btn-primary.disabled,
+.btn-primary:disabled {
+  color: #fff;
+  background-color: rgba(55, 81, 255, 1);
+  border-color: rgba(55, 81, 255, 1);
+}

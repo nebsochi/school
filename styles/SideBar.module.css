@@ -2,6 +2,7 @@
   width: 260px;
   background-color: #fff;
   position: relative;
+  display: none;
 }
 
 .SideBrand {
@@ -9,7 +10,7 @@
 }
 
 .SidebarRight {
-  width: calc(100% - 260px);
+  width: 100%;
   overflow: auto;
 }
 
@@ -65,4 +66,14 @@
   left: 0;
   position: absolute;
   width: 100%;
+}
+
+@media only screen and (min-width: 980px) {
+  .Sidebar {
+    display: block;
+  }
+  .SidebarRight {
+    width: calc(100% - 260px);
+    overflow: auto;
+  }
 }

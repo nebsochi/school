@@ -83,8 +83,9 @@ export const ApiProvider = (props) => {
     const { data } = response;
     if (data) {
       setUsrInfo({ ...usrInfo, ...data });
+    } else {
+      return response.message;
     }
-    return response.message;
   };
 
   const getBanks = async () => {
@@ -117,12 +118,30 @@ export const ApiProvider = (props) => {
 
   const updateAccount = async (cdata) => {
     const token = localStorage.getItem("token");
-    const res = await Api.put(`${Api.ENDPOINTS.url}/account`, cdata, token);
+    const res = await Api.put(
+      `${Api.ENDPOINTS.url}/school/account`,
+      cdata,
+      token
+    );
     const { data, message } = res;
     if (message === "Account information updated!") {
       setUsrInfo({ ...usrInfo, ...data });
     }
-    console.log(message);
+    return message;
+  };
+
+  const updatePicture = async (picture) => {
+    const token = localStorage.getItem("token");
+    const res = await Api.post(
+      `${Api.ENDPOINTS.url}/school/picture`,
+      picture,
+      token
+    );
+    const { data, message } = res;
+    if (message === "picture added!") {
+      setUsrInfo({ ...usrInfo, ...data });
+    }
+    return message;
   };
 
   useEffect(() => {
@@ -140,6 +159,7 @@ export const ApiProvider = (props) => {
     validate,
     updateProfile,
     updateAccount,
+    updatePicture,
   };
 
   return (

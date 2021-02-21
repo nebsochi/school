@@ -56,13 +56,13 @@ function ContactUpdate() {
   return (
     <div className="container">
       <div className="row pt-4 border-bottom mb-3 pb-4">
-        <div className="col-sm-4">
+        <div className="col-md-4">
           <h5>Contact Details</h5>
           <p className="text-muted">
             This information will be displayed publicly
           </p>
         </div>
-        <div className="col-sm-8">
+        <div className="col-md-8">
           <div className="card shadow-sm border-0">
             <div className="card-body">
               {err?.length > 1 && (
@@ -80,7 +80,7 @@ function ContactUpdate() {
 
               <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="row">
-                  <div className="col-sm-6">
+                  <div className="col-md-6">
                     <div className="form-group">
                       <label htmlFor="email">Email</label>
                       <input

@@ -9,6 +9,7 @@ function AccountInformation() {
   const [touchedAccnum, setTouchedAccnum] = useState(false);
   const [btnText, setBtnText] = useState("Save");
   const [err, setErr] = useState("");
+  const [disabled, setDisabled] = useState(true);
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -36,10 +37,12 @@ function AccountInformation() {
         bank_code: inputValue.bank_code,
       });
       setTouchedAccnum(true);
-      if (res) {
-        setInputValue({ ...inputValue, account_name: res });
-      } else {
+      if (!res) {
         setErr("Invalid Account Number");
+        setDisabled(true);
+      } else {
+        setInputValue({ ...inputValue, account_name: res });
+        setDisabled(false);
       }
     }
   };
@@ -90,13 +93,13 @@ function AccountInformation() {
   return (
     <div className="container">
       <div className="row pt-3 border-bottom mb-3 pb-3">
-        <div className="col-sm-4">
+        <div className="col-md-4">
           <h5>Account Details</h5>
           <p className="text-muted">
             This information will be displayed publicly
           </p>
         </div>
-        <div className="col-sm-8">
+        <div className="col-md-8">
           <div className="card shadow-sm border-0">
             <div className="card-body">
               {err?.length > 1 && (
@@ -116,7 +119,6 @@ function AccountInformation() {
                   <div className="col-md-6">
                     <div className="form-group">
                       <label htmlFor="bankname">Bank Name</label>
-
                       <select
                         className="form-control"
                         onChange={(e) => {
@@ -129,7 +131,9 @@ function AccountInformation() {
                         {banks?.map(({ name, id, bank_code }) => (
                           <option
                             key={id}
-                            selected={usrInfo?.bank_code === bank_code}
+                            selected={
+                              Number(usrInfo?.bank_code) === Number(bank_code)
+                            }
                             value={name}
                           >
                             {name}
@@ -151,7 +155,7 @@ function AccountInformation() {
                         maxLength="11"
                         name="account_number"
                         placeholder={usrInfo.account_number}
-                        value={usrInfo.account_number}
+                        // value={usrInfo.account_number}
                         onChange={(e) => handleChange(e)}
                         onKeyUp={(e) => checkAccount(e)}
                       />
@@ -171,7 +175,11 @@ function AccountInformation() {
                     readOnly
                   />
                 </div>
-                <button type="submit" className="btn btn-primary">
+                <button
+                  disabled={disabled}
+                  type="submit"
+                  className="btn btn-primary"
+                >
                   {btnText}
                 </button>
               </form>
