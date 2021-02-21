@@ -97,7 +97,7 @@ function AccountInformation() {
           </p>
         </div>
         <div className="col-sm-8">
-          <div className="card shadow-sm">
+          <div className="card shadow-sm border-0">
             <div className="card-body">
               {err?.length > 1 && (
                 <div className="alert alert-danger fade show" role="alert">
