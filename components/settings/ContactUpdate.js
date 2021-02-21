@@ -26,8 +26,8 @@ function ContactUpdate() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(inputValue);
-    const res = await updateContactInfo(inputValue);
     setBtnText("Saving...");
+    const res = await updateContactInfo(inputValue);
     if (res === "contact information updated!") {
       toggleBtn();
     } else {
@@ -65,7 +65,7 @@ function ContactUpdate() {
         <div className="col-sm-8">
           <div className="card shadow-sm">
             <div className="card-body">
-              {err.length > 1 && (
+              {err?.length > 1 && (
                 <div className="alert alert-warning fade show" role="alert">
                   <strong>Oops!</strong> {err}.
                   <button

@@ -63,9 +63,9 @@ function Sidebar() {
 
           <span className="badge badge-warning">
             {userInfo.term}
-            {userInfo.term === "1" && <sup>st</sup>}
-            {userInfo.term === "2" && <sup>nd</sup>}
-            {userInfo.term === "3" && <sup>rd</sup>} term
+            {userInfo.term === 1 && <sup>st</sup>}
+            {userInfo.term === 2 && <sup>nd</sup>}
+            {userInfo.term === 3 && <sup>rd</sup>} term
           </span>
         </div>
       </a>

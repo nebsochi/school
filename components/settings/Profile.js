@@ -28,13 +28,6 @@ function Profile() {
     });
   }, [usrInfo]);
 
-  // {
-  //   "username":"nebuem",
-  //   "phone":"08136934982",
-  //   "name":"Nbsbfusf",
-  //   "term":"1"
-  // }
-
   useEffect(() => {
     let timeOut = setTimeout(() => {
       setErr("");
@@ -54,9 +47,8 @@ function Profile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputValue);
-    const res = await updateProfile(inputValue);
     setBtnText("Saving...");
+    const res = await updateProfile(inputValue);
     if (res === "school information updated!") {
       toggleBtn();
     } else {
