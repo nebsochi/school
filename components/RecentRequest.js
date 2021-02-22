@@ -58,8 +58,9 @@ function RecentRequest({ data, loading }) {
                           <span className="d-inline-block mx-auto p-1 rounded-circle bg-warning"></span>
                         )}
                       </td>
-                      <td className="py-3 text-muted text-capitalize">
-                        {item.parent.full_name}
+                      <td className="py-3 text-muted text-capitalize text-truncate">
+                        {item.parent.full_name.toLowerCase().substring(0, 16)}
+                        {item.parent.full_name.length > 15 && "..."}
                       </td>
                       <td className="text-center text-muted text-capitalize pr-4 py-3">
                         {item.children.length}

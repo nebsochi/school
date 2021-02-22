@@ -25,7 +25,7 @@ export default function Home() {
 
   return (
     <IndexLayout>
-      <NavBar />
+      <NavBar page={"Dashboard"} />
       <InfoCards applications={applications} />
 
       <div className="container-fluid py-3 px-md-5">

@@ -6,6 +6,7 @@ import { useState, useContext, useEffect, useCallback } from "react";
 import Modal from "../../components/Modal";
 import debounce from "lodash/debounce";
 import Pagination from "../../components/Pagination";
+import NavBar from "../../components/NavBar";
 
 export default function Request() {
   const { getRequest, searchRequest, isSearching, isFetching } = useContext(
@@ -141,6 +142,7 @@ export default function Request() {
 
   return (
     <IndexLayout>
+      <NavBar page={"Request"} />
       <div className="container-fluid position-relative pt-4 px-md-5">
         <div className="row" style={{ marginBottom: "60px" }}>
           <div className="col-md-12">

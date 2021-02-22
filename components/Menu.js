@@ -43,7 +43,7 @@ function Menu() {
         <div
           ref={ref}
           className={`${Styles.MenuContent} ${Styles.MenuContentShow}`}
-          style={{ borderRadius: "0 7px 7px 0" }}
+          style={{ borderRadius: "0 12px 12px 0" }}
         >
           <div className="card" style={{ height: "100%" }}>
             <div className="py-3 px-3 d-flex justify-content-between align-items-center">
@@ -202,7 +202,7 @@ function Menu() {
                   className="btn btn-primary btn-sm btn-block"
                   onClick={(e) => hanleLogOut(e)}
                 >
-                  Logout
+                  Sign Out
                 </a>
               </div>
             </div>

@@ -7,18 +7,18 @@ export default function UploadDoc() {
       >
         <div>
           <div
-            className="bg-light mb-4 d-flex align-items-center justify-content-center"
+            className="bg-light mb-4 rounded-lg d-flex align-items-center justify-content-center"
             style={{
               height: "170px",
-              width: "280px",
+              width: "300px",
               border: "1px dashed #ccc",
             }}
           >
             <span
-              className="text-secondary"
+              className="text-muted"
               style={{ fontSize: "5rem", fontWeight: "300" }}
             >
-              +
+              <img src="file.svg" width="70px" alt="file" />
             </span>
           </div>
           <div className="text-center">

@@ -1,9 +1,11 @@
+import NavBar from "../components/NavBar";
 import RepaymentCard from "../components/RepaymentCard";
 import IndexLayout from "../Layouts/index";
 
 function repayment() {
   return (
     <IndexLayout>
+      <NavBar page={"Repayment"} />
       <div className="container positioin-relative pt-4">
         <div className="row">
           <div className="col-md-12">

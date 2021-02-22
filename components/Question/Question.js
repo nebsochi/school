@@ -7,7 +7,6 @@ function Question({ setDisabled, answers, setAnswers, setAnswersIndex }) {
     "A term",
     "More than 1-2 session",
     "3+ sessions",
-    "Dont know parent",
   ]);
 
   const setDuratn = (e, i) => {

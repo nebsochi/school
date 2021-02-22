@@ -108,7 +108,7 @@ function NavBar({ page }) {
                     className="dropdown-item text-danger"
                     onClick={(e) => handleClick(e)}
                   >
-                    Logout
+                    Sign Out
                   </a>
                 </Link>
               </div>

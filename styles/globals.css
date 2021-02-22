@@ -394,10 +394,6 @@ td {
   display: none;
 }
 
-/* .booklist {
-  width: 100%;
-} */
-
 @media (min-width: 992px) {
   .sideview {
     display: block;
@@ -409,4 +405,8 @@ td {
 
 .bg-primary {
   background-color: rgb(57 48 216) !important;
+}
+
+.dropdown-menu.show {
+  left: -93px;
 }

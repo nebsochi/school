@@ -7,7 +7,7 @@ function RequestDetails({ data }) {
       className="border p-2 mb-4"
       style={{ background: "#FCFCFC", borderRadius: "8px" }}
     >
-      <div className="d-flex position-relative align-items-start border-bottom">
+      <div className="d-block d-sm-flex position-relative align-items-start border-bottom">
         <div className="pr-3 mt-3">
           <div className={Styles.ModalAvatar}>
             <img
@@ -19,8 +19,8 @@ function RequestDetails({ data }) {
         </div>
 
         <div className={Styles.ModalContentRight}>
-          <div className="pl-3 border-left">
-            <div className="d-flex align-items-end py-3 border-bottom">
+          <div className="pl-3 border-left-sm">
+            <div className="d-flex align-items-start py-3 border-bottom">
               <span className={Styles.ModalName}>Name:</span>
               <span className={Styles.ModalValue}>
                 {data?.parent?.full_name || "..."}
