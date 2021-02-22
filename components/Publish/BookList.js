@@ -7,12 +7,12 @@ function BookList({ handleBookClick }) {
   const { books } = useContext(PublishContext).contextValue;
 
   return (
-    <div
-      className="row align-items-stretch"
-      style={{ width: " calc(100% - 260px)" }}
-    >
+    <div className="row align-items-stretch booklist">
       {books.map((item, i) => (
-        <div className={`col-6 mb-3 col-lg-6 col-xl-4`} key={item.id}>
+        <div
+          className={`col-6 col-sm-4 col-xs-6 mb-3 col-lg-6 col-xl-4`}
+          key={item.id}
+        >
           <div className={Styles.PublishItem}>
             <BookItem
               bg={"bg-white"}

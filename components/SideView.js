@@ -5,7 +5,7 @@ import { PublishContext } from "../context/PublishContext";
 function SideView({ handleClick }) {
   const { bookCount } = useContext(PublishContext).contextValue;
   return (
-    <div style={{ minWidth: "260px" }} className="position-relative ml-4 ">
+    <div className="sideview position-relative ml-4 ">
       <div className="position-relative bg-white rounded-lg shadow-sm pb-3">
         <div className="d-flex pt-3 px-4 pb-2 align-items-center">
           <div className="mr-3">

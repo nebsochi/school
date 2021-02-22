@@ -15,9 +15,6 @@ function RequestSlide({ cswiper, childrenData }) {
       autoplay={false}
       navigation={false}
       navigation
-      onSwiper={(swiper) => {
-        cswiper(swiper);
-      }}
       slidesPerView={1}
     >
       {childrenData.map((item, i) => (

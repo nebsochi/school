@@ -388,3 +388,21 @@ td {
   background-color: rgba(55, 81, 255, 1);
   border-color: rgba(55, 81, 255, 1);
 }
+
+.sideview {
+  min-width: 260px;
+  display: none;
+}
+
+/* .booklist {
+  width: 100%;
+} */
+
+@media (min-width: 992px) {
+  .sideview {
+    display: block;
+  }
+  .booklist {
+    width: calc(100% - 260px);
+  }
+}

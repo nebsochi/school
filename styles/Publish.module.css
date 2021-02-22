@@ -1,5 +1,5 @@
 .PublishImgContainer {
-  height: 180px;
+  height: 150px;
   overflow: hidden;
 }
 
@@ -18,7 +18,7 @@
 
 @media (min-width: 500px) {
   .PublishImgContainer {
-    /* height: 210px; */
+    height: 180px;
   }
 }
 @media (min-width: 900px) {
