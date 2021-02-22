@@ -1,17 +1,12 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import Styles from "../styles/Request.module.css";
 import SwiperCore, { Navigation } from "swiper";
+import { formatNumber } from "../utils/Formatter";
 
 // Import Swiper styles
 import "swiper/swiper-bundle.css";
 
 SwiperCore.use([Navigation]);
-
-const numberFormat = (value) =>
-  new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "NGN",
-  }).format(value);
 
 function RequestSlide({ cswiper, childrenData }) {
   return (
@@ -37,11 +32,11 @@ function RequestSlide({ cswiper, childrenData }) {
             </div>
             <div className="info__avatar pl-3">
               <span className=" d-block" style={{ fontSize: ".9rem" }}>
-                {item.full_name}
+                {i + 1}
               </span>
               <div className="d-flex align-items-center mt-2 justify-content-start">
                 <span className="profile__title d-block">
-                  {numberFormat(item.tuition_fees)}
+                  &#8358; {formatNumber(item.tuition_fees)}
                 </span>
               </div>
             </div>

@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import RequestSlide from "../components/RequestSlide";
 import { useRouter } from "next/router";
 import { ModalContext } from "../context/ModalContext";
+import { formatNumber } from "../utils/Formatter";
 
 function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
   const [swiper, setswiper] = useState(false);
@@ -15,7 +16,7 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
   };
 
   return (
-    <div className="col-xl-3 col-lg-4 col-md-6  mb-4">
+    <div className="col-xl-3 col-lg-4 col-md-4 col-sm-6 mb-4">
       <div className="p-3 shadow-sm bg-white position-relative rounded-lg">
         <div
           className="position-absolute"
@@ -29,16 +30,19 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
           className="d-flex py-1 align-items-center"
           style={{ minHeight: "36px" }}
         >
-          <div className="square__avatar">
+          <div
+            className="square__avatar position-relative d-flex align-items-center justify-content-center"
+            style={{ height: "36px", width: "36px" }}
+          >
             <img
               src={item.parent.picture || "user.svg"}
-              height="40"
+              height="100%"
               alt="user"
             />
           </div>
           <div className="info__avatar pl-2" style={{ width: "80%" }}>
             <span className="profile__title d-block text-truncate">
-              {item.parent.full_name}
+              &#8358; {formatNumber(item.loan_amount)}
             </span>
             <span
               style={{ textTransform: "lowercase" }}
@@ -54,12 +58,7 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
             className="pt-3 border-top mt-4 mb-3 border-bottom pb-3 position-relative"
             style={{ minHeight: "90px" }}
           >
-            <RequestSlide
-              cswiper={(cswiper) => {
-                setswiper({ swiper: cswiper });
-              }}
-              childrenData={item.children}
-            />
+            <RequestSlide childrenData={item.children} />
           </div>
         </div>
 

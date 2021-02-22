@@ -66,7 +66,7 @@ function PublishModalTwo({ data }) {
       });
       console.log(res);
       if (res === "book edited") {
-        getAllBooks(1, false);
+        getAllBooks(1);
         setSuccessMsg("Price Updated");
         setValidateMsg("");
       } else {
@@ -81,7 +81,7 @@ function PublishModalTwo({ data }) {
     if (res === "book deleted") {
       setToastMsg("Book successfully Deleted");
       setToastOpen(true);
-      getAllBooks(1, true);
+      getAllBooks(1);
     } else {
       setToastMsg(res);
       setToastOpen(true);

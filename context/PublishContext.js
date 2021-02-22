@@ -37,7 +37,7 @@ export const PublishProvider = (props) => {
       token
     );
     setIsSaving(false);
-    getAllBooks(1, false);
+    getAllBooks(1);
     return res.message;
   };
 
@@ -58,14 +58,12 @@ export const PublishProvider = (props) => {
     const token = localStorage.getItem("token");
     const res = await Api.post(`${Api.ENDPOINTS.url}/school/book`, data, token);
     setIsSaving(false);
-    getAllBooks(1, false);
+    getAllBooks(1);
     return res.message;
   };
 
-  const getAllBooks = async (number, noReload) => {
-    if (noReload) {
-      setIsLoading(true);
-    }
+  const getAllBooks = async (number) => {
+    setIsLoading(true);
     const token = localStorage.getItem("token");
     const res = await Api.get(
       `${Api.ENDPOINTS.url}/school/books?page=${number}`,
@@ -89,14 +87,14 @@ export const PublishProvider = (props) => {
       token
     );
     setIsUpdating(false);
-    getAllBooks(1, false);
+    getAllBooks(1);
 
     return res.message;
   };
 
   useEffect(() => {
     getPusblishers();
-    getAllBooks(1, true);
+    getAllBooks(1);
   }, []);
 
   useEffect(() => {
