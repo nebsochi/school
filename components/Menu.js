@@ -43,9 +43,10 @@ function Menu() {
         <div
           ref={ref}
           className={`${Styles.MenuContent} ${Styles.MenuContentShow}`}
+          style={{ borderRadius: "0 7px 7px 0" }}
         >
           <div className="card" style={{ height: "100%" }}>
-            <div className="card-header d-flex justify-content-between align-items-center">
+            <div className="py-3 px-3 d-flex justify-content-between align-items-center">
               <strong>SchoolCredit</strong>
               <span onClick={() => closeMenu()} style={{ cursor: "pointer" }}>
                 <strong>
@@ -53,7 +54,7 @@ function Menu() {
                 </strong>
               </span>
             </div>
-            <div className="mt-4">
+            <div style={{ marginTop: "3rem" }}>
               <Link href="/">
                 <a
                   className={`${Styles.MenuLink} ${
@@ -198,7 +199,7 @@ function Menu() {
               </a>
               <div className="p-4 border-top">
                 <a
-                  className="btn btn-outline-danger btn-sm btn-block"
+                  className="btn btn-primary btn-sm btn-block"
                   onClick={(e) => hanleLogOut(e)}
                 >
                   Logout

@@ -153,12 +153,10 @@ function PreQuestion({ data }) {
           </div>
           <button
             type="submit"
-            className="btn px-5 mt-5 btn-outline btn-primary btn-primary--sh-none btn-lg "
+            className="btn px-5 mt-5 btn-outline btn-primary btn-primary--sh-none "
             style={{
-              background: "rgb(0, 98, 204)",
               marginTop: ".9rem",
               marginBottom: "1rem",
-              borderColor: "rgb(0, 98, 204)",
             }}
           >
             Proceed
@@ -193,12 +191,10 @@ function PreQuestion({ data }) {
           </div>
           <button
             type="submit"
-            className="btn px-5 mt-5 btn-outline btn-primary btn-primary--sh-none btn-lg "
+            className="btn px-5 mt-5 btn-outline btn-primary btn-primary--sh-none "
             style={{
-              background: "rgb(0, 98, 204)",
               marginTop: ".9rem",
               marginBottom: "1rem",
-              borderColor: "rgb(0, 98, 204)",
             }}
           >
             Proceed

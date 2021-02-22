@@ -27,6 +27,7 @@ export default function IndexLayout({ children }) {
         </Head>
 
         <main className="container-fluid p-0">
+          <Menu />
           <div
             className="d-flex"
             style={{

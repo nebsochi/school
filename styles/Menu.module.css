@@ -54,11 +54,11 @@
 }
 
 .MenuLink {
-  padding: 0.9rem 1.1rem;
+  padding: 1.2rem 1.1rem;
   color: rgba(0, 0, 0, 0.8);
   display: block;
   border-left: 3px solid #fff;
-  margin: 1.1rem 0;
+  margin: 0.8rem 0;
 }
 
 .MenuLink:hover {
@@ -66,10 +66,11 @@
 }
 
 .MenuLinkActive {
-  background: rgb(247 248 255 / 48%);
+  background: #f0f5f9;
   border-left: 3px solid #0062cc;
   color: #0062cc;
   text-decoration: none;
+  font-weight: 600;
 }
 
 .MenuIcon path {

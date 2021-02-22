@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import { ModalContext } from "../context/ModalContext";
 import { useRouter } from "next/router";
 
-function NavBar() {
+function NavBar({ page }) {
   const { logOut } = useContext(AuthContext).authValue;
   const { setShow } = useContext(ModalContext).contextValue;
   const router = useRouter();
@@ -27,7 +27,7 @@ function NavBar() {
           className="m-0 text-white d-none d-md-block"
           style={{ fontWeight: "600" }}
         >
-          Dashboard
+          {page}
         </h6>
 
         <a

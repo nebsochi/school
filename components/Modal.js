@@ -198,7 +198,6 @@ function Modal({ isOpen, setIsOpen, data }) {
                           disabled={isLoading ? true : false}
                           style={{
                             color: "rgb(255, 255, 255)",
-                            background: "rgb(0, 98, 204)",
                             marginTop: ".9rem",
                             marginBottom: "1rem",
                             borderColor: "rgb(0, 98, 204)",

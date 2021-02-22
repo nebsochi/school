@@ -53,7 +53,6 @@ function RepaymentCard() {
 
             fontSize: ".8rem",
             color: "#ffffff",
-            background: "#0062cc",
             marginTop: "1.7rem",
             marginBottom: "1rem",
           }}

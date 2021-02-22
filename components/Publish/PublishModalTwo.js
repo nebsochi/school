@@ -120,8 +120,11 @@ function PublishModalTwo({ data }) {
         <div className="card mt-3">
           <div className="card-header">Book Details</div>
           <div className="card-body">
-            <div className="d-flex align-items-center">
-              <div style={{ height: "250px" }} className="border rounded mr-3">
+            <div className="d-block d-sm-flex align-items-center">
+              <div
+                style={{ height: "250px" }}
+                className="mb-4 mb-sm-0 rounded mr-3"
+              >
                 <img
                   src={data?.picture}
                   alt="okeke"
@@ -204,7 +207,6 @@ function PublishModalTwo({ data }) {
                   ) : (
                     <button
                       className="btn btn-primary btn-primary--sh-none btn-sm mt-4"
-                      style={{ background: "#0062cc", borderColor: "#0062cc" }}
                       onClick={(e) => handleUpdate(e)}
                     >
                       Update Price

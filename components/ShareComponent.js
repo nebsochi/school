@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 
 function ShareComponent({ link }) {
-  const [userInfo, setUserInfo] = useState({});
   const copyRef = useRef(null);
   const [btnText, setBtnText] = useState("Copy");
 

@@ -68,10 +68,6 @@ function PublishScreen({ handleItemClick, closeModal }) {
             type="submit"
             onClick={(e) => handleSubmit(e)}
             className="btn ml-2 btn-primary btn-primary--sh-none"
-            style={{
-              background: "rgb(0, 98, 204)",
-              borderColor: "rgb(0, 98, 204)",
-            }}
           >
             Search
           </button>

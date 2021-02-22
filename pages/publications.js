@@ -8,6 +8,7 @@ import BookList from "../components/Publish/BookList";
 import isEmpty from "lodash/isEmpty";
 import PublishModalTwo from "../components/Publish/PublishModalTwo";
 import SideView from "../components/SideView";
+import NavBar from "../components/NavBar";
 
 function publications() {
   const { isOpen, setIsOpen, books } = useContext(PublishContext).contextValue;
@@ -36,6 +37,7 @@ function publications() {
 
   return (
     <IndexLayout>
+      <NavBar page={"Publishers"} />
       <div className="container-fluid px-md-5 position-relative pt-4">
         <div className="row" style={{ marginBottom: "60px" }}>
           <div className="col-md-12">
