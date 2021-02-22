@@ -13,7 +13,7 @@ export default function Home() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [applications, setApplications] = useState("0");
-  const { userInfo } = useContext(AuthContext).authValue;
+  const { usrInfo } = useContext(AuthContext).authValue;
   const { getRequest } = useContext(ApiContext).api;
 
   useEffect(async () => {
@@ -35,7 +35,7 @@ export default function Home() {
         </div>
         <div className="row align-items-stretch py-2">
           <SettingsPrompt />
-          <ShareComponent link={userInfo?.payment_link} />
+          <ShareComponent link={usrInfo?.payment_link?.substring(8)} />
         </div>
       </div>
     </IndexLayout>

@@ -14,7 +14,7 @@ function ShareComponent({ link }) {
 
   const handleClick = async (e) => {
     try {
-      await navigator.clipboard.writeText(copyRef.current.value);
+      await navigator.clipboard.writeText(`https://${copyRef.current.value}`);
       toggleButtonText();
     } catch (err) {
       console.error("Failed to copy: ", err);
