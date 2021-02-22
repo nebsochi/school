@@ -10,15 +10,16 @@ import { AuthContext } from "../context/AuthContext";
 
 export default function Home() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [applications, setApplications] = useState("0");
   const { userInfo } = useContext(AuthContext).authValue;
   const { getRequest } = useContext(ApiContext).api;
 
-  useEffect(() => {
-    getRequest(1).then((res) => {
-      setData([...res?.data]);
-      setApplications(res.total_results_count);
-    });
+  useEffect(async () => {
+    setLoading(true);
+    const res = await getRequest(1);
+    setLoading(false);
+    setData([...res?.data]);
   }, []);
 
   return (
@@ -27,7 +28,7 @@ export default function Home() {
 
       <div className="container-fluid py-3 px-md-5">
         <div className="row align-items-stretch">
-          <RecentRequest data={data} />
+          <RecentRequest loading={loading} data={data} />
           <UploadDoc />
         </div>
         <div className="row align-items-stretch py-2">

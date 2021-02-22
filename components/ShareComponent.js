@@ -22,7 +22,7 @@ function ShareComponent({ link }) {
   };
 
   return (
-    <div className="col-md-6 position-relative">
+    <div className="col-md-6 position-relative mb-3">
       <div
         className="card border-0 shadow-sm"
         style={{ borderRadius: "7px", height: "100%" }}
