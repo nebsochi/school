@@ -406,3 +406,7 @@ td {
     width: calc(100% - 260px);
   }
 }
+
+.bg-primary {
+  background-color: rgb(57 48 216) !important;
+}

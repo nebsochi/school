@@ -21,22 +21,21 @@ function NavBar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-white">
-      <div className="container">
-        <a className="navbar-brand" href="#">
-          <strong>Dashboard</strong>
-        </a>
+    <nav className="navbar navbar-expand-lg navbar-dark shadow bg-primary">
+      <div className="container-fluid">
+        <h6 className="m-0 text-white">Dashboard</h6>
+
         <button
-        // className="navbar-toggler"
-        // type="button"
-        // data-toggle="collapse"
-        // data-target="#navbarSupportedContent"
-        // aria-controls="navbarSupportedContent"
-        // aria-expanded="false"
-        // aria-label="Toggle navigation"
-        // onClick={(e) => handleNavigation(e)}
+          className="navbar-toggler text-white"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          onClick={(e) => handleNavigation(e)}
         >
-          <span className="navbar-toggler-icon" />
+          <span className="navbar-toggler-icon text-white" />
         </button>
 
         <div
@@ -47,14 +46,14 @@ function NavBar() {
           <ul className="navbar-nav">
             <li className="nav-item dropdown">
               <a
-                className="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle text-white"
                 href="#"
                 id="navbarDropdownMenuLink"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <img alt="user" src="user.svg" height="35" />
+                <img alt="user" src="user-white.svg" height="35" />
               </a>
               <div
                 className="dropdown-menu"

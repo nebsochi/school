@@ -7,6 +7,7 @@ import ShareComponent from "../components/ShareComponent";
 import SettingsPrompt from "../components/SettingsPrompt";
 import UploadDoc from "../components/UploadDoc";
 import { AuthContext } from "../context/AuthContext";
+import NavBar from "../components/NavBar";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -24,6 +25,7 @@ export default function Home() {
 
   return (
     <IndexLayout>
+      <NavBar />
       <InfoCards applications={applications} />
 
       <div className="container-fluid py-3 px-md-5">
