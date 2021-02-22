@@ -15,7 +15,7 @@ function SettingsPrompt() {
           )}
 
           <span className="text-muted">
-            Please take a few seconds to update your information
+            Please take few seconds to update your information
           </span>
 
           <div className="progress my-4">
