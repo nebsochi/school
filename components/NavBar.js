@@ -23,7 +23,43 @@ function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark shadow bg-primary">
       <div className="container-fluid">
-        <h6 className="m-0 text-white">Dashboard</h6>
+        <h6
+          className="m-0 text-white d-none d-md-block"
+          style={{ fontWeight: "600" }}
+        >
+          Dashboard
+        </h6>
+
+        <a
+          className="d-flex align-items-center d-md-none"
+          style={{
+            borderRadius: 4,
+            textDecoration: "none",
+            paddingTop: 12,
+            paddingBottom: 12,
+          }}
+        >
+          <div
+            className="rounded-circle d-flex justify-content-center"
+            style={{ height: 45, width: 45, overflow: "hidden" }}
+          >
+            <img
+              src="https://res.cloudinary.com/dsj9s5nlw/image/upload/v1613933677/eqvxdnk68wvkxsrfifxx.png"
+              alt="user"
+            />
+          </div>
+          <div className="ml-3">
+            <h6
+              className="mb-0  text-truncate text-white"
+              style={{ fontWeight: 600 }}
+            >
+              Bellina College
+            </h6>
+            <span className="badge badge-warning">
+              1<sup>st</sup> term
+            </span>
+          </div>
+        </a>
 
         <button
           className="navbar-toggler text-white"
