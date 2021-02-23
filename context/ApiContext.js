@@ -10,34 +10,65 @@ export const ApiProvider = (props) => {
   const [isFetching, setIsFetching] = useState(false);
   const [updatingContact, setUpdatingContact] = useState(false);
   const [loadingBanks, setLoadingBanks] = useState(false);
+  const [requestData, setRequestData] = useState([]);
   const [validating, setValidating] = useState(false);
   const { setUsrInfo, usrInfo } = useContext(AuthContext).authValue;
   const [banks, setBanks] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageCount, setPageCount] = useState([1]);
+  const [searchResult, setSearchResult] = useState([]);
+  const [selected, setSelected] = useState("pending");
+  const [recentData, setRecentData] = useState([]);
+
+  function setPg(params) {
+    const pageNumbers = [];
+    for (let index = 0; index <= params.total_results_count / 16; index++) {
+      pageNumbers.push(index + 1);
+      setPageCount([...pageNumbers]);
+    }
+    setPage({ ...page, next: params.next, prev: params.prev });
+    setCurrentPage(params?.next ? params.next - 1 : params.prev + 1);
+  }
 
   const getRequest = async (number, selection) => {
-    try {
-      setIsFetching(true);
-      const token = localStorage.getItem("token");
-      if (selection?.length > 0) {
-        const response = await Api.get(
-          `${Api.ENDPOINTS.url}/school/applications?page=${number}&${selection}=1`,
-          token
-        );
-        setIsFetching(false);
-        const data = response;
-        return data;
-      } else {
-        const response = await Api.get(
-          `${Api.ENDPOINTS.url}/school/applications?page=${number}`,
-          token
-        );
-        setIsFetching(false);
-        const data = response;
-        return data;
-      }
-    } catch (err) {
-      throw err;
+    setIsFetching(true);
+    const token = localStorage.getItem("token");
+    if (
+      selection?.toLowerCase() === "approved" ||
+      selection?.toLowerCase() === "declined"
+    ) {
+      const response = await Api.get(
+        `${Api.ENDPOINTS.url}/school/applications?page=${number}&${selection}=1`,
+        token
+      );
+      setIsFetching(false);
+      setPg(response);
+      const { data } = response;
+      setRequestData([...data]);
+    } else {
+      const response = await Api.get(
+        `${Api.ENDPOINTS.url}/school/applications?page=${number}`,
+        token
+      );
+      setIsFetching(false);
+      setPg(response);
+      const { data } = response;
+      setRequestData([...data]);
     }
+  };
+
+  const recentRequest = async (number) => {
+    setLoading(true);
+    const token = localStorage.getItem("token");
+    const response = await Api.get(
+      `${Api.ENDPOINTS.url}/school/applications?page=${number}`,
+      token
+    );
+    setLoading(false);
+    const { data } = response;
+    setRecentData([...data]);
   };
 
   const searchRequest = async (pageNumber, searchQuery) => {
@@ -50,8 +81,9 @@ export const ApiProvider = (props) => {
         token
       );
       setIsSearching(false);
-      const data = response;
-      return data;
+      const { data } = response;
+      setPg(response);
+      setSearchResult([...data]);
     } catch (err) {
       throw err;
     }
@@ -146,6 +178,25 @@ export const ApiProvider = (props) => {
 
   useEffect(() => {
     getBanks();
+    recentRequest(1);
+  }, []);
+
+  useEffect(() => {
+    let str = window.location.pathname;
+    if (window.location.pathname === "/request") {
+      setSelected("Pending");
+      getRequest(1);
+    } else if (window.location.pathname.startsWith("/request/pending/")) {
+      getRequest(str[str.length - 1]);
+    } else if (window.location.pathname.startsWith("/request/declined")) {
+      getRequest(str[str.length - 1], "declined");
+      setSelected("Declined");
+    } else if (window.location.pathname.startsWith("/request/approved")) {
+      getRequest(str[str.length - 1], "approved");
+      setSelected("Approved");
+    } else {
+      getRequest(1);
+    }
   }, []);
 
   const api = {
@@ -153,13 +204,23 @@ export const ApiProvider = (props) => {
     searchRequest,
     isSearching,
     isFetching,
+    loading,
     updateContactInfo,
     updatingContact,
+    searchResult,
     banks,
     validate,
     updateProfile,
+    requestData,
     updateAccount,
     updatePicture,
+    pageCount,
+    currentPage,
+    page,
+    setSelected,
+    selected,
+    recentRequest,
+    recentData,
   };
 
   return (

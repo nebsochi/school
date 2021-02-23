@@ -11,17 +11,9 @@ import NavBar from "../components/NavBar";
 
 export default function Home() {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [applications, setApplications] = useState("0");
   const { usrInfo } = useContext(AuthContext).authValue;
-  const { getRequest } = useContext(ApiContext).api;
-
-  useEffect(async () => {
-    setLoading(true);
-    const res = await getRequest(1);
-    setLoading(false);
-    setData([...res?.data]);
-  }, []);
+  const { recentData, loading } = useContext(ApiContext).api;
 
   return (
     <IndexLayout>
@@ -30,7 +22,7 @@ export default function Home() {
 
       <div className="container-fluid py-3 px-md-5">
         <div className="row align-items-stretch">
-          <RecentRequest loading={loading} data={data} />
+          <RecentRequest loading={loading} data={recentData} />
           <UploadDoc />
         </div>
         <div className="row align-items-stretch py-2">

@@ -8,136 +8,69 @@ import debounce from "lodash/debounce";
 import Pagination from "../../components/Pagination";
 import NavBar from "../../components/NavBar";
 
-export default function Request() {
-  const { getRequest, searchRequest, isSearching, isFetching } = useContext(
-    ApiContext
-  ).api;
+export default function Request({}) {
+  const {
+    getRequest,
+    searchRequest,
+    pageCount,
+    requestData,
+    searchResult,
+    isSearching,
+    isFetching,
+    page,
+    currentPage,
+    setSelected,
+    selected,
+  } = useContext(ApiContext).api;
   const router = useRouter();
   const [data, setData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [page, setPage] = useState({});
-  const [pageCount, setPageCount] = useState([1]);
-  const [request, setRequesst] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [detailData, setDetailData] = useState({});
   const [searchValue, setSearchValue] = useState("");
-  const [filteredData, setFilteredData] = useState([]);
-  const [selected, setIsSelected] = useState("pending");
 
-  const updateQuery = (number = 1) => {
-    searchRequest(number, {
+  const updateQuery = async (number = 1) => {
+    await searchRequest(number, {
       search: `${searchValue}`,
-    }).then((res) => {
-      if (res.data) {
-        setFilteredData([...res.data]);
-      }
     });
   };
 
   const delayedQuery = useCallback(debounce(updateQuery, 1000), [searchValue]);
 
   useEffect(() => {
-    delayedQuery();
+    if (searchValue) delayedQuery();
     // Cancel the debounce on useEffect cleanup.
     return delayedQuery.cancel;
   }, [searchValue, delayedQuery]);
 
-  function setPg(params) {
-    const pageNumbers = [];
-    for (let index = 0; index < params.total_results_count / 16; index++) {
-      pageNumbers.push(index + 1);
-      setPageCount([...pageNumbers]);
-    }
-    setPage({ ...page, next: params.next, prev: params.prev });
-    setCurrentPage(params?.next ? params.next - 1 : params.prev + 1);
-  }
+  const handleNextClick = async (ev) => {
+    ev.preventDefault();
+    router.push(`/request`, `/request/${selected}/${page.next}`);
+    await getRequest(page.next, selected.toLowerCase());
+  };
 
-  useEffect(() => {
-    if (
-      router.pathname === "/request" ||
-      router.pathname === "/request/page/1"
-    ) {
-      getRequest(1)
-        .then((res) => {
-          setData([...res.data]);
-          setCurrentPage(res);
-          setPg(res);
-        })
-        .catch((err) => console.log(err));
-    } else {
-      getRequest(router?.query?.pageNumber)
-        .then((res) => {
-          setData([...res.data]);
-          setPg(res);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [router.query.pageNumber]);
+  const handlePrevClick = async (ev) => {
+    ev.preventDefault();
+    router.push(`/request`, `/request/${selected}/${currentPage - 1}`);
+    await getRequest(page.prev, selected.toLowerCase());
+  };
+
+  const handlepageClick = async (ev, item) => {
+    ev.preventDefault();
+    console.log(item);
+    router.push(`/request`, `/request/${selected.toLowerCase()}/${item}`);
+    await getRequest(item, selected.toLowerCase());
+  };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setSearchValue(value);
+    e.preventDefault();
+    setSearchValue(e.target.value);
   };
 
-  const handleNextClick = (ev) => {
-    ev.preventDefault();
-    console.log(router);
-    router.push(`/request`, `/request/page/${page.next}`);
-    getRequest(page.next).then((res) => {
-      setData([...res.data]);
-      setPg(res);
-    });
-  };
-
-  const handlePrevClick = (ev) => {
-    ev.preventDefault();
-
-    router.push(`/request`, `/request/page/${currentPage - 1}`);
-    setCurrentPage(currentPage - 1);
-    getRequest(currentPage - 1).then((res) => {
-      setData([...res.data]);
-      console.log(router.asPath);
-      setCurrentPage(currentPage - 1);
-    });
-  };
-
-  const handlepageClick = (ev, item) => {
-    ev.preventDefault();
-
-    router.push(`/request`, `/request/page/${item}`);
-    getRequest(item).then((res) => {
-      setData([...res.data]);
-      setCurrentPage(item);
-    });
-  };
-
-  const handleSelect = (ev) => {
-    setIsSelected(ev.target.value);
-    if (ev.target.value !== "pending") {
-      getRequest(1, ev.target.value).then((data) => {
-        setData([...data.data]);
-        const pageNumbers = [];
-        setCurrentPage(1);
-        if (data.total_results_count > 1) {
-          for (let index = 0; index < data.total_results_count / 16; index++) {
-            pageNumbers.push(index + 1);
-            setPageCount([...pageNumbers]);
-          }
-        } else {
-          const pageNumbers = [1];
-          setPageCount([...pageNumbers]);
-        }
-      });
-    } else {
-      router.push(`/request`);
-      getRequest(1)
-        .then((res) => {
-          setData([...res.data]);
-          setCurrentPage(res);
-          setPg(res);
-        })
-        .catch((err) => console.log(err));
-    }
+  const handleSelect = async (e) => {
+    e.preventDefault();
+    setSelected(e.target.value);
+    await getRequest(1, e.target.value.toLowerCase());
+    router.push("/request", `/request/${e.target.value.toLowerCase()}/1`);
   };
 
   return (
@@ -163,10 +96,11 @@ export default function Request() {
                   className="form-control"
                   style={{ height: "45px" }}
                   onChange={(e) => handleSelect(e)}
+                  value={selected}
                 >
-                  <option value="pending">Pending</option>
-                  <option value="approved">Approved</option>
-                  <option value="declined">Declined</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Approved">Approved</option>
+                  <option value="Declined">Declined</option>
                 </select>
               </div>
 
@@ -190,7 +124,7 @@ export default function Request() {
               <>
                 {searchValue.length === 0 && (
                   <div className="row position-relative">
-                    {data.map((item, i) => (
+                    {requestData?.map((item, i) => (
                       <RequestCard
                         key={item.id}
                         setIsOpen={setIsOpen}
@@ -201,7 +135,7 @@ export default function Request() {
                     ))}
                   </div>
                 )}
-                {searchValue.length >= 1 &&
+                {searchValue.length > 0 &&
                   (isSearching ? (
                     <div className="loading-container">
                       <div className="spinner-border" role="status">
@@ -210,14 +144,14 @@ export default function Request() {
                     </div>
                   ) : (
                     <>
-                      {filteredData.length > 0 ? (
+                      {!isSearching > 0 ? (
                         <div className="row">
                           <div className="col-12">
                             <p>
                               Search Results for <strong>{searchValue}</strong>
                             </p>
                           </div>
-                          {filteredData.map((item, i) => (
+                          {searchResult.map((item, i) => (
                             <RequestCard
                               key={item.id}
                               setIsOpen={setIsOpen}
