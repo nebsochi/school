@@ -80,29 +80,35 @@ export default function Request({}) {
         <div className="row" style={{ marginBottom: "60px" }}>
           <div className="col-md-12">
             <div className="pt-2 mb-4 border-bottom d-md-flex align-items-bottom justify-content-between">
-              <div className="form-group d-flex align-items-center">
-                <label
-                  htmlFor="exampleFormControlSelect1"
-                  className="pt-1"
-                  style={{
-                    whiteSpace: "nowrap",
-                    fontSize: ".9rem",
-                    fontWeight: "600",
-                  }}
-                >
-                  Filter By:&nbsp;&nbsp;&nbsp;&nbsp;
-                </label>
-                <select
-                  className="form-control"
-                  style={{ height: "45px" }}
-                  onChange={(e) => handleSelect(e)}
-                  value={selected}
-                >
-                  <option value="Pending">Pending</option>
-                  <option value="Approved">Approved</option>
-                  <option value="Declined">Declined</option>
-                </select>
-              </div>
+              {searchValue.length === 0 ? (
+                <div className="form-group d-flex align-items-center">
+                  <label
+                    htmlFor="exampleFormControlSelect1"
+                    className="pt-1"
+                    style={{
+                      whiteSpace: "nowrap",
+                      fontSize: ".9rem",
+                      fontWeight: "600",
+                    }}
+                  >
+                    Filter By:&nbsp;&nbsp;&nbsp;&nbsp;
+                  </label>
+                  <select
+                    className="form-control"
+                    style={{ height: "45px" }}
+                    onChange={(e) => handleSelect(e)}
+                    value={selected}
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Declined">Declined</option>
+                  </select>
+                </div>
+              ) : (
+                <div className="form-group" style={{ height: "45px" }}>
+                  &nbsp;
+                </div>
+              )}
 
               <input
                 type="text"

@@ -4,6 +4,7 @@ import { ModalContext } from "../../context/ModalContext";
 import RadioList from "../RadioList";
 import shuffle from "lodash/shuffle";
 import { motion } from "framer-motion";
+import QuestionModal from "./QuestionModal";
 
 function PreQuestion({ data }) {
   const [values, setValues] = useState(["Yes I do", "No I don't"]);
@@ -11,8 +12,12 @@ function PreQuestion({ data }) {
   const [nameOptions, setNameOptions] = useState([]);
   const [answers, setAnswers] = useState({});
   const [disabled, setDisabled] = useState(true);
+  const [confirmation, setConfirmation] = useState(false);
+  const [loading, setloading] = useState(false);
   const [question, setQuestion] = useState(false);
-  const { setPassedPreQuestion } = useContext(ModalContext).contextValue;
+  const { setPassedPreQuestion, declineRequest } = useContext(
+    ModalContext
+  ).contextValue;
 
   const setAnswer = (e, i) => {
     const { name, value } = e.target;
@@ -37,6 +42,8 @@ function PreQuestion({ data }) {
     e.preventDefault();
     if (answers.recognize === "Yes I do") {
       setQuestion(true);
+    } else {
+      setConfirmation(true);
     }
   };
 
@@ -61,6 +68,15 @@ function PreQuestion({ data }) {
     e.preventDefault();
     if (answers.guardian_name === data.parent.full_name) {
       setPassedPreQuestion(true);
+    }
+  };
+
+  const handleClick = async () => {
+    setloading(true);
+    const res = await declineRequest(data.id);
+    setloading(false);
+    if (res === "request declined!") {
+      setConfirmation(false);
     }
   };
 
@@ -96,11 +112,9 @@ function PreQuestion({ data }) {
           Guardian
         </small>
       </div>
-
       <div className="mt-4 border-bottom d-inline-block mb-3">
         <span style={{ fontWeight: "600" }}>Student(s) </span>
       </div>
-
       <div className="d-flex flex-wrap rounded">
         {data?.children?.map((item, i) => (
           <div
@@ -128,7 +142,6 @@ function PreQuestion({ data }) {
           </div>
         ))}
       </div>
-
       {!question && (
         <motion.form
           className="border-top mt-4"
@@ -163,7 +176,6 @@ function PreQuestion({ data }) {
           </button>
         </motion.form>
       )}
-
       {question && (
         <motion.form
           className="pt-2"
@@ -200,6 +212,14 @@ function PreQuestion({ data }) {
             Proceed
           </button>
         </motion.form>
+      )}
+      {confirmation && (
+        <QuestionModal
+          handleClick={handleClick}
+          id={data.id}
+          setConfirmation={setConfirmation}
+          loading={loading}
+        />
       )}
     </div>
   );

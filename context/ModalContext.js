@@ -49,6 +49,17 @@ export const ModalProvider = (props) => {
     }
   };
 
+  const declineRequest = async (id, cdata) => {
+    const token = localStorage.getItem("token");
+    const response = await Api.patch(
+      `${Api.ENDPOINTS.url}/school/request/${id}/decline`,
+      cdata,
+      token
+    );
+    const { data, message } = response;
+    return message;
+  };
+
   let toggleModal = () => {
     setOpen((prev) => !prev);
   };
@@ -63,6 +74,7 @@ export const ModalProvider = (props) => {
     isSubmitting,
     isLoading,
     getRequestById,
+    declineRequest,
     show,
     setShow,
     passedPreQuestion,
