@@ -12,10 +12,12 @@ export const PublishProvider = (props) => {
   const [isSaving, setIsSaving] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isSending, setIsSending] = useState(false);
   const [bookCount, setBookCount] = useState(0);
   const [data, setData] = useState([]);
   const [books, setBooks] = useState([]);
   const [error, setError] = useState({});
+  const [modalScrns, setModalScrns] = useState("");
 
   const getPusblishers = async () => {
     setIsLoading(true);
@@ -27,6 +29,18 @@ export const PublishProvider = (props) => {
       setError({ ...error, msg: res });
     }
     setIsLoading(false);
+  };
+
+  const sendPublisherRequest = async (cdata) => {
+    setIsSending(true);
+    const token = localStorage.getItem("token");
+    const res = await Api.post(
+      `${Api.ENDPOINTS.url}/school/publisher/invite`,
+      cdata,
+      token
+    );
+    setIsSending(false);
+    return res.message;
   };
 
   const deleteBook = async (id) => {
@@ -121,8 +135,12 @@ export const PublishProvider = (props) => {
     getAllBooks,
     isUpdating,
     isDeleting,
+    sendPublisherRequest,
+    isSending,
     deleteBook,
     bookCount,
+    modalScrns,
+    setModalScrns,
   };
 
   return (

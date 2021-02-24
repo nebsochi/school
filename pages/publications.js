@@ -11,10 +11,14 @@ import SideView from "../components/SideView";
 import NavBar from "../components/NavBar";
 
 function publications() {
-  const { isOpen, setIsOpen, books } = useContext(PublishContext).contextValue;
-  const { show, setShow, data, isLoading, error } = useContext(
-    PublishContext
-  ).contextValue;
+  const {
+    setShow,
+    modalScrns,
+    setModalScrns,
+    isLoading,
+    setIsOpen,
+    books,
+  } = useContext(PublishContext).contextValue;
   const [modalData, setModalData] = useState({});
   const [num, setNum] = useState(0);
   const [searchValue, setSearchValue] = useState("");
@@ -23,11 +27,12 @@ function publications() {
     setIsOpen(true);
   };
 
-  const handleBookClick = (e, item, number) => {
+  const handleBookClick = (e, item, number, comp) => {
     e.preventDefault();
+    console.log(comp);
     setModalData({ ...modalData, ...books[number] });
+    setModalScrns("BookItem");
     setNum(number);
-    console.log(number);
     setShow(true);
   };
 

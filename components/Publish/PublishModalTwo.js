@@ -3,6 +3,7 @@ import { useContext, useRef, useState, useEffect } from "react";
 import { PublishContext } from "../../context/PublishContext";
 import { formatNumber } from "../../utils/Formatter";
 import Toast from "../Toast";
+import InviteModal from "./InviteModal";
 
 function PublishModalTwo({ data }) {
   const {
@@ -13,6 +14,8 @@ function PublishModalTwo({ data }) {
     isUpdating,
     deleteBook,
     isDeleting,
+    setModalScrns,
+    modalScrns,
   } = useContext(PublishContext).contextValue;
   const [animateContent, setAnimateContent] = useState(true);
   const [value, setValue] = useState("");
@@ -104,126 +107,141 @@ function PublishModalTwo({ data }) {
         className={`${Styles.ModalContent} ${
           animateContent && Styles.ModalContentIsOpen
         } position-relative`}
-        ref={ref}
       >
-        <div className="border-bottom">
-          <div
-            className={`${Styles.ModalHeader} d-flex align-items-center position-absolute justify-content-between`}
-          >
-            <h6 style={{ fontSize: "600", fontWeight: "600" }} className="m-0">
-              Book Details
-            </h6>
-            <img src="x.svg" alt="close" onClick={closeModal} />
-          </div>
-        </div>
-
-        <div className="card mt-3">
-          <div className="card-header">Book Details</div>
-          <div className="card-body">
-            <div className="d-block d-sm-flex align-items-center">
+        {modalScrns === "BookItem" && (
+          <>
+            <div className="border-bottom">
               <div
-                style={{ height: "250px" }}
-                className="mb-4 mb-sm-0 rounded mr-3"
+                className={`${Styles.ModalHeader} d-flex align-items-center position-absolute justify-content-between`}
               >
-                <img
-                  src={data?.picture}
-                  alt="okeke"
-                  height={"100%"}
-                  width={"auto"}
-                />
+                <h6
+                  style={{ fontSize: "600", fontWeight: "600" }}
+                  className="m-0"
+                >
+                  Book Details
+                </h6>
+                <img src="x.svg" alt="close" onClick={closeModal} />
               </div>
-              <div className="pl-2">
-                <h6
-                  className="pb-3 border-bottom"
-                  style={{ fontWeight: "600" }}
-                >
-                  {data.name}
-                </h6>
+            </div>
 
-                <div className="d-flex align-items-center pt-2 pb-3">
-                  <span>Publisher's price:</span>
-                  <h5
-                    style={{
-                      fontWeight: "300",
-                      fontSize: ".9rem",
-                      textDecoration: "line-through",
-                    }}
-                    className="m-0 ml-2 text-danger"
+            <div className="card mt-3">
+              <div className="card-header">Book Details</div>
+              <div className="card-body">
+                <div className="d-block d-sm-flex align-items-center">
+                  <div
+                    style={{ height: "250px" }}
+                    className="mb-4 mb-sm-0 rounded mr-3"
                   >
-                    &#x20A6;&nbsp;
-                    {formatNumber(data?.publisher_price) + ".00"}
-                  </h5>
-                </div>
-
-                <h6
-                  style={{ fontWeight: "600", fontSize: "1.1rem" }}
-                  className="pt-2 border-bottom pb-3"
-                >
-                  &#x20A6;&nbsp;
-                  {formatNumber(data?.price) + ".00"}
-                </h6>
-
-                <div>
-                  <form
-                    className="pt-2"
-                    onSubmit={(e) => handleSubmit(e)}
-                    noValidate
-                  >
-                    <input
-                      style={{ height: "40px" }}
-                      className={`${successMsg > 2 ? "border-success" : null} ${
-                        validateMsg.length > 2 ? "border-danger" : null
-                      }  form-control`}
-                      onFocus={(e) => {
-                        e.target.type = "number";
-                      }}
-                      onBlur={(e) => {
-                        e.target.type = "text";
-                      }}
-                      name="price"
-                      value={value}
-                      onChange={(e) => handleChange(e)}
-                      placeholder="Enter desired amount"
-                      required
-                      minLength={data?.price?.length}
+                    <img
+                      src={data?.picture}
+                      alt="okeke"
+                      height={"100%"}
+                      width={"auto"}
                     />
-
-                    <small className="text-danger d-block pt-1">
-                      {validateMsg}
-                    </small>
-
-                    <small className="text-success d-block pt-1">
-                      {successMsg}
-                    </small>
-                  </form>
-                  {isUpdating ? (
-                    <button
-                      className="btn btn-primary btn-primary--sh-none btn-sm mt-4"
-                      style={{ background: "#0062cc", borderColor: "#0062cc" }}
-                      onClick={(e) => handleUpdate(e)}
+                  </div>
+                  <div className="pl-2">
+                    <h6
+                      className="pb-3 border-bottom"
+                      style={{ fontWeight: "600" }}
                     >
-                      Update Price
-                    </button>
-                  ) : (
-                    <button
-                      className="btn btn-primary btn-primary--sh-none btn-sm mt-4"
-                      onClick={(e) => handleUpdate(e)}
-                    >
-                      Update Price
-                    </button>
-                  )}
+                      {data.name}
+                    </h6>
 
-                  <button
-                    className="btn btn-danger btn-sm mt-4 ml-3"
-                    onClick={del}
-                  >
-                    Remove Book
-                  </button>
+                    <div className="d-flex align-items-center pt-2 pb-3">
+                      <span>Publisher's price:</span>
+                      <h5
+                        style={{
+                          fontWeight: "300",
+                          fontSize: ".9rem",
+                          textDecoration: "line-through",
+                        }}
+                        className="m-0 ml-2 text-danger"
+                      >
+                        &#x20A6;&nbsp;
+                        {formatNumber(data?.publisher_price) + ".00"}
+                      </h5>
+                    </div>
+
+                    <h6
+                      style={{ fontWeight: "600", fontSize: "1.1rem" }}
+                      className="pt-2 border-bottom pb-3"
+                    >
+                      &#x20A6;&nbsp;
+                      {formatNumber(data?.price) + ".00"}
+                    </h6>
+
+                    <div>
+                      <form
+                        className="pt-2"
+                        onSubmit={(e) => handleSubmit(e)}
+                        noValidate
+                      >
+                        <input
+                          style={{ height: "40px" }}
+                          className={`${
+                            successMsg > 2 ? "border-success" : null
+                          } ${
+                            validateMsg.length > 2 ? "border-danger" : null
+                          }  form-control`}
+                          onFocus={(e) => {
+                            e.target.type = "number";
+                          }}
+                          onBlur={(e) => {
+                            e.target.type = "text";
+                          }}
+                          name="price"
+                          value={value}
+                          onChange={(e) => handleChange(e)}
+                          placeholder="Enter desired amount"
+                          required
+                          minLength={data?.price?.length}
+                        />
+
+                        <small className="text-danger d-block pt-1">
+                          {validateMsg}
+                        </small>
+
+                        <small className="text-success d-block pt-1">
+                          {successMsg}
+                        </small>
+                      </form>
+                      {isUpdating ? (
+                        <button
+                          className="btn btn-primary btn-primary--sh-none btn-sm mt-4"
+                          style={{
+                            background: "#0062cc",
+                            borderColor: "#0062cc",
+                          }}
+                          onClick={(e) => handleUpdate(e)}
+                        >
+                          Update Price
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn-primary btn-primary--sh-none btn-sm mt-4"
+                          onClick={(e) => handleUpdate(e)}
+                        >
+                          Update Price
+                        </button>
+                      )}
+
+                      <button
+                        className="btn btn-danger btn-sm mt-4 ml-3"
+                        onClick={del}
+                      >
+                        Remove Book
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
+
+        {modalScrns === "InvitePublisher" && (
+          <InviteModal closeModal={closeModal} />
+        )}
       </div>
     </div>
   );

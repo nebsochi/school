@@ -4,7 +4,7 @@ import Styles from "../../styles//Modal.module.css";
 import debounce from "lodash/debounce";
 import { PublishContext } from "../../context/PublishContext";
 
-function PublishScreen({ handleItemClick, closeModal }) {
+function PublishScreen({ handleItemClick, closeModal, setScrn }) {
   const [searchData, setSearchData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const { searchPublishers } = useContext(PublishContext).contextValue;
@@ -26,6 +26,10 @@ function PublishScreen({ handleItemClick, closeModal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     updateQuery();
+  };
+
+  const handleInviteClick = () => {
+    setScrn("InvitePublisher");
   };
 
   const delayedQuery = useCallback(debounce(updateQuery, 1000), [searchValue]);
@@ -86,13 +90,7 @@ function PublishScreen({ handleItemClick, closeModal }) {
         </div>
       </div>
       <div className="text-right">
-        <button
-          className="btn mt-4 btn-primary"
-          style={{
-            background: "rgb(0, 98, 204)",
-            borderColor: "rgb(0, 98, 204)",
-          }}
-        >
+        <button className="btn mt-4 btn-primary" onClick={handleInviteClick}>
           Invite a publisher
         </button>
       </div>

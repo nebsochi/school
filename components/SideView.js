@@ -3,7 +3,15 @@ import { useContext } from "react";
 import { PublishContext } from "../context/PublishContext";
 
 function SideView({ handleClick }) {
-  const { bookCount } = useContext(PublishContext).contextValue;
+  const { bookCount, setShow, setModalScrns } = useContext(
+    PublishContext
+  ).contextValue;
+
+  const handleInvitePublisher = () => {
+    setModalScrns("InvitePublisher");
+    setShow(true);
+  };
+
   return (
     <div className="sideview position-relative ml-4 ">
       <div className="position-relative bg-white rounded-lg shadow-sm pb-3">
@@ -100,7 +108,7 @@ function SideView({ handleClick }) {
             <h4 className="m-0">
               <strong>{bookCount}</strong>
             </h4>
-            <h6>Total Books</h6>
+            <h6 className="text-muted">Total Books</h6>
           </div>
         </div>
         <div className="postion-relative mx-4">
@@ -117,7 +125,10 @@ function SideView({ handleClick }) {
         <div className="text-center">
           <Image src="/profile.svg" height={50} width={50} alt="publisher" />
         </div>
-        <button className="btn-full btn btn-outline-primary btn-sm btn-primary--sh-none mt-2">
+        <button
+          onClick={handleInvitePublisher}
+          className="btn-block btn btn-primary btn-sm mt-2"
+        >
           Invite a Publisher
         </button>
       </div>

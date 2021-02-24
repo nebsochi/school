@@ -5,6 +5,7 @@ import PublishScreen from "./PublishScreen";
 import ModalBookList from "./ModalBookList";
 import BookDetail from "./BookDetail";
 import Toast from "../Toast";
+import InviteModal from "./InviteModal";
 
 function PublishModal() {
   const { isOpen, setIsOpen, data } = useContext(PublishContext).contextValue;
@@ -14,7 +15,12 @@ function PublishModal() {
   const [books, setBooks] = useState([]);
   const [currPublisherId, setCurrPublisherId] = useState("");
   const [currPublisherName, setCurrPublisherName] = useState("");
-  const screens = ["PublishListScrn", "BookListScrn", "BookDetailScrn"];
+  const screens = [
+    "PublishListScrn",
+    "BookListScrn",
+    "BookDetailScrn",
+    "PublisherScrn",
+  ];
   const [toastOpen, setToastOpen] = useState(true);
   const [toastMsg, setToastMsg] = useState("");
 
@@ -78,6 +84,7 @@ function PublishModal() {
           <PublishScreen
             handleItemClick={handleItemClick}
             closeModal={closeModal}
+            setScrn={setScrn}
           />
         )}
 
@@ -100,6 +107,10 @@ function PublishModal() {
             setToastMsg={setToastMsg}
             setToastOpen={setToastOpen}
           />
+        )}
+
+        {scrn === "InvitePublisher" && (
+          <InviteModal closeModal={closeModal} setScrn={setScrn} scrn={scrn} />
         )}
       </div>
     </div>
