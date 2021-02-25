@@ -5,7 +5,7 @@ import { ModalContext } from "../context/ModalContext";
 import { useRouter } from "next/router";
 
 function NavBar({ page }) {
-  const { logOut } = useContext(AuthContext).authValue;
+  const { logOut, usrInfo } = useContext(AuthContext).authValue;
   const { setShow } = useContext(ModalContext).contextValue;
   const router = useRouter();
 
@@ -53,7 +53,7 @@ function NavBar({ page }) {
               className="mb-0  text-truncate text-white"
               style={{ fontWeight: 600 }}
             >
-              Bellina College
+              {usrInfo.name}
             </h6>
             <span className="badge badge-warning">
               1<sup>st</sup> term

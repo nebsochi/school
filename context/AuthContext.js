@@ -16,7 +16,6 @@ export const AuthProvider = (props) => {
       if (process.browser) {
         const { data } = response;
         localStorage.setItem("token", data.token);
-        localStorage.setItem("user_info", JSON.stringify(data.school));
         setSignedIn(true);
       }
     }
@@ -34,7 +33,6 @@ export const AuthProvider = (props) => {
       const { data } = response;
       if (process.browser) {
         localStorage.setItem("token", data.token);
-        localStorage.setItem("user_info", data.school);
         setSignedIn(true);
       }
     }

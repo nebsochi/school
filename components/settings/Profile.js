@@ -170,9 +170,9 @@ function Profile() {
                         className="form-control"
                         id="username"
                         name="username"
-                        placeholder={usrInfo.username}
+                        placeholder={usrInfo?.username}
                         required
-                        defaultValue={usrInfo.username}
+                        value={usrInfo?.username}
                         onChange={(e) => handleChange(e)}
                       />
                     </div>
@@ -207,6 +207,7 @@ function Profile() {
                         required
                         defaultValue={usrInfo.name}
                         placeholder={usrInfo.name}
+                        onChange={(e) => handleChange(e)}
                       />
                     </div>
                   </div>

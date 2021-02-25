@@ -1,8 +1,10 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import styles from "../styles/Input.module.css";
 import { AuthContext } from "../context/AuthContext";
+import { ApiContext } from "../context/ApiContext";
+import { PublishContext } from "../context/PublishContext";
 
 function SignInform() {
   const [inputValue, setInputValues] = useState({
@@ -12,7 +14,9 @@ function SignInform() {
   });
   const [validated, setValidated] = useState(false);
   const [errorResponse, setErrorResponse] = useState(false);
-  const { signIn } = useContext(AuthContext).authValue;
+  const { signIn, getUserInfo } = useContext(AuthContext).authValue;
+  const { recentRequest, getRequest } = useContext(ApiContext).api;
+  const { getAllBooks } = useContext(PublishContext).contextValue;
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -37,6 +41,13 @@ function SignInform() {
       }
     }
   };
+
+  useEffect(() => {
+    getUserInfo();
+    recentRequest(1);
+    getRequest(1);
+    getAllBooks(1);
+  }, [signIn]);
 
   const content = {
     hidden: {
