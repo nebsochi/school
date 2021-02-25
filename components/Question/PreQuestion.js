@@ -47,7 +47,6 @@ function PreQuestion({ data, closeModal }) {
       setQuestion(true);
     } else if (answers.recognize === "No I don't") {
       setConfirmation(true);
-      setDelinedReq(true);
     }
   };
 
@@ -81,6 +80,7 @@ function PreQuestion({ data, closeModal }) {
 
     if (res === "request declined!") {
       setConfirmation(false);
+      setDelinedReq(true);
       await getRequest(currentPage, selected);
     }
     setloading(false);

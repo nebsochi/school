@@ -59,6 +59,7 @@ function Profile() {
     e.preventDefault();
     setBtnText("Saving...");
     const res = await updateProfile(inputValue);
+    console.log(res);
     if (res === "school information updated!") {
       toggleBtn();
     } else {
@@ -139,19 +140,19 @@ function Profile() {
                       />
                     )}
 
-                    <div className="position-relative">
+                    <div className="position-relative text-left  ml-3">
                       <input
                         type="file"
                         onChange={(e) => handlefileUpload(e)}
                         onClick={(e) => (e.target.value = null)}
-                        className="position-relative"
-                        style={{ zIndex: "3", opacity: 0 }}
+                        className="position-relative d-inline position-absolute"
+                        style={{ zIndex: "3", opacity: 0, width: "59px" }}
                         name="picture"
                         accept="image/*"
                       />
                       <button
                         type="button"
-                        className="btn btn-sm btn-primary position-absolute"
+                        className="btn btn-sm btn-primary"
                         style={{ left: "1.6rem", zIndex: 0 }}
                         onClick={(e) => handleClick(e)}
                       >

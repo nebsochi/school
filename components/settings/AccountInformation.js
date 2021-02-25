@@ -59,10 +59,10 @@ function AccountInformation() {
   useEffect(() => {
     setInputValue({
       ...inputValue,
-      bank_name: usrInfo?.bankname,
-      bank_code: usrInfo?.bank_code,
-      account_name: usrInfo?.account_name,
-      account_number: usrInfo?.account_number,
+      bank_name: usrInfo?.bankname || "",
+      bank_code: usrInfo?.bank_code || "",
+      account_name: usrInfo?.account_name || "",
+      account_number: usrInfo?.account_number || "",
     });
   }, [usrInfo]);
 
@@ -170,8 +170,9 @@ function AccountInformation() {
                     className="form-control"
                     id="bankname"
                     name="account_number"
+                    onChange={(e) => handleChange(e)}
                     placeholder={usrInfo.account_name}
-                    value={inputValue?.account_name}
+                    defaultValue={inputValue?.account_name || ""}
                     readOnly
                   />
                 </div>

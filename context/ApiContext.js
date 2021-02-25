@@ -112,12 +112,11 @@ export const ApiProvider = (props) => {
       cdata,
       token
     );
-    const { data } = response;
+    const { data, message } = response;
     if (data) {
       setUsrInfo({ ...usrInfo, ...data });
-    } else {
-      return response.message;
     }
+    return message;
   };
 
   const getBanks = async () => {

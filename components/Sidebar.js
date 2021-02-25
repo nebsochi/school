@@ -58,7 +58,8 @@ function Sidebar() {
 
         <div className="ml-3">
           <h6 className="mb-0  text-truncate" style={{ fontWeight: "600" }}>
-            {userInfo?.name}
+            {userInfo?.name?.substring(0, 16)}
+            {userInfo?.name?.length > 16 && "..."}
           </h6>
 
           <span className="badge badge-warning">
