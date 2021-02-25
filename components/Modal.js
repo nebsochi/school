@@ -119,13 +119,13 @@ function Modal({ isOpen, setIsOpen, data }) {
           <span>Request</span>
           <img src="x.svg" alt="close" onClick={closeModal} />
         </h5>
-        {!data.questionnaire_filled && !passedPreQuestion && (
-          <PreQuestion data={data} />
+        {data.status === 0 && !passedPreQuestion && (
+          <PreQuestion data={data} closeModal={closeModal} />
         )}
 
         <div>
           <div className={`${Styles.heightAnim}`}>
-            {!data.questionnaire_filled && !isLoading && passedPreQuestion && (
+            {data.status === 0 && !isLoading && passedPreQuestion && (
               <>
                 <RequestDetails data={data} />
                 <div>
@@ -244,13 +244,9 @@ function Modal({ isOpen, setIsOpen, data }) {
               </>
             )}
 
-            {data.questionnaire_filled && (
+            {data.status === -1 && (
               <>
                 <RequestDetails data={data} />
-                <div className="text-left">
-                  <h6>This request is awaiting approval!</h6>
-                  <img alt="pending" width="30%" src="pend.svg" />
-                </div>
               </>
             )}
           </div>

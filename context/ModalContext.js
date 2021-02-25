@@ -49,11 +49,10 @@ export const ModalProvider = (props) => {
     }
   };
 
-  const declineRequest = async (id, cdata) => {
+  const declineRequest = async (id) => {
     const token = localStorage.getItem("token");
-    const response = await Api.patch(
+    const response = await Api.get(
       `${Api.ENDPOINTS.url}/school/request/${id}/decline`,
-      cdata,
       token
     );
     const { data, message } = response;

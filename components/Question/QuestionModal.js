@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function QuestionModal({ handleClick, loading, setConfirmation }) {
   const handleModalClick = (e) => {
-    if (e.target.classList[0].startsWith("Question_ModalContainer")) {
+    if (e?.target?.classList[0]?.startsWith("Question_ModalContainer")) {
       setConfirmation(false);
     }
   };
@@ -47,9 +47,9 @@ function QuestionModal({ handleClick, loading, setConfirmation }) {
               Confirm
             </button>
           ) : (
-            <button class="btn btn-primary btn-sm" type="button" disabled>
+            <button className="btn btn-primary btn-sm" type="button" disabled>
               <span
-                class="spinner-border spinner-border-sm"
+                className="spinner-border spinner-border-sm"
                 role="status"
                 aria-hidden="true"
               ></span>

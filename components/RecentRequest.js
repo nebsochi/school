@@ -25,8 +25,8 @@ function RecentRequest({ data, loading }) {
                 className="d-flex align-items-center pb-2 justify-content-center"
                 style={{ minHeight: "250px" }}
               >
-                <div class="spinner-border text-primary" role="status">
-                  <span class="sr-only">Loading...</span>
+                <div className="spinner-border text-primary" role="status">
+                  <span className="sr-only">Loading...</span>
                 </div>
               </div>
             ) : (

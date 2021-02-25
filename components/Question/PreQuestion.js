@@ -5,8 +5,9 @@ import RadioList from "../RadioList";
 import shuffle from "lodash/shuffle";
 import { motion } from "framer-motion";
 import QuestionModal from "./QuestionModal";
+import { ApiContext } from "../../context/ApiContext";
 
-function PreQuestion({ data }) {
+function PreQuestion({ data, closeModal }) {
   const [values, setValues] = useState(["Yes I do", "No I don't"]);
   const alternativeGuardian = ["Peter Johnson", "Durojaye Fisayo"];
   const [nameOptions, setNameOptions] = useState([]);
@@ -15,9 +16,11 @@ function PreQuestion({ data }) {
   const [confirmation, setConfirmation] = useState(false);
   const [loading, setloading] = useState(false);
   const [question, setQuestion] = useState(false);
+  const [declineReq, setDelinedReq] = useState(false);
   const { setPassedPreQuestion, declineRequest } = useContext(
     ModalContext
   ).contextValue;
+  const { getRequest, currentPage, selected } = useContext(ApiContext).api;
 
   const setAnswer = (e, i) => {
     const { name, value } = e.target;
@@ -42,8 +45,9 @@ function PreQuestion({ data }) {
     e.preventDefault();
     if (answers.recognize === "Yes I do") {
       setQuestion(true);
-    } else {
+    } else if (answers.recognize === "No I don't") {
       setConfirmation(true);
+      setDelinedReq(true);
     }
   };
 
@@ -74,10 +78,12 @@ function PreQuestion({ data }) {
   const handleClick = async () => {
     setloading(true);
     const res = await declineRequest(data.id);
-    setloading(false);
+
     if (res === "request declined!") {
       setConfirmation(false);
+      await getRequest(currentPage, selected);
     }
+    setloading(false);
   };
 
   return (
@@ -142,7 +148,7 @@ function PreQuestion({ data }) {
           </div>
         ))}
       </div>
-      {!question && (
+      {!question && !declineReq && (
         <motion.form
           className="border-top mt-4"
           onSubmit={(e) => handleSubmit(e)}
@@ -175,6 +181,18 @@ function PreQuestion({ data }) {
             Proceed
           </button>
         </motion.form>
+      )}
+
+      {!question && declineReq && (
+        <div className="mt-4 border-top">
+          <div className="mt-4 text-danger alert alert-danger" role="alert">
+            Request has been declined!
+          </div>
+          <br />
+          <button className="btn mt-2 btn-primary" onClick={closeModal}>
+            Done
+          </button>
+        </div>
       )}
       {question && (
         <motion.form

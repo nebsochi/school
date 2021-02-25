@@ -135,7 +135,7 @@ function InviteModal({ closeModal, setScrn, scrn }) {
               onChange={(e) => handleChange(e)}
               value={inputValue?.name}
             />
-            <div class="invalid-feedback">
+            <div className="invalid-feedback">
               Please enter a Brand or Company name associated with publisher
             </div>
           </div>
@@ -152,7 +152,7 @@ function InviteModal({ closeModal, setScrn, scrn }) {
               placeholder="Enter email or phone of publisher"
               onChange={(e) => handleChange(e)}
             />
-            <div class="invalid-feedback">{error?.emailorphone}</div>
+            <div className="invalid-feedback">{error?.emailorphone}</div>
           </div>
 
           <div className="form-group">
