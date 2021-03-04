@@ -1,6 +1,8 @@
-import React from "react";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 function InfoCards({ applications }) {
+  const { usrInfo } = useContext(AuthContext).authValue;
   return (
     <div className="container-fluid px-md-5" style={{ paddingTop: "2rem" }}>
       <div className="row">
@@ -18,7 +20,7 @@ function InfoCards({ applications }) {
               <div className="text-truncate">
                 <div className="d-flex justify-content-between pt-1 align-items-end">
                   <h3 className="m-0 line-h-0" style={{ fontWeight: "400" }}>
-                    {applications}
+                    {usrInfo?.applications?.pending}
                   </h3>
                 </div>
                 <small className="text-muted" style={{ whiteSpace: "nowrap" }}>
@@ -56,7 +58,7 @@ function InfoCards({ applications }) {
               <div className="text-truncate">
                 <div className="d-flex justify-content-between pt-1 align-items-end">
                   <h3 className="m-0 line-h-0" style={{ fontWeight: "400" }}>
-                    0
+                    {usrInfo?.applications?.approved}
                   </h3>
                 </div>
                 <small className="text-muted">Approved Applications</small>
@@ -73,7 +75,7 @@ function InfoCards({ applications }) {
               <div className="text-truncate">
                 <div className="d-flex justify-content-between pt-1 align-items-end">
                   <h3 className="m-0 line-h-0" style={{ fontWeight: "400" }}>
-                    0
+                    {usrInfo.applications.declined}
                   </h3>
                 </div>
                 <small className="text-muted">Declined Applications</small>
