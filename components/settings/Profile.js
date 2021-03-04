@@ -217,23 +217,28 @@ function Profile() {
                   <div className="col-md-6">
                     <div className="form-group">
                       <label htmlFor="term">Change Term</label>
-                      <select
-                        className="form-control"
-                        required
-                        onChange={(e) => handleChange(e)}
-                        id="term"
-                        name="term"
-                      >
-                        <option value="1st term" selected={usrInfo.term === 1}>
-                          1st term
-                        </option>
-                        <option value="2nd term" selected={usrInfo.term === 2}>
-                          2nd term
-                        </option>
-                        <option value="3rd term" selected={usrInfo.term === 3}>
-                          3rd term
-                        </option>
-                      </select>
+                      {usrInfo.term && (
+                        <select
+                          className="form-control"
+                          required
+                          onChange={(e) => handleChange(e)}
+                          id="term"
+                          name="term"
+                          defaultValue={
+                            usrInfo?.term === 1
+                              ? "1st term"
+                              : usrInfo?.term === 2
+                              ? "2nd term"
+                              : usrInfo?.term === 3
+                              ? "3rd term"
+                              : null
+                          }
+                        >
+                          <option value="1st term">1st term</option>
+                          <option value="2nd term">2nd term</option>
+                          <option value="3rd term">3rd term</option>
+                        </select>
+                      )}
                     </div>
                   </div>
                 </div>
