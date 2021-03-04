@@ -75,7 +75,7 @@ function InfoCards({ applications }) {
               <div className="text-truncate">
                 <div className="d-flex justify-content-between pt-1 align-items-end">
                   <h3 className="m-0 line-h-0" style={{ fontWeight: "400" }}>
-                    {usrInfo.applications.declined}
+                    {usrInfo?.applications?.declined}
                   </h3>
                 </div>
                 <small className="text-muted">Declined Applications</small>

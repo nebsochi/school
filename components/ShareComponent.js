@@ -45,7 +45,7 @@ function ShareComponent({ link }) {
                   className="form-control"
                   id="basic-url"
                   aria-describedby="basic-addon3"
-                  value={link}
+                  defaultValue={link}
                 />
               </div>
             </div>

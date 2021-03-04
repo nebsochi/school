@@ -247,7 +247,7 @@ function Profile() {
                         name="motto"
                         placeholder={usrInfo.motto || "Enter school motto"}
                         onChange={(e) => handleChange(e)}
-                        defaultValue={usrInfo.motto}
+                        defaultValue={usrInfo?.motto}
                       />
                     </div>
                   </div>
