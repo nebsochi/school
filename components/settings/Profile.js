@@ -26,6 +26,7 @@ function Profile() {
       phone: usrInfo?.phone,
       name: usrInfo?.name,
       term: usrInfo?.term,
+      motto: usrInfo?.motto,
     });
   }, [usrInfo]);
 
@@ -233,6 +234,20 @@ function Profile() {
                           3rd term
                         </option>
                       </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <label htmlFor="term">School Motto</label>
+                      <textarea
+                        className="form-control"
+                        name="motto"
+                        placeholder={usrInfo.motto || "Enter school motto"}
+                        onChange={(e) => handleChange(e)}
+                      />
                     </div>
                   </div>
                 </div>
