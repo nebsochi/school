@@ -208,6 +208,12 @@ function PreQuestion({ data, closeModal }) {
           >
             What is the name of this guardian
           </h4>
+          <div className="alert alert-warning text-muted" role="alert">
+            <small>
+              Are you sure you recognize this application? Clicking the wrong
+              name will decline this request.
+            </small>
+          </div>
           <div className="d-flex flex-wrap">
             {nameOptions.map((value, i) => (
               <RadioList
