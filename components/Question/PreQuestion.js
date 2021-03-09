@@ -17,6 +17,7 @@ function PreQuestion({ data, closeModal }) {
   const [loading, setloading] = useState(false);
   const [question, setQuestion] = useState(false);
   const [declineReq, setDelinedReq] = useState(false);
+  const [declined, setDeclined] = useState(false);
   const { setPassedPreQuestion, declineRequest } = useContext(
     ModalContext
   ).contextValue;
@@ -28,6 +29,8 @@ function PreQuestion({ data, closeModal }) {
   };
 
   useEffect(() => {
+    setDelinedReq(false);
+    setQuestion(false);
     const newArr = [];
     data?.guardian_choices?.forEach((item) => {
       newArr.push(item.full_name);
@@ -35,7 +38,6 @@ function PreQuestion({ data, closeModal }) {
     const shuffledArr = shuffle(newArr);
     setNameOptions([...shuffledArr]);
     return () => {
-      setQuestion(false);
       const emptyObj = {};
       setAnswers({ ...emptyObj });
     };
@@ -74,7 +76,7 @@ function PreQuestion({ data, closeModal }) {
     }
   };
 
-  const handleClick = async () => {
+  const handleClick = async (param) => {
     setloading(true);
     const res = await declineRequest(data.id);
 
@@ -202,39 +204,54 @@ function PreQuestion({ data, closeModal }) {
           animate="visible"
           variants={content}
         >
-          <h4
-            className="mt-5 pb-2 question position-relative"
-            style={{ fontSize: "1.5rem" }}
-          >
-            What is the name of this guardian
-          </h4>
-          <div className="alert alert-warning text-muted" role="alert">
-            <small>
-              Are you sure you recognize this application? Clicking the wrong
-              name will decline this request.
-            </small>
-          </div>
-          <div className="d-flex flex-wrap">
-            {nameOptions.map((value, i) => (
-              <RadioList
-                key={i}
-                population={answers?.guardian_name}
-                setPop={(e) => setAnswer(e, i)}
-                value={value}
-                name={"guardian_name"}
-              />
-            ))}
-          </div>
-          <button
-            type="submit"
-            className="btn px-5 mt-5 btn-outline btn-primary btn-primary--sh-none "
-            style={{
-              marginTop: ".9rem",
-              marginBottom: "1rem",
-            }}
-          >
-            Proceed
-          </button>
+          {!declineReq ? (
+            <>
+              <h4
+                className="mt-5 pb-2 question position-relative"
+                style={{ fontSize: "1.5rem" }}
+              >
+                What is the name of this guardian?
+              </h4>
+              <div className="alert alert-warning text-muted" role="alert">
+                <small>
+                  Are you sure you recognize this application? Clicking the
+                  wrong name will decline this request.
+                </small>
+              </div>
+              <div className="d-flex flex-wrap">
+                {nameOptions.map((value, i) => (
+                  <RadioList
+                    key={i}
+                    population={answers?.guardian_name}
+                    setPop={(e) => setAnswer(e, i)}
+                    value={value}
+                    name={"guardian_name"}
+                  />
+                ))}
+              </div>
+              <button
+                type="submit"
+                className="btn px-5 mt-5 btn-outline btn-primary btn-primary--sh-none "
+                style={{
+                  marginTop: ".9rem",
+                  marginBottom: "1rem",
+                }}
+                onClick={(e) => handleClick("decline")}
+              >
+                Proceed
+              </button>
+            </>
+          ) : (
+            <div className="mt-4 border-top">
+              <div className="mt-4 text-danger alert alert-danger" role="alert">
+                Request has been declined!
+              </div>
+              <br />
+              <button className="btn mt-2 btn-primary" onClick={closeModal}>
+                Done
+              </button>
+            </div>
+          )}
         </motion.form>
       )}
       {confirmation && (
