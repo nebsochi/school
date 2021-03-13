@@ -2,6 +2,7 @@ import { createContext, useState, useContext, useEffect } from "react";
 import Api from "../pages/api/api";
 import BankApi from "../pages/api/bankApi";
 import { AuthContext } from "../context/AuthContext";
+import isNull from "lodash/isNull";
 
 export const ApiContext = createContext();
 
@@ -176,25 +177,31 @@ export const ApiProvider = (props) => {
   };
 
   useEffect(() => {
-    getBanks();
-    recentRequest(1);
+    let token = localStorage.getItem("token") || "";
+    if (token.length > 1) {
+      getBanks();
+      recentRequest(1);
+    }
   }, []);
 
   useEffect(() => {
-    let str = window.location.pathname;
-    if (window.location.pathname === "/request") {
-      setSelected("Pending");
-      getRequest(1);
-    } else if (window.location.pathname.startsWith("/request/pending/")) {
-      getRequest(str[str.length - 1]);
-    } else if (window.location.pathname.startsWith("/request/declined")) {
-      getRequest(str[str.length - 1], "declined");
-      setSelected("Declined");
-    } else if (window.location.pathname.startsWith("/request/approved")) {
-      getRequest(str[str.length - 1], "approved");
-      setSelected("Approved");
-    } else {
-      getRequest(1);
+    let token = localStorage.getItem("token") || "";
+    if (token.length > 1) {
+      let str = window.location.pathname;
+      if (window.location.pathname === "/request") {
+        setSelected("Pending");
+        getRequest(1);
+      } else if (window.location.pathname.startsWith("/request/pending/")) {
+        getRequest(str[str.length - 1]);
+      } else if (window.location.pathname.startsWith("/request/declined")) {
+        getRequest(str[str.length - 1], "declined");
+        setSelected("Declined");
+      } else if (window.location.pathname.startsWith("/request/approved")) {
+        getRequest(str[str.length - 1], "approved");
+        setSelected("Approved");
+      } else {
+        getRequest(1);
+      }
     }
   }, []);
 

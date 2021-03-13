@@ -14,7 +14,7 @@ function SignInform() {
   });
   const [validated, setValidated] = useState(false);
   const [errorResponse, setErrorResponse] = useState(false);
-  const { signIn, getUserInfo } = useContext(AuthContext).authValue;
+  const { signIn, signedIn, getUserInfo } = useContext(AuthContext).authValue;
   const { recentRequest, getRequest } = useContext(ApiContext).api;
   const { getAllBooks } = useContext(PublishContext).contextValue;
   const router = useRouter();
@@ -43,11 +43,13 @@ function SignInform() {
   };
 
   useEffect(() => {
-    getUserInfo();
-    recentRequest(1);
-    getRequest(1);
-    getAllBooks(1);
-  }, [signIn]);
+    if (signedIn) {
+      getUserInfo();
+      recentRequest(1);
+      getRequest(1);
+      getAllBooks(1);
+    }
+  }, [signedIn]);
 
   const content = {
     hidden: {

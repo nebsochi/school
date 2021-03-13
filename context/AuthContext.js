@@ -29,14 +29,15 @@ export const AuthProvider = (props) => {
       `${Api.ENDPOINTS.url}/school/register`,
       cdata
     );
-    if (response.message === "Login Successful!") {
-      const { data } = response;
+    setIsLoading(false);
+    if (response.message === "User Created!") {
       if (process.browser) {
+        const { data } = response;
         localStorage.setItem("token", data.token);
         setSignedIn(true);
       }
     }
-    setIsLoading(false);
+
     return response.message;
   };
 
@@ -72,7 +73,8 @@ export const AuthProvider = (props) => {
   };
 
   useEffect(() => {
-    getUserInfo();
+    const token = localStorage.getItem("token");
+    if (token != null) getUserInfo();
   }, []);
 
   const authValue = {

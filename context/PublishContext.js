@@ -107,8 +107,11 @@ export const PublishProvider = (props) => {
   };
 
   useEffect(() => {
-    getPusblishers();
-    getAllBooks(1);
+    const token = localStorage.getItem("token");
+    if (token != null) {
+      getPusblishers();
+      getAllBooks(1);
+    }
   }, []);
 
   useEffect(() => {

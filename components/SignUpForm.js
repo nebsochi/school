@@ -191,13 +191,3 @@ function SignUpForm() {
 }
 
 export default SignUpForm;
-// "name":"Kings College",
-//     "username":"Kings",
-//     "nursery":false,
-//     "primary":true,
-//     "secondary":true,
-//     "students_range":"3",
-//     "address":"50 Afolabi Brown Akoka Lagos",
-//     "licensed":"1",
-//     "email":"students@kings.com",
-//     "phone":"08134932222"
