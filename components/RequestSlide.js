@@ -22,7 +22,7 @@ function RequestSlide({ cswiper, childrenData }) {
           <div className="d-flex align-item-center ml-3">
             <div className={`${Styles.RequestImageContainer}`}>
               <img
-                src={item.picture}
+                src={item?.picture}
                 alt="name"
                 className={`${Styles.RequestImage} `}
               />
@@ -33,7 +33,7 @@ function RequestSlide({ cswiper, childrenData }) {
               </span>
               <div className="d-flex align-items-center mt-2 justify-content-start">
                 <span className="profile__title d-block">
-                  &#8358; {formatNumber(item.tuition_fees)}
+                  &#8358; {formatNumber(item?.tuition_fees)}
                 </span>
               </div>
             </div>

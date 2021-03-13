@@ -23,7 +23,7 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
           style={{ top: ".0rem", right: ".3rem" }}
         >
           <span className="badge badge-pill badge-danger">
-            {item.children.length}
+            {item?.children?.length}
           </span>
         </div>
         <div
@@ -35,7 +35,7 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
             style={{ height: "36px", width: "36px" }}
           >
             <img
-              src={item.parent.picture || "user.svg"}
+              src={item?.parent?.picture || "user.svg"}
               height="100%"
               alt="user"
             />
@@ -48,7 +48,7 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
               style={{ textTransform: "lowercase" }}
               className="d-block profile__status"
             >
-              {item.children.length} Student(s)
+              {item?.children?.length} Student(s)
             </span>
           </div>
         </div>
@@ -58,7 +58,7 @@ function RequestCard({ item, setIsOpen, detailData, setDetailData }) {
             className="pt-3 border-top mt-4 mb-3 border-bottom pb-3 position-relative"
             style={{ minHeight: "90px" }}
           >
-            <RequestSlide childrenData={item.children} />
+            <RequestSlide childrenData={item?.children} />
           </div>
         </div>
 
