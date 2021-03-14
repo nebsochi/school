@@ -74,11 +74,13 @@ function publications() {
                   style={{ height: "45px" }}
                   onChange={(e) => handleSelect(e)}
                 >
-                  {tags?.map((tag, i) => (
-                    <option key={i} value={tag}>
-                      {tag}
-                    </option>
-                  ))}
+                  <>
+                    {tags?.map((tag, i) => (
+                      <option key={i} value={tag}>
+                        {tag}
+                      </option>
+                    ))}
+                  </>
                 </select>
               </div>
 
