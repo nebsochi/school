@@ -23,6 +23,7 @@ function publications() {
   const [num, setNum] = useState(0);
   const [searchValue, setSearchValue] = useState("");
   const { getTags, tags } = useContext(ApiContext).api;
+
   const handleClick = (e) => {
     e.preventDefault();
     setIsOpen(true);
@@ -41,9 +42,9 @@ function publications() {
     setModalData({ ...modalData, ...books[num] });
   }, [books]);
 
-  useEffect(() => {
-    getTags();
-  }, []);
+  // useEffect(() => {
+  //   getTags();
+  // }, []);
 
   const handleSelect = (e) => {
     e.preventDefault();
@@ -69,9 +70,10 @@ function publications() {
                 >
                   Filter By:&nbsp;&nbsp;&nbsp;&nbsp;
                 </label>
+
                 <select className="form-control" onChange={handleSelect}>
-                  {tags.map((tag) => (
-                    <option>{tag}</option>
+                  {tags.map(({ name, id }) => (
+                    <option key={id}>{name}</option>
                   ))}
                 </select>
               </div>

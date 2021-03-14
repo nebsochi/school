@@ -177,14 +177,6 @@ export const ApiProvider = (props) => {
     return message;
   };
 
-  useEffect(() => {
-    let token = localStorage.getItem("token") || "";
-    if (token.length > 1) {
-      getBanks();
-      recentRequest(1);
-    }
-  }, []);
-
   const getTags = async () => {
     const token = localStorage.getItem("token");
     const res = await Api.get(`${Api.ENDPOINTS.url}/school/tags`, token);
@@ -192,6 +184,15 @@ export const ApiProvider = (props) => {
     setTags([...data]);
     return message;
   };
+
+  useEffect(() => {
+    let token = localStorage.getItem("token") || "";
+    if (token.length > 1) {
+      getBanks();
+      recentRequest(1);
+      getTags();
+    }
+  }, []);
 
   useEffect(() => {
     let token = localStorage.getItem("token") || "";
