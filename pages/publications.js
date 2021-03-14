@@ -69,12 +69,10 @@ function publications() {
                 >
                   Filter By:&nbsp;&nbsp;&nbsp;&nbsp;
                 </label>
-                <select
-                  className="form-control"
-                  style={{ height: "45px" }}
-                  onChange={(e) => handleSelect(e)}
-                >
-                  <option value="ugiuuou">jjhkghgh</option>
+                <select className="form-control" onChange={handleSelect}>
+                  {tags.map((tag) => (
+                    <option>{tag}</option>
+                  ))}
                 </select>
               </div>
 
