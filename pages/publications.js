@@ -38,7 +38,6 @@ function publications() {
   };
 
   useEffect(() => {
-    // getTags();
     setModalData({ ...modalData, ...books[num] });
   }, [books]);
 
@@ -81,8 +80,10 @@ function publications() {
                     </option>
                   ) : (
                     <>
-                      {tags.map((tag) => (
-                        <option value={tag}>{tag}</option>
+                      {tags.map((tag, i) => (
+                        <option key={i} value={tag}>
+                          {tag}
+                        </option>
                       ))}
                     </>
                   )}
