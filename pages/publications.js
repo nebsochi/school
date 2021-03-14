@@ -74,7 +74,7 @@ function publications() {
                   style={{ height: "45px" }}
                   onChange={(e) => handleSelect(e)}
                 >
-                  {isEmpty(tags) ? (
+                  {/* {isEmpty(tags) ? (
                     <option value={"no value"} className="disabled">
                       No value
                     </option>
@@ -86,7 +86,8 @@ function publications() {
                         </option>
                       ))}
                     </>
-                  )}
+                  )} */}
+                  <option value={"no value"} className="disabled"></option>
                 </select>
               </div>
 
