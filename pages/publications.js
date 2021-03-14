@@ -1,7 +1,7 @@
 import IndexLayout from "../Layouts/index";
 import { useState, useContext, useEffect, useCallback } from "react";
 import { PublishContext } from "../context/PublishContext";
-// import Styles from "../styles/Publish.module.css";
+import { ApiContext } from "../context/ApiContext";
 import Empty from "../components/Empty";
 import PublishModal from "../components/Publish/PublishModal";
 import BookList from "../components/Publish/BookList";
@@ -22,6 +22,7 @@ function publications() {
   const [modalData, setModalData] = useState({});
   const [num, setNum] = useState(0);
   const [searchValue, setSearchValue] = useState("");
+  const { getTags, tags } = useContext(ApiContext).api;
   const handleClick = (e) => {
     e.preventDefault();
     setIsOpen(true);
@@ -37,8 +38,18 @@ function publications() {
   };
 
   useEffect(() => {
+    // getTags();
     setModalData({ ...modalData, ...books[num] });
   }, [books]);
+
+  useEffect(() => {
+    getTags();
+  }, []);
+
+  const handleSelect = (e) => {
+    e.preventDefault();
+    console.log(e);
+  };
 
   return (
     <IndexLayout>
@@ -64,9 +75,17 @@ function publications() {
                   style={{ height: "45px" }}
                   onChange={(e) => handleSelect(e)}
                 >
-                  <option value="pending">Pending</option>
-                  <option value="approved">Approved</option>
-                  <option value="declined">Declined</option>
+                  {isEmpty(tags) ? (
+                    <option value={"no value"} className="disabled">
+                      No value
+                    </option>
+                  ) : (
+                    <>
+                      {tags.map((tag) => (
+                        <option value={tag}>{tag}</option>
+                      ))}
+                    </>
+                  )}
                 </select>
               </div>
 

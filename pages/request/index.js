@@ -7,6 +7,8 @@ import Modal from "../../components/Modal";
 import debounce from "lodash/debounce";
 import Pagination from "../../components/Pagination";
 import NavBar from "../../components/NavBar";
+import EmptyRequest from "../../components/EmptyRequest";
+import { isEmpty } from "lodash";
 
 export default function Request({}) {
   const {
@@ -130,15 +132,29 @@ export default function Request({}) {
               <>
                 {searchValue.length === 0 && (
                   <div className="row position-relative">
-                    {requestData?.map((item, i) => (
-                      <RequestCard
-                        key={item.id}
-                        setIsOpen={setIsOpen}
-                        item={item}
-                        detailData={detailData}
-                        setDetailData={setDetailData}
-                      />
-                    ))}
+                    {isEmpty(requestData) ? (
+                      <div className="mx-auto">
+                        <EmptyRequest width={"300px"} />
+                        <h6 className="text-center">
+                          <strong>No Request</strong>
+                        </h6>
+                        <p className="text-center">
+                          Your {selected} list will appear here
+                        </p>
+                      </div>
+                    ) : (
+                      <>
+                        {requestData?.map((item, i) => (
+                          <RequestCard
+                            key={item.id}
+                            setIsOpen={setIsOpen}
+                            item={item}
+                            detailData={detailData}
+                            setDetailData={setDetailData}
+                          />
+                        ))}
+                      </>
+                    )}
                   </div>
                 )}
                 {searchValue.length > 0 &&

@@ -410,3 +410,13 @@ td {
 .dropdown-menu.show {
   left: -93px;
 }
+
+.empty-container {
+  width: 100%;
+}
+
+@media only screen and (min-width: 992) {
+  .empty-container {
+    width: calc(100% - 260px);
+  }
+}

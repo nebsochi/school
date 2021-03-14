@@ -9,12 +9,31 @@ function Sidebar() {
   const { logOut, usrInfo } = useContext(AuthContext).authValue;
   const [userInfo, setUserInfo] = useState({});
   const router = useRouter();
+  const [term, setTerm] = useState(1);
 
   const handleClick = (e) => {
     e.preventDefault();
     logOut();
     router.push("/signin");
   };
+
+  useEffect(() => {
+    let term =
+      userInfo.term === 1 ? (
+        <>
+          1<sup>st</sup>
+        </>
+      ) : userInfo.term === 2 ? (
+        <>
+          2<sup>nd</sup>
+        </>
+      ) : (
+        <>
+          3<sup>rd</sup>
+        </>
+      );
+    setTerm(term);
+  }, [userInfo?.term]);
 
   useEffect(() => {
     setUserInfo({ ...userInfo, ...usrInfo });
@@ -62,12 +81,7 @@ function Sidebar() {
             {userInfo?.name?.length > 16 && "..."}
           </h6>
 
-          <span className="badge badge-warning">
-            {userInfo.term}
-            {userInfo.term === 1 && <sup>st</sup>}
-            {userInfo.term === 2 && <sup>nd</sup>}
-            {userInfo.term === 3 && <sup>rd</sup>} term
-          </span>
+          <span className="badge badge-warning">{term} term</span>
         </div>
       </a>
 
@@ -116,7 +130,9 @@ function Sidebar() {
         <Link href="/request">
           <a
             className={`${Styles.SideLink} mt-2 p-3 ${
-              router.pathname === "/request" ? Styles.SideLinkActive : null
+              router.pathname.startsWith("/request")
+                ? Styles.SideLinkActive
+                : null
             }`}
           >
             <svg
@@ -140,7 +156,9 @@ function Sidebar() {
         <Link href="/publications">
           <a
             className={`${Styles.SideLink} ${
-              router.pathname === "/publications" ? Styles.SideLinkActive : null
+              router.pathname.startsWith("/publications")
+                ? Styles.SideLinkActive
+                : null
             } mt-2 p-3`}
           >
             <svg
@@ -164,7 +182,9 @@ function Sidebar() {
 
         <a
           className={`${Styles.SideLink} ${
-            router.pathname === "/invoices" ? Styles.SideLinkActive : null
+            router.pathname.startsWith("/invoices")
+              ? Styles.SideLinkActive
+              : null
           } mt-2 p-3`}
         >
           <svg
@@ -188,7 +208,9 @@ function Sidebar() {
         <Link href="/settings">
           <a
             className={`${Styles.SideLink} ${
-              router.pathname === "/settings" ? Styles.SideLinkActive : null
+              router.pathname.startsWith("/settings")
+                ? Styles.SideLinkActive
+                : null
             } mt-2 p-3`}
           >
             <svg

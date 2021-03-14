@@ -22,6 +22,7 @@ export const ApiProvider = (props) => {
   const [searchResult, setSearchResult] = useState([]);
   const [selected, setSelected] = useState("pending");
   const [recentData, setRecentData] = useState([]);
+  const [tags, setTags] = useState([]);
 
   function setPg(params) {
     const pageNumbers = [];
@@ -184,6 +185,14 @@ export const ApiProvider = (props) => {
     }
   }, []);
 
+  const getTags = async () => {
+    const token = localStorage.getItem("token");
+    const res = await Api.get(`${Api.ENDPOINTS.url}/school/tags`, token);
+    const { data, message } = res;
+    setTags([...data]);
+    return message;
+  };
+
   useEffect(() => {
     let token = localStorage.getItem("token") || "";
     if (token.length > 1) {
@@ -227,6 +236,8 @@ export const ApiProvider = (props) => {
     selected,
     recentRequest,
     recentData,
+    getTags,
+    tags,
   };
 
   return (

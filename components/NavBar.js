@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { AuthContext } from "../context/AuthContext";
 import { ModalContext } from "../context/ModalContext";
@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 function NavBar({ page }) {
   const { logOut, usrInfo } = useContext(AuthContext).authValue;
   const { setShow } = useContext(ModalContext).contextValue;
+  const [term, setTerm] = useState(1);
   const router = useRouter();
 
   const handleClick = (e) => {
@@ -19,6 +20,24 @@ function NavBar({ page }) {
     setShow(true);
     document.body.style.overflow = "hidden";
   };
+
+  useEffect(() => {
+    let term =
+      usrInfo?.term === 1 ? (
+        <>
+          1<sup>st</sup>
+        </>
+      ) : usrInfo.term === 2 ? (
+        <>
+          2<sup>nd</sup>
+        </>
+      ) : (
+        <>
+          3<sup>rd</sup>
+        </>
+      );
+    setTerm(term);
+  }, [usrInfo?.term]);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark shadow bg-primary">
@@ -55,9 +74,7 @@ function NavBar({ page }) {
             >
               {usrInfo.name}
             </h6>
-            <span className="badge badge-warning">
-              1<sup>st</sup> term
-            </span>
+            <span className="badge badge-warning">{term} term</span>
           </div>
         </a>
 

@@ -239,6 +239,19 @@ function Profile() {
                           <option value="3rd term">3rd term</option>
                         </select>
                       )}
+                      {usrInfo.term === null && (
+                        <select
+                          className="form-control"
+                          required
+                          onChange={(e) => handleChange(e)}
+                          id="term"
+                          name="term"
+                        >
+                          <option value="1st term">1st term</option>
+                          <option value="2nd term">2nd term</option>
+                          <option value="3rd term">3rd term</option>
+                        </select>
+                      )}
                     </div>
                   </div>
                 </div>
