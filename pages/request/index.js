@@ -221,7 +221,7 @@ export default function Request({}) {
         </div>
       </div>
 
-      {searchValue.length >= 1 ? (
+      {searchValue.length !== 1 ? (
         <div className="container-fluid mx-auto" style={{ bottom: "0" }}>
           <div className="container ">
             <div className="pb-2">
