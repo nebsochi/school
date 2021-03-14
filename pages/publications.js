@@ -75,7 +75,7 @@ function publications() {
                   onChange={(e) => handleSelect(e)}
                 >
                   {tags.map((tag, i) => (
-                    <option key={i} value={tag} className="disabled">
+                    <option key={i} value={tag}>
                       {tag}
                     </option>
                   ))}
