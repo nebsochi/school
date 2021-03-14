@@ -23,6 +23,9 @@ export default function Request({}) {
     currentPage,
     setSelected,
     selected,
+    searchPage,
+    currentSearchPage,
+    pageSearchCount,
   } = useContext(ApiContext).api;
   const router = useRouter();
   const [data, setData] = useState([]);
@@ -50,10 +53,31 @@ export default function Request({}) {
     await getRequest(page.next, selected.toLowerCase());
   };
 
+  const handleSearchNextClick = async (ev) => {
+    ev.preventDefault();
+    await searchRequest(searchPage.next, {
+      search: `${searchValue}`,
+    });
+  };
+
+  const handleSearchPrevClick = async (ev) => {
+    ev.preventDefault();
+    await searchRequest(searchPage.prev, {
+      search: `${searchValue}`,
+    });
+  };
+
   const handlePrevClick = async (ev) => {
     ev.preventDefault();
     router.push(`/request`, `/request/${selected}/${currentPage - 1}`);
     await getRequest(page.prev, selected.toLowerCase());
+  };
+
+  const handleSearchpageClick = async (ev, item) => {
+    ev.preventDefault();
+    await searchRequest(item, {
+      search: `${searchValue}`,
+    });
   };
 
   const handlepageClick = async (ev, item) => {
@@ -197,19 +221,36 @@ export default function Request({}) {
         </div>
       </div>
 
-      <div className="container-fluid mx-auto" style={{ bottom: "0" }}>
-        <div className="container ">
-          <div className="pb-2">
-            <Pagination
-              pageCount={pageCount}
-              currentPage={currentPage}
-              handleNextClick={handleNextClick}
-              handlePrevClick={handlePrevClick}
-              handlepageClick={handlepageClick}
-            />
+      {searchValue.length >= 1 ? (
+        <div className="container-fluid mx-auto" style={{ bottom: "0" }}>
+          <div className="container ">
+            <div className="pb-2">
+              <Pagination
+                pageCount={pageSearchCount}
+                currentPage={currentSearchPage}
+                handleNextClick={handleSearchNextClick}
+                handlePrevClick={handleSearchPrevClick}
+                handlepageClick={handleSearchpageClick}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="container-fluid mx-auto" style={{ bottom: "0" }}>
+          <div className="container ">
+            <div className="pb-2">
+              <Pagination
+                pageCount={pageCount}
+                currentPage={currentPage}
+                handleNextClick={handleNextClick}
+                handlePrevClick={handlePrevClick}
+                handlepageClick={handlepageClick}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
       <Modal isOpen={isOpen} setIsOpen={setIsOpen} data={detailData} />
     </IndexLayout>
   );

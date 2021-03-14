@@ -20,6 +20,9 @@ export const ApiProvider = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState([1]);
   const [searchResult, setSearchResult] = useState([]);
+  const [searchPage, setSearchPage] = useState({});
+  const [currentSearchPage, setCurrentSearchPage] = useState(1);
+  const [pageSearchCount, setPageSearchCount] = useState([1]);
   const [selected, setSelected] = useState("pending");
   const [recentData, setRecentData] = useState([]);
   const [tags, setTags] = useState([]);
@@ -32,6 +35,15 @@ export const ApiProvider = (props) => {
     }
     setPage({ ...page, next: params.next, prev: params.prev });
     setCurrentPage(params?.next ? params.next - 1 : params.prev + 1);
+  }
+  function setSearchPg(params) {
+    const pageNumbers = [];
+    for (let index = 0; index <= params.total_results_count / 16; index++) {
+      pageNumbers.push(index + 1);
+      setPageSearchCount([...pageNumbers]);
+    }
+    setSearchPage({ ...page, next: params.next, prev: params.prev });
+    setCurrentSearchPage(params?.next ? params.next - 1 : params.prev + 1);
   }
 
   const getRequest = async (number, selection) => {
@@ -84,7 +96,7 @@ export const ApiProvider = (props) => {
       );
       setIsSearching(false);
       const { data } = response;
-      setPg(response);
+      setSearchPg(response);
       setSearchResult([...data]);
     } catch (err) {
       throw err;
@@ -233,6 +245,9 @@ export const ApiProvider = (props) => {
     pageCount,
     currentPage,
     page,
+    searchPage,
+    currentSearchPage,
+    pageSearchCount,
     setSelected,
     selected,
     recentRequest,
