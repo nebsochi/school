@@ -78,8 +78,8 @@ function SignInform() {
       <div className="mb-4">
         <h1 className="mb-4">Sign In</h1>
         <p>
-          Please enter the following details, to create your login for this
-          application
+          Please enter the following infromation, to create your login for this
+          application.
         </p>
       </div>
       {errorResponse.length > 1 && (
